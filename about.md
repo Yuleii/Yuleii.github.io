@@ -26,7 +26,7 @@ titles:
 key: page-about
 ---
 
-Hi! I am Yulei, currently a graduate student majoring in economics . I plan to post my notes on here.
+Hi! I am Yulei, currently a graduate student majoring in economics . I plan to post my notes here.
 
 <!-- ![TeXt Theme](https://raw.githubusercontent.com/kitian616/jekyll-TeXt-theme/master/screenshots/TeXt-home.jpg)
 
