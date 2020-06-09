@@ -28,7 +28,7 @@ key: page-about
 Hi! I am Yulei, currently a graduate student of economics at Bonn University.
 
 
-# Dependencies
+## Dependencies
 
 * Avatar made by [Icongeek26](https://www.flaticon.com/authors/icongeek26) from [Flaticon](www.flaticon.com)
 * Theme: [jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme)
