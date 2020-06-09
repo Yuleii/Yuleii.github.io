@@ -48,3 +48,6 @@ header:
       fr-LU   : *FR
       # @end locale config
     url: /about.html
+
+  - title:      GitHub
+    url:        https://github.com/Yuleii
