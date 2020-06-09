@@ -30,5 +30,6 @@ Hi! I am Yulei, currently a graduate student of economics living in Germany.
 
 ## Dependencies
 
-* Avatar made by [Icongeek26](https://www.flaticon.com/authors/icongeek26) from [Flaticon](www.flaticon.com)
+* Avatar made by [Icongeek26](https://www.flaticon.com/authors/icongeek26) from [Flaticon](www.flaticon.com)  
+* Favicon made by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)  
 * Theme: [jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme)
