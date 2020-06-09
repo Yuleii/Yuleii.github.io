@@ -1,9 +1,18 @@
 ---
 layout: article
 title: 用 Github pages 和 Jekyll 搭建博客
+key: 20200609
+tags: Programming
 aside:
   toc: true
 ---
+
+
+搭建本博客的经验
+
+<!--more-->
+
+
 ## 创建gitpage仓库
 在github上创建一个新的仓库，Repository name 填your_user_name.github.io, 例如我的仓库名是 Yuleii.github.io。创建成功后，在浏览器里输入 https://Yuleii.github.io/ 这个url就可以访问了。
 
