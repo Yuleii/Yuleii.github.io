@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: page
 title: 用 Github pages 和 Jekyll 搭建博客
 key: 20200609
 tags: Programming
