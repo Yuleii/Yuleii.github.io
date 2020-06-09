@@ -131,8 +131,8 @@ comments:
     clientSecret: 4c6b972349dafe43b0c74afae19438d0402c85e1 # GitHub Application Client Secret
     repository  : Yuleii.github.io # GitHub repo
     owner       : Yuleii # GitHub repo owner
-    admin: Yuleii# GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      # - your GitHub Id
+    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+       - Yuleii
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
