@@ -64,12 +64,14 @@ jekyll目录结构主要包含如下目录：
 
 
 # 撰写博客
+## 编辑器
+推荐vscode因为可以一边写markdown一边预览。
 ## 创建文章
 在_post文件夹新建一个markdown格式的文件，命名格式为：
 ```md
 年-月-日-标题.MARKUP
 ```
-例如
+例如：
 ```md
 2011-12-31-new-years-eve-is-awesome.md
 2012-09-12-how-to-write-a-blog.markdown
@@ -77,7 +79,7 @@ jekyll目录结构主要包含如下目录：
 ```
 
 ## YAML头信息
-头信息必须在文章的开始部分
+头信息必须在文章的开始部分：
 ```
 ---
 layout: article
