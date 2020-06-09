@@ -25,7 +25,7 @@ titles:
   # @end locale config
 key: page-about
 ---
-Hi! I am Yulei, currently a graduate student of economics at Bonn University.
+Hi! I am Yulei, currently a graduate student of economics living in Germany.
 
 
 ## Dependencies
