@@ -113,3 +113,10 @@ mathjax: true
 - [Github Pages + Jekyll 独立博客一小时快速搭建&上线指南](https://www.jianshu.com/p/7593508666f8)  
 - [Github+Jekyll 搭建个人网站详细教程](https://www.jianshu.com/p/9f71e260925d)  
 - [Jekyll 博客系列 - 01 快速入门(Youtube)](https://youtu.be/Zt_QzSbyDcw)
+
+## 我遇到的问题（持续更新）
+- **Q:** 如何调大代码字体？  
+  **A:** 找到 _sass\common_reset.scss ，将里面 code 中 font-size-sm 改成 font-size
+
+- **Q:** 怎么控制显示在主页的摘要内容？  
+  **A:** 在文章摘要和正文中间加上 `<!--more-->` 
