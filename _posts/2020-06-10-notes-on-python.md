@@ -131,3 +131,215 @@ plt.show()
 ```
 
 ## Dictionaries
+
+### Creating a dictionary
+
+> ```py
+> # Make sure use lowercase
+> # Keys must be immutable
+> my_dict = {
+>  "key1": value1,
+>  "key2": value2,
+> }
+> ```
+
+```py
+# Definition of countries and capital
+countries = ['spain', 'france', 'germany', 'norway']
+capitals = ['madrid', 'paris', 'berlin', 'oslo']
+
+# From string in countries and capitals, create dictionary europe
+europe = { 'spain':'madrid', 'france': 'paris', 'germany':'berlin', 'norway':'oslo'}
+```
+
+### Access dictionary
+
+```py
+# Print out the keys in europe
+print(europe.keys())
+
+# Print out value that belongs to key 'norway'
+print(europe['norway'])
+```
+### Dictionary Manipulation
+
+```py
+# Add italy to europe
+europe['italy'] = 'rome'
+
+# Print out italy in europe, output should be true or false
+print('italy' in europe)
+
+# Add poland to europe
+europe['poland'] = 'warsaw'
+```
+
+```py
+# Definition of dictionary
+europe = {'spain':'madrid', 'france':'paris', 'germany':'bonn',
+          'norway':'oslo', 'italy':'rome', 'poland':'warsaw',
+          'australia':'vienna' }
+
+# Update capital of germany, bonn to berlin 
+europe['germany'] = 'berlin'
+
+# Remove australia
+del(europe['australia'])
+```
+
+### Dictionariception
+
+```py
+# Dictionary of dictionaries(嵌套)
+europe = { 'spain': { 'capital':'madrid', 'population':46.77 },
+           'france': { 'capital':'paris', 'population':66.03 },
+           'germany': { 'capital':'berlin', 'population':80.62 },
+           'norway': { 'capital':'oslo', 'population':5.084 } }
+
+
+# Print out the capital of France
+print(europe['france']['capital'])
+
+# Create sub-dictionary data
+data = {'capital':'rome', 'population':59.83 }
+
+# Add data to europe under key 'italy'
+europe['italy']=data
+
+# Print europe
+print(europe)
+```
+
+## Pandas
+
+### Dictionary to DataFrame 
+
+```py
+# Pre-defined lists
+names = ['United States', 'Australia', 'Japan', 'India', 'Russia', 'Morocco', 'Egypt']
+dr =  [True, False, False, False, True, True, True]
+cpc = [809, 731, 588, 18, 200, 70, 45]
+
+# Import pandas as pd
+import pandas as pd
+
+# Create dictionary my_dict with three key:value pairs: my_dict
+my_dict = {'country': names,'drives_right': dr,'cars_per_cap':cpc}
+
+# Build a DataFrame cars from my_dict: cars
+cars = pd.DataFrame(my_dict)
+
+# Definition of row_labels
+row_labels = ['US', 'AUS', 'JPN', 'IN', 'RU', 'MOR', 'EG']
+
+# Specify row labels of cars
+cars.index = row_labels
+```
+
+### CSV to DataFrame
+```py
+# Import the cars.csv data: cars
+# 括号里的文件名称要打引号
+cars = pd.read_csv('cars.csv')
+
+# The first column is used as row labels
+cars = pd.read_csv('cars.csv',index_col=0)
+```
+> ```py
+>      cars_per_cap        country  drives_right
+> US            809  United States          True
+> AUS           731      Australia         False
+> JPN           588          Japan         False
+> IN             18          India         False
+> RU            200         Russia          True
+> MOR            70        Morocco          True
+> EG             45          Egypt          True
+> ```
+ 
+### Square Brackets
+
+> ```py
+> # To select only the cars_per_cap column from cars
+> # The single bracket version gives a Pandas Series, the double bracket version gives a Pandas DataFrame.
+> # 记得引号!
+> cars['cars_per_cap'] # 返回Pandas Series，2列，左边列是属性，右边列是值
+> cars[['cars_per_cap']] # 返回Pandas DataFrame，2行，第一行是属性，第二行是值
+> ```
+
+- Select column
+  
+```py
+# Print out country column as Pandas Series
+print(cars['country'])
+
+# Print out country column as Pandas DataFrame
+print(cars[['country']])
+
+# Print out DataFrame with country and drives_right columns
+print(cars[['country','drives_right']])
+```
+
+- Select row
+  
+```py
+# Print out first 3 observations
+print(cars[0:4])
+
+# Print out fourth, fifth and sixth observation
+print(cars[3:6])
+```
+
+### loc and iloc
+
+- loc is label-based  
+- iloc is integer index base
+
+```py
+# Each pair of commands here gives the same result.
+cars.loc['RU']
+cars.iloc[4]
+ 
+cars.loc[['RU']]
+cars.iloc[[4]]
+ 
+cars.loc[['RU', 'AUS']]
+cars.iloc[[4, 1]]
+```
+
+- select rows or columns from a DataFrame
+
+```py
+# Print out observation for Japan as a Series
+print(cars.loc['JPN'])
+print(cars.iloc[4])
+
+# Print out observations for Australia and Egypt as DataFrame
+print(cars.loc[['AUS','EG']])
+print(cars.iloc[[1,6]])
+```
+
+- select both rows and columns from a DataFrame
+
+```py
+# Each pair of commands here gives the same result.
+cars.loc['IN', 'cars_per_cap']
+cars.iloc[3, 0]
+
+cars.loc[['IN', 'RU'], 'cars_per_cap']
+cars.iloc[[3, 4], 0]
+
+cars.loc[['IN', 'RU'], ['cars_per_cap', 'country']]
+cars.iloc[[3, 4], [0, 1]]
+```
+
+
+- select only columns
+  
+```py
+# Each pair of commands here gives the same result.
+cars.loc[:, 'country']
+cars.iloc[:, 1]
+
+cars.loc[:, ['country','drives_right']]
+cars.iloc[:, [1, 2]]
+```
