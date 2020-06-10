@@ -1,7 +1,6 @@
 ---
 layout: article
 title: 用 Github pages 和 Jekyll 搭建博客
-permalink: /page/aside.html
 key: 20200609
 tags: Programming
 aside:
@@ -115,8 +114,11 @@ mathjax: true
 - [Jekyll 博客系列 - 01 快速入门(Youtube)](https://youtu.be/Zt_QzSbyDcw)
 
 ## 我遇到的问题（持续更新）
-- **Q:** 如何调大代码字体？  
-  **A:** 找到 _sass\common_reset.scss ，将里面 code 中 font-size-sm 改成 font-size
+> **Q:** 如何调大代码字体？  
+>  **A:** 找到 _sass\common_reset.scss ，将里面 code 中 font-size-sm 改成 font-size
 
-- **Q:** 怎么控制显示在主页的摘要内容？  
+> **Q:** 怎么控制显示在主页的摘要内容？  
   **A:** 在文章摘要和正文中间加上 `<!--more-->` 
+
+> **Q:** 我的两篇post点开怎么是同一篇的内容？  
+> **A:** 把头信息里的 permalink 删除

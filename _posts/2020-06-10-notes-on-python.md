@@ -1,7 +1,6 @@
 ---
 layout: article
 title: Notes on Python
-permalink: /page/aside.html
 key: 20200610
 tags: Programming
 aside:
