@@ -1,12 +1,3 @@
-<!-- ---
-layout: page
-title: 用 Github pages 和 Jekyll 搭建博客
-key: 20200609
-tags: Programming
-aside:
-  toc: true
---- -->
-
 ---
 layout: article
 title: 用 Github pages 和 Jekyll 搭建博客
@@ -16,6 +7,7 @@ tags: Programming
 aside:
   toc: true
 ---
+
 
 搭建本博客的经验
 
@@ -65,14 +57,14 @@ $ bundle exec jekyll serve
 ## 编辑模版
 ### Jekyll 目录结构
 jekyll目录结构主要包含如下目录：
-> - _posts 博客内容
-> - _pages 其他需要生成的网页，如About页
-> - _layouts 网页排版模板
-> - _includes 被模板包含的HTML片段，_config.yml中修改位置assets 辅助资源 css布局 js脚本 图片等
-> - _data 动态数据
-> - _sites 最终生成的静态网页
-> - _config.yml 网站的一些配置信息
-> - index.html 网站的入口
+- _posts 博客内容
+- _pages 其他需要生成的网页，如About页
+- _layouts 网页排版模板
+- _includes 被模板包含的HTML片段，_config.yml中修改位置assets 辅助资源 css布局 js脚本 图片等
+- _data 动态数据
+- _sites 最终生成的静态网页
+- _config.yml 网站的一些配置信息
+- index.html 网站的入口
 
 
 建议再新建一个_drafts，没写完的文章可以先放这里，编写完成后再拖到_posts。
