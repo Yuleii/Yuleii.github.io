@@ -12,13 +12,101 @@ Based on Datacamp.
 
 <!--more-->
 
+## Lists
 
-## Matplotlib
+### Python Lists
 
-[Python for data science Cheat Sheet](https://datacamp-community-prod.s3.amazonaws.com/e30fbcd9-f595-4a9f-803d-05ca5bf84612)  
+```py
+# Create a list
+
+## area variables (in square meters)
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
+
+## Create list areas
+areas = [hall,kit,liv,bed,bath]
+
+# Create list with different types
+## Adapt list areas
+areas = ["hallway",hall, "kitchen",kit, "living room", liv, "bedroom",bed, "bathroom", bath]
+
+# List of lists
+## house information as list of lists
+house = [["hallway", hall],
+         ["kitchen", kit],
+         ["living room", liv],
+         ["bedroom",bed],
+         ["bathroom",bath]]
+```
+
+### Subsetting Lists
+
+```py
+x = ["a", "b", "c", "d"]
+# Subset and conquer
+x[1]
+x[-3] # same result!
+
+# Subset and calculate
+print(x[1] + x[3]) # return 'bd'
+
+# Slicing and dicing
+# The start index will be included, while the end index is not
+my_list[start:end]
+
+x[1:3] #return ['b', 'c']
+x[:2] #return ['a', 'b']
+x[2:] #return  ['c', 'd']
+x[:]  #return ["a", "b", "c", "d"]
+
+# Subsetting lists of lists 
+x = [["a", "b", "c"],
+     ["d", "e", "f"],
+     ["g", "h", "i"]]
+x[2][0] #return 'g'
+x[2][:2] #return ['g', 'h']
+```
+
+### Manipulating Lists
+```py
+x = ["a", "b", "c", "d"]
+# Replace list elements
+x[1] = "r"
+x[2:] = ["s", "t"] 
+
+# Extend a list
+y = x + ["e", "f"] 
+
+# Delete list elements
+del(x[1])
+```
+
+### Inner workings of lists
+```py
+# Create list areas
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Create areas_copy
+areas_copy = list(areas)
+
+# Change areas_copy
+areas_copy[0] = 5.0
+
+# Print areas
+print(areas) # Areas dosen't change.But if use areas_copy = areas, when change areas_copy, areas change as well.
+```
+
+
+## Matplotlib 
+
+### dataset 
 [Gapminder](https://assets.datacamp.com/production/repositories/287/datasets/5b1e4356f9fa5b5ce32e9bd2b75c777284819cca/gapminder.csv)  
 [Car](https://assets.datacamp.com/production/repositories/287/datasets/79b3c22c47a2f45a800c62cae39035ff2ea4e609/cars.csv)  
-[BRICS](https://assets.datacamp.com/production/repositories/287/datasets/b60fb5bdbeb4e4ab0545c485d351e6ff5428a155/brics.csv)
+[BRICS](https://assets.datacamp.com/production/repositories/287/datasets/b60fb5bdbeb4e4ab0545c485d351e6ff5428a155/brics.csv)  
+[Python for data science Cheat Sheet](https://datacamp-community-prod.s3.amazonaws.com/e30fbcd9-f595-4a9f-803d-05ca5bf84612) 
 
 ### Line plot
 
