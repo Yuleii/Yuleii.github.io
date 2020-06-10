@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Notes on python
+title: Notes on Python
 permalink: /page/aside.html
 key: 20200610
 tags: Programming
@@ -73,7 +73,7 @@ plt.xscale('log')
 plt.show()
 ```
 
-## Histogram
+### Histogram
 
 > ```py
 > plt.hist(x)
@@ -95,7 +95,7 @@ plt.show()
 plt.clf()
 ```
 
-## Customization
+### Customization
 
 ```py
 # A dictionary is constructed that maps continents onto colors

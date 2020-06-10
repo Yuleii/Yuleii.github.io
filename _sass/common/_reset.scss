@@ -137,7 +137,7 @@ pre, code {
 }
 
 code {
-  font-size: map-get($base, font-size-xs);
+  font-size: map-get($base, font-size);
   line-height: map-get($base, line-height-sm);
 }
 
