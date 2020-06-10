@@ -3,6 +3,7 @@ layout: article
 title: Notes on Python
 key: 20200610
 tags: Programming
+pageview: false
 aside:
   toc: true
 ---
