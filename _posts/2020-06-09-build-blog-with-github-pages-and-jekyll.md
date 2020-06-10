@@ -1,12 +1,21 @@
----
+<!-- ---
 layout: page
 title: 用 Github pages 和 Jekyll 搭建博客
 key: 20200609
 tags: Programming
 aside:
   toc: true
----
+--- -->
 
+---
+layout: article
+title: 用 Github pages 和 Jekyll 搭建博客
+permalink: /page/aside.html
+key: 20200609
+tags: Programming
+aside:
+  toc: true
+---
 
 搭建本博客的经验
 
