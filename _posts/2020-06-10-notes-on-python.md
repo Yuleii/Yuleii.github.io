@@ -47,7 +47,7 @@ x[1]
 x[-3] # same result!
 
 # Subset and calculate
-print(x[1] + x[3]) 
+print(x[1] + x[3])
 > bd
 
 # Slicing and dicing. (The start index will be included, while the end index is not)
@@ -62,31 +62,33 @@ x[2:]
 x[:]  
 > ["a", "b", "c", "d"]
 
-# Subsetting lists of lists 
+# Subsetting lists of lists
 x = [["a", "b", "c"],
      ["d", "e", "f"],
      ["g", "h", "i"]]
-x[2][0] 
+x[2][0]
 > 'g'
-x[2][:2] 
+x[2][:2]
 > ['g', 'h']
 ```
 
 ### Manipulating Lists
+
 ```py
 x = ["a", "b", "c", "d"]
 # Replace list elements
 x[1] = "r"
-x[2:] = ["s", "t"] 
+x[2:] = ["s", "t"]
 
 # Extend a list
-y = x + ["e", "f"] 
+y = x + ["e", "f"]
 
 # Delete list elements
 del(x[1])
 ```
 
 ### Inner Workings of Lists
+
 ```py
 # Create list areas
 areas = [11.25, 18.0, 20.0, 10.75, 9.50]
@@ -127,7 +129,7 @@ help(max)
 
 ```py
 place = "poolhouse"
-place_up=place.upper() 
+place_up=place.upper()
 > POOLHOUSE
 print(place.count('o')) # Print out the number of o's in place (3)
 ```
@@ -135,7 +137,7 @@ print(place.count('o')) # Print out the number of o's in place (3)
 - List Methods
   
 >```py
-> index() # to get the index of the first element of a list that matches its input 
+> index() # to get the index of the first element of a list that matches its input
 > count() # to get the number of times an element appears in a list
 > append() # that adds an element to the list it is called on
 > remove() # remove the first element of a list that matches the input
@@ -196,7 +198,7 @@ bmi = np_weight_kg / np_height_m ** 2
 x = [4 , 9 , 6, 3, 1]
 import numpy as np
 y = np.array(x)
-high = y > 5 
+high = y > 5
 > array([False,  True,  True, False, False])
 y[high]  
 > array([9, 6])
@@ -222,9 +224,9 @@ import numpy as np
 
 # Create a 2D numpy array from baseball: np_baseball
 np_baseball=np.array(baseball)
-print(type(np_baseball)) 
+print(type(np_baseball))
 > <class 'numpy.ndarray'>  
-print(np_baseball.shape) 
+print(np_baseball.shape)
 > (4, 2)
 ```
 
@@ -251,8 +253,8 @@ print(np_baseball[123,0])
 import numpy as np
 np_mat = np.array([[1, 2],
                    [3, 4],
-                   [5, 6]])               
-np_mat * 2 
+                   [5, 6]])
+np_mat * 2
 >  array([[ 2,  4],
 >         [ 6,  8],
 >         [10, 12]])  
@@ -261,7 +263,9 @@ np_mat + np.array([10, 10])
 >      [13, 14],
 >      [15, 16]])
 ```
-###  Basic Statistics
+
+### Basic Statistics
+
 ```py
 import numpy as np
 x = [1, 4, 8, 10, 12]
@@ -271,11 +275,11 @@ np.std(x)
 np.corrcoef(x,y)
 ```
 
-## Matplotlib 
+## Matplotlib
 
-[Python for data science Cheat Sheet](https://datacamp-community-prod.s3.amazonaws.com/e30fbcd9-f595-4a9f-803d-05ca5bf84612) 
+[Python for data science Cheat Sheet](https://datacamp-community-prod.s3.amazonaws.com/e30fbcd9-f595-4a9f-803d-05ca5bf84612)
 
-### Dataset 
+### Dataset
 
 - [Gapminder](https://assets.datacamp.com/production/repositories/287/datasets/5b1e4356f9fa5b5ce32e9bd2b75c777284819cca/gapminder.csv)  
 - [Car](https://assets.datacamp.com/production/repositories/287/datasets/79b3c22c47a2f45a800c62cae39035ff2ea4e609/cars.csv)  
@@ -300,7 +304,7 @@ plt.plot(year,pop)
 plt.show()
 ```
 
-```
+```py
 # Make a line plot, gdp_cap on the x-axis, life_exp on the y-axis
 plt.plot(gdp_cap,life_exp)
 
@@ -368,7 +372,7 @@ gm["colour"] = gm["continent"].map(colourDict)
 plt.scatter(x = gdp_cap, y = life_exp, s = np.array(pop) * 2, c = col, alpha = 0.8)
 
 # Labels
-plt.xscale('log') 
+plt.xscale('log')
 plt.xlabel('GDP per Capita [in USD]')
 plt.ylabel('Life Expectancy [in years]')
 plt.title('World Development in 2007')
@@ -418,6 +422,7 @@ print(europe.keys())
 # Print out value that belongs to key 'norway'
 print(europe['norway'])
 ```
+
 ### Dictionary Manipulation
 
 ```py
@@ -437,7 +442,7 @@ europe = {'spain':'madrid', 'france':'paris', 'germany':'bonn',
           'norway':'oslo', 'italy':'rome', 'poland':'warsaw',
           'australia':'vienna' }
 
-# Update capital of germany, bonn to berlin 
+# Update capital of germany, bonn to berlin
 europe['germany'] = 'berlin'
 
 # Remove australia
@@ -468,7 +473,7 @@ print(europe)
 
 ## Pandas
 
-### Dictionary to DataFrame 
+### Dictionary to DataFrame
 
 ```py
 # Pre-defined lists
@@ -493,6 +498,7 @@ cars.index = row_labels
 ```
 
 ### CSV to DataFrame
+
 ```py
 # Import the cars.csv data: cars
 # 括号里的文件名称要打引号
@@ -501,6 +507,7 @@ cars = pd.read_csv('cars.csv')
 # The first column is used as row labels
 cars = pd.read_csv('cars.csv',index_col=0)
 ```
+
 > ```py
 >      cars_per_cap        country  drives_right
 > US            809  United States          True
@@ -511,7 +518,7 @@ cars = pd.read_csv('cars.csv',index_col=0)
 > MOR            70        Morocco          True
 > EG             45          Egypt          True
 > ```
- 
+
 ### Square Brackets
 
 > ```py
@@ -554,10 +561,10 @@ print(cars[3:6])
 # Each pair of commands here gives the same result.
 cars.loc['RU']
 cars.iloc[4]
- 
+
 cars.loc[['RU']]
 cars.iloc[[4]]
- 
+
 cars.loc[['RU', 'AUS']]
 cars.iloc[[4, 1]]
 ```
@@ -613,7 +620,7 @@ True == False # return False
 True == 1 # return True
 
 # Greater and less than
-x = -3 * 6 
+x = -3 * 6
 x >= -10 # return False
 
 y = "test"
@@ -627,15 +634,16 @@ my_house = np.array([18.0, 20.0, 10.75, 9.50])
 your_house = np.array([14.0, 24.0, 14.25, 9.0])
 
 ## my_house greater than or equal to 18
-print(my_house >= 18) 
+print(my_house >= 18)
 > [ True  True False False]
 
 ## my_house less than your_house
-print(my_house <= your_house)   
+print(my_house <= your_house)
 > [ True  True False False]
 ```
 
 ### Boolean Operators
+
 - `and`, `or`, `not`
 
 ```py
@@ -659,12 +667,13 @@ print(my_kitchen * 2 < your_kitchen * 3)
 > np.logical_and(,)
 > np.logical_or(,)
 > np.logical_not(,)
-> 
-> np.logical_and(my_house > 13, 
+>
+> np.logical_and(my_house > 13,
 >               your_house < 15)
 > ```
 
 ### if, elif, else
+
 ```py
 # 记得冒号！！
 # if
@@ -688,6 +697,7 @@ else :
 ```
 
 ### Filtering pandas DataFrames
+
 ```py
 # Driving right
 ## Import cars data
@@ -726,6 +736,7 @@ medium=cars[between]
 ## Loops
 
 ### While Loop
+
 > ```py
 > while condition :
 >    expression
@@ -750,8 +761,8 @@ while offset != 0 :
     print("correcting...")
     if offset > 0 :
       offset = offset - 1
-    else : 
-      offset = offset + 1    
+    else :
+      offset = offset + 1
     print(offset)
 
 ```
@@ -781,16 +792,16 @@ for index,a in enumerate(areas) :
 
 ```py
 # house list of lists
-house = [["hallway", 11.25], 
-         ["kitchen", 18.0], 
-         ["living room", 20.0], 
-         ["bedroom", 10.75], 
+house = [["hallway", 11.25],
+         ["kitchen", 18.0],
+         ["living room", 20.0],
+         ["bedroom", 10.75],
          ["bathroom", 9.50]]
-         
+
 # Build a for loop from scratch
 ## 注意空格！！
 for [x,y] in house:
-    print('the ' + x + ' is ' + str(y) +' sqm')    
+    print('the ' + x + ' is ' + str(y) +' sqm')
 ```
 
 ### Loop Data Structures
@@ -802,7 +813,7 @@ for [x,y] in house:
 # Definition of dictionary
 europe = {'spain':'madrid', 'france':'paris', 'germany':'berlin',
           'norway':'oslo', 'italy':'rome', 'poland':'warsaw', 'austria':'vienna' }
-          
+
 # Iterate over europe
 for x, y in europe.items() :
     print("the capital of " + x + " is " + y)
@@ -814,7 +825,7 @@ for x, y in europe.items() :
 > # 1D Numpy array
 > for x in my_array :
 >   ...
-> 
+>
 > # 2D Numpy array
 > ## 用np.nditer()这个方程才是elementwise循环，不然是array-wise
 > for x in np.nditer(my_array) :
@@ -851,7 +862,7 @@ for lab, row in cars.iterrows() :
 > EG: 45
 ```
 
-- Add column 
+- Add column
 
 ```py
 # Code for loop that adds COUNTRY column that contains a uppercase version of the country names in the "country" column.
@@ -869,7 +880,7 @@ cars["COUNTRY"] = cars["country"].apply(str.upper)
 > ```py
 > seed() # sets the random seed, so that your results are reproducible between simulations. As an argument, it takes an integer of your choosing. If you call the function, no output will be generated.
 > rand() # if you don't specify any arguments, it generates a random float between zero and one.
-```
+> ```
 
 - Random float
   
@@ -932,7 +943,7 @@ for x in range(100) :
     random_walk.append(step)
 
 # Print random_walk
-print(random_walk) 
+print(random_walk)
 ```
 
 - Visualize the walk
