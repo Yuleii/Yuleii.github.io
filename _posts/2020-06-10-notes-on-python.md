@@ -15,27 +15,21 @@ Based on Datacamp.
 
 ## Lists
 
-### Python Lists
+### Create Lists
 
 ```py
-# Create a list
-
-## area variables (in square meters)
+# Create list areas
 hall = 11.25
 kit = 18.0
 liv = 20.0
 bed = 10.75
 bath = 9.50
-
-## Create list areas
 areas = [hall,kit,liv,bed,bath]
 
 # Create list with different types
-## Adapt list areas
 areas = ["hallway",hall, "kitchen",kit, "living room", liv, "bedroom",bed, "bathroom", bath]
 
 # List of lists
-## house information as list of lists
 house = [["hallway", hall],
          ["kitchen", kit],
          ["living room", liv],
@@ -54,8 +48,7 @@ x[-3] # same result!
 # Subset and calculate
 print(x[1] + x[3]) # return 'bd'
 
-# Slicing and dicing
-# The start index will be included, while the end index is not
+# Slicing and dicing. (The start index will be included, while the end index is not)
 my_list[start:end]
 
 x[1:3] #return ['b', 'c']
@@ -100,14 +93,178 @@ areas_copy[0] = 5.0
 print(areas) # Areas dosen't change.But if use areas_copy = areas, when change areas_copy, areas change as well.
 ```
 
+## Functions and Packages
+
+### [Built-in Functions](https://docs.python.org/3/library/functions.html#bool)
+
+```py
+# Familiar functions
+print()
+type()
+
+# switch between data types
+str()
+int()
+bool()
+float()
+
+# Help!
+help(max)
+?max
+```
+
+### Methods
+
+- string Methods
+
+```py
+place = "poolhouse"
+place_up=place.upper() # return POOLHOUSE
+print(place.count('o')) # Print out the number of o's in place (3)
+```
+
+- List Methods
+  
+>```py
+> index() # to get the index of the first element of a list that matches its input 
+> count() # to get the number of times an element appears in a list
+> append() # that adds an element to the list it is called on
+> remove() # remove the first element of a list that matches the input
+> reverse() # reverse the order of the elements in the list it is called on.
+> ```
+
+```py
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+# Print out the index of the element 20.0
+print(areas.index(20.0))
+
+# Print out how often 9.50 appears in areas
+print(areas.count(9.50))
+
+# Use append twice to add poolhouse and garage size
+areas.append(24.5)
+areas.append(15.45)
+
+# Reverse the orders of the elements in areas
+areas.reverse()
+```
+
+### Packages
+
+```py
+# Import package
+## Import the math package
+import math
+r = 0.43 # Definition of radius
+C = 2*math.pi*r # Calculate C=2πr
+A = math.pi*r**2 # Calculate A=πr^2
+
+# Selective import
+## Import radians function of math package
+from math import radians
+r = 192500 # Definition of radius
+dist=r*radians(12) # Travel distance of Moon over 12 degrees. Store in dist.
+```
+
+## NumPy
+
+### NumPy Array
+
+```py
+# Import the numpy package as np
+import numpy as np
+
+# Create a numpy array
+baseball = [180, 215, 210, 210, 188, 176, 209, 200]
+np_baseball=np.array(baseball)
+
+# Calculate the BMI: bmi
+np_height_m = np.array(height_in) * 0.0254
+np_weight_kg = np.array(weight_lb) * 0.453592
+bmi = np_weight_kg / np_height_m ** 2
+
+# Boolean numpy arrays
+x = [4 , 9 , 6, 3, 1]
+import numpy as np
+y = np.array(x)
+high = y > 5 # array([False,  True,  True, False, False])
+y[high] # array([9, 6])
+
+# type coercion. (Numpy arrays cannot contain elements with different types. If you try to build such a list, some of the elements' types are changed to end up with a homogeneous list.)
+np.array([True, 1, 2]) + np.array([3, 4, False])
+np.array([4, 3, 0]) + np.array([0, 2, 2]) # same result!
+```
+
+### 2D NumPy Array
+
+- Create 2D NumPy Arrays
+
+```py
+# Create baseball, a list of lists
+baseball = [[180, 78.4],
+            [215, 102.7],
+            [210, 98.5],
+            [188, 75.2]]
+
+# Import numpy
+import numpy as np
+
+# Create a 2D numpy array from baseball: np_baseball
+np_baseball=np.array(baseball)
+print(type(np_baseball)) # return <class 'numpy.ndarray'>
+print(np_baseball.shape) # return (4, 2)
+```
+
+- Subsetting 2D NumPy Arrays
+  
+```py
+## Create np_baseball (2 cols)
+np_baseball = np.array(baseball)
+
+## Print out the 50th row of np_baseball
+print(np_baseball[49,:])
+
+## Select the entire second column of np_baseball: np_weight_lb
+np_weight_lb=np_baseball[:,1]
+
+## Print out height of 124th player
+print(np_baseball[123,0])
+```
+
+- 2D Arithmetic
+
+```py
+# numpy was able to perform all calculations element-wise.
+import numpy as np
+np_mat = np.array([[1, 2],
+                   [3, 4],
+                   [5, 6]])               
+np_mat * 2 #return  array([[ 2,  4],
+           #               [ 6,  8],
+           #               [10, 12]])  
+np_mat + np.array([10, 10])  # return array([[11, 12],
+                             #               [13, 14],
+                             #               [15, 16]])
+```
+###  Basic Statistics
+```py
+import numpy as np
+x = [1, 4, 8, 10, 12]
+np.mean(x) # 7.0
+np.median(x) # 8.0
+np.std(x)
+np.corrcoef(x,y)
+```
 
 ## Matplotlib 
 
-### dataset 
-[Gapminder](https://assets.datacamp.com/production/repositories/287/datasets/5b1e4356f9fa5b5ce32e9bd2b75c777284819cca/gapminder.csv)  
-[Car](https://assets.datacamp.com/production/repositories/287/datasets/79b3c22c47a2f45a800c62cae39035ff2ea4e609/cars.csv)  
-[BRICS](https://assets.datacamp.com/production/repositories/287/datasets/b60fb5bdbeb4e4ab0545c485d351e6ff5428a155/brics.csv)  
 [Python for data science Cheat Sheet](https://datacamp-community-prod.s3.amazonaws.com/e30fbcd9-f595-4a9f-803d-05ca5bf84612) 
+
+### dataset 
+
+- [Gapminder](https://assets.datacamp.com/production/repositories/287/datasets/5b1e4356f9fa5b5ce32e9bd2b75c777284819cca/gapminder.csv)  
+- [Car](https://assets.datacamp.com/production/repositories/287/datasets/79b3c22c47a2f45a800c62cae39035ff2ea4e609/cars.csv)  
+- [BRICS](https://assets.datacamp.com/production/repositories/287/datasets/b60fb5bdbeb4e4ab0545c485d351e6ff5428a155/brics.csv)  
 
 ### Line plot
 
@@ -118,10 +275,6 @@ print(areas) # Areas dosen't change.But if use areas_copy = areas, when change a
 > ```
 
 ```py
-# Print the last item from year and pop
-print(year[-1])
-print(pop[-1])
-
 # Import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 
@@ -284,7 +437,6 @@ europe = { 'spain': { 'capital':'madrid', 'population':46.77 },
            'france': { 'capital':'paris', 'population':66.03 },
            'germany': { 'capital':'berlin', 'population':80.62 },
            'norway': { 'capital':'oslo', 'population':5.084 } }
-
 
 # Print out the capital of France
 print(europe['france']['capital'])
