@@ -47,22 +47,29 @@ x[1]
 x[-3] # same result!
 
 # Subset and calculate
-print(x[1] + x[3]) # return 'bd'
+print(x[1] + x[3]) 
+> bd
 
 # Slicing and dicing. (The start index will be included, while the end index is not)
 my_list[start:end]
 
-x[1:3] #return ['b', 'c']
-x[:2] #return ['a', 'b']
-x[2:] #return  ['c', 'd']
-x[:]  #return ["a", "b", "c", "d"]
+x[1:3]  
+> ['b', 'c']
+x[:2]  
+> ['a', 'b']
+x[2:]  
+> ['c', 'd']
+x[:]  
+> ["a", "b", "c", "d"]
 
 # Subsetting lists of lists 
 x = [["a", "b", "c"],
      ["d", "e", "f"],
      ["g", "h", "i"]]
-x[2][0] #return 'g'
-x[2][:2] #return ['g', 'h']
+x[2][0] 
+> 'g'
+x[2][:2] 
+> ['g', 'h']
 ```
 
 ### Manipulating Lists
@@ -79,7 +86,7 @@ y = x + ["e", "f"]
 del(x[1])
 ```
 
-### Inner workings of lists
+### Inner Workings of Lists
 ```py
 # Create list areas
 areas = [11.25, 18.0, 20.0, 10.75, 9.50]
@@ -120,7 +127,8 @@ help(max)
 
 ```py
 place = "poolhouse"
-place_up=place.upper() # return POOLHOUSE
+place_up=place.upper() 
+> POOLHOUSE
 print(place.count('o')) # Print out the number of o's in place (3)
 ```
 
@@ -188,8 +196,10 @@ bmi = np_weight_kg / np_height_m ** 2
 x = [4 , 9 , 6, 3, 1]
 import numpy as np
 y = np.array(x)
-high = y > 5 # array([False,  True,  True, False, False])
-y[high] # array([9, 6])
+high = y > 5 
+> array([False,  True,  True, False, False])
+y[high]  
+> array([9, 6])
 
 # type coercion. (Numpy arrays cannot contain elements with different types. If you try to build such a list, some of the elements' types are changed to end up with a homogeneous list.)
 np.array([True, 1, 2]) + np.array([3, 4, False])
@@ -212,8 +222,10 @@ import numpy as np
 
 # Create a 2D numpy array from baseball: np_baseball
 np_baseball=np.array(baseball)
-print(type(np_baseball)) # return <class 'numpy.ndarray'>
-print(np_baseball.shape) # return (4, 2)
+print(type(np_baseball)) 
+> <class 'numpy.ndarray'>  
+print(np_baseball.shape) 
+> (4, 2)
 ```
 
 - Subsetting 2D NumPy Arrays
@@ -240,12 +252,14 @@ import numpy as np
 np_mat = np.array([[1, 2],
                    [3, 4],
                    [5, 6]])               
-np_mat * 2 #return  array([[ 2,  4],
-           #               [ 6,  8],
-           #               [10, 12]])  
-np_mat + np.array([10, 10])  # return array([[11, 12],
-                             #               [13, 14],
-                             #               [15, 16]])
+np_mat * 2 
+>  array([[ 2,  4],
+>         [ 6,  8],
+>         [10, 12]])  
+np_mat + np.array([10, 10])  
+>array([[11, 12],
+>      [13, 14],
+>      [15, 16]])
 ```
 ###  Basic Statistics
 ```py
@@ -261,13 +275,13 @@ np.corrcoef(x,y)
 
 [Python for data science Cheat Sheet](https://datacamp-community-prod.s3.amazonaws.com/e30fbcd9-f595-4a9f-803d-05ca5bf84612) 
 
-### dataset 
+### Dataset 
 
 - [Gapminder](https://assets.datacamp.com/production/repositories/287/datasets/5b1e4356f9fa5b5ce32e9bd2b75c777284819cca/gapminder.csv)  
 - [Car](https://assets.datacamp.com/production/repositories/287/datasets/79b3c22c47a2f45a800c62cae39035ff2ea4e609/cars.csv)  
 - [BRICS](https://assets.datacamp.com/production/repositories/287/datasets/b60fb5bdbeb4e4ab0545c485d351e6ff5428a155/brics.csv)  
 
-### Line plot
+### Line Plot
 
 > ```py
 > import matplotlib.pyplot as plt
@@ -574,7 +588,6 @@ cars.loc[['IN', 'RU'], ['cars_per_cap', 'country']]
 cars.iloc[[3, 4], [0, 1]]
 ```
 
-
 - select only columns
   
 ```py
@@ -584,4 +597,428 @@ cars.iloc[:, 1]
 
 cars.loc[:, ['country','drives_right']]
 cars.iloc[:, [1, 2]]
+```
+
+## Logic, Control Flow and Filtering
+
+### Comparison Operators
+
+`>`, `<`, `>=`, `<=`, `==`, `!=`
+
+```py
+# Equality
+True == False # return False
+-5 * 15 != 75 # return True
+"pyscript" == "PyScript" # return False
+True == 1 # return True
+
+# Greater and less than
+x = -3 * 6 
+x >= -10 # return False
+
+y = "test"
+"test"<=y # return True
+True > False # return True
+
+# Compare arrays(element-wise)
+## Create arrays
+import numpy as np
+my_house = np.array([18.0, 20.0, 10.75, 9.50])
+your_house = np.array([14.0, 24.0, 14.25, 9.0])
+
+## my_house greater than or equal to 18
+print(my_house >= 18) 
+> [ True  True False False]
+
+## my_house less than your_house
+print(my_house <= your_house)   
+> [ True  True False False]
+```
+
+### Boolean Operators
+- `and`, `or`, `not`
+
+```py
+# Define variables
+my_kitchen = 18.0
+your_kitchen = 14.0
+
+# my_kitchen bigger than 10 and smaller than 18?
+print(my_kitchen > 10 and my_kitchen < 18)
+
+# my_kitchen smaller than 14 or bigger than 17?
+print(my_kitchen < 14 or my_kitchen > 17)
+
+# Double my_kitchen smaller than triple your_kitchen?
+print(my_kitchen * 2 < your_kitchen * 3)
+```
+
+- Boolean operators with Numpy
+
+> ```py
+> np.logical_and(,)
+> np.logical_or(,)
+> np.logical_not(,)
+> 
+> np.logical_and(my_house > 13, 
+>               your_house < 15)
+> ```
+
+### if, elif, else
+```py
+# 记得冒号！！
+# if
+area = 14.0
+if area > 15 :
+    print("big place!")
+
+# Add else
+if area > 15 :
+    print("big place!")
+else :
+    print("pretty small." )
+
+# Customize further: elif
+if area > 15 :
+    print("big place!")
+elif area > 10 :
+    print("medium size, nice!")
+else :
+    print("pretty small.")
+```
+
+### Filtering pandas DataFrames
+```py
+# Driving right
+## Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+## Extract drives_right column as Series: dr
+dr = cars['drives_right'] # panda series of boolen
+> US      True
+> AUS    False
+> JPN    False
+> IN     False
+> RU      True
+> MOR     True
+> EG      True
+> Name: drives_right, dtype: bool
+
+## Use dr to subset cars: sel
+sel = cars[dr] # drives_right=True的国家的各项信息
+
+## or in one line
+sel = cars[cars['drives_right']]
+
+# Cars per capita
+## Create car_maniac: observations that have a cars_per_cap over 500
+cpc=cars['cars_per_cap']
+many_cars=cpc>500  # panda series of boolen
+car_maniac = cars[many_cars]
+
+## Create medium: observations with cars_per_cap between 100 and 500
+cpc = cars['cars_per_cap']
+between = np.logical_and(cpc > 100, cpc < 500)
+medium=cars[between]
+```
+
+## Loops
+
+### While Loop
+> ```py
+> while condition :
+>    expression
+> ```
+
+```py
+# Initialize offset
+offset = 8
+
+# Code the while loop
+while offset != 0 :
+    print("correcting...")
+    offset = offset - 1
+    print(offset)
+
+# Add conditionals
+## Initialize offset
+offset = -6
+
+## Code the while loop
+while offset != 0 :
+    print("correcting...")
+    if offset > 0 :
+      offset = offset - 1
+    else : 
+      offset = offset + 1    
+    print(offset)
+
+```
+
+### For Loop
+
+- Loop over a list
+  
+```py
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+for area in areas:
+    print(area)
+# areas list
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Change for loop to use enumerate() and update print()
+for index,a in enumerate(areas) :
+    print('room' + str(index) + ':' + str(a))
+
+# Change for loop to use enumerate() and update print()
+## 需要索引的时候用
+for index,a in enumerate(areas) :
+    print('room' + str(index) + ':' + str(a))
+```
+
+- Loop over list of lists
+
+```py
+# house list of lists
+house = [["hallway", 11.25], 
+         ["kitchen", 18.0], 
+         ["living room", 20.0], 
+         ["bedroom", 10.75], 
+         ["bathroom", 9.50]]
+         
+# Build a for loop from scratch
+## 注意空格！！
+for [x,y] in house:
+    print('the ' + x + ' is ' + str(y) +' sqm')    
+```
+
+### Loop Data Structures
+
+- Loop over dictionary
+
+```py
+# Use method items()
+# Definition of dictionary
+europe = {'spain':'madrid', 'france':'paris', 'germany':'berlin',
+          'norway':'oslo', 'italy':'rome', 'poland':'warsaw', 'austria':'vienna' }
+          
+# Iterate over europe
+for x, y in europe.items() :
+    print("the capital of " + x + " is " + y)
+```
+
+- Loop over Numpy array
+  
+> ```py
+> # 1D Numpy array
+> for x in my_array :
+>   ...
+> 
+> # 2D Numpy array
+> ## 用np.nditer()这个方程才是elementwise循环，不然是array-wise
+> for x in np.nditer(my_array) :
+>   ...
+>```
+
+- Loop over DataFrame
+  
+> ```py
+> # every observation is iterated over and on every iteration the row label and actual row contents are available:
+> for lab, row in brics.iterrows() :
+>     ...
+> ```
+
+```py
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Iterate over rows of cars
+for label,row in cars.iterrows() :
+    print(label)
+    print(row)
+
+# select variables from the Pandas Series using square brackets
+for lab, row in cars.iterrows() :
+    print(lab + ': ' + str(row['cars_per_cap']))
+> US: 809
+> AUS: 731
+> JPN: 588
+> IN: 18
+> RU: 200
+> MOR: 70
+> EG: 45
+```
+
+- Add column 
+
+```py
+# Code for loop that adds COUNTRY column that contains a uppercase version of the country names in the "country" column.
+for lab, row in cars.iterrows() :
+    cars.loc[lab, "COUNTRY"] = row['country'].upper()
+
+# .apply(str.upper) give the same result
+cars["COUNTRY"] = cars["country"].apply(str.upper)
+```
+
+## Case Study: Hacker Statistics
+
+### Random Numbers
+
+> ```py
+> seed() # sets the random seed, so that your results are reproducible between simulations. As an argument, it takes an integer of your choosing. If you call the function, no output will be generated.
+> rand() # if you don't specify any arguments, it generates a random float between zero and one.
+```
+
+- Random float
+  
+```py
+# Import numpy as np
+import numpy as np
+
+# Set the seed
+np.random.seed(123)
+
+# Generate and print random float
+print(np.random.rand())
+
+# Starting step
+step = 50
+
+# Roll the dice
+dice = np.random.randint(1,7)
+
+# Finish the control construct
+if dice <= 2 :
+    step = step - 1
+elif dice <= 5 :
+    step = step + 1
+else :
+    step = step + np.random.randint(1,7)
+
+# Print out dice and step
+print(dice)
+> 3
+print(step)
+> 51
+```
+
+### Random Walk
+
+```py
+# Initialize random_walk
+random_walk = [0]
+
+# Finish the for loop
+for x in range(100) :
+    # Set step: last element in random_walk
+    # 基于上一步确定走到哪里
+    step = random_walk[-1]
+
+    # Roll the dice
+    dice = np.random.randint(1,7)
+
+    # Determine next step
+    if dice <= 2:
+         # Replace below: use max to make sure step can't go below 0
+        step = max(0, step - 1)
+    elif dice <= 5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+
+    # append next_step to random_walk
+    random_walk.append(step)
+
+# Print random_walk
+print(random_walk) 
+```
+
+- Visualize the walk
+
+```py
+# Import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
+# Plot random_walk
+plt.plot(random_walk)
+
+# Show the plot
+plt.show()
+```
+
+### Distribution
+
+- Simulate multiple walks
+
+```py
+# Initialize all_walks (don't change this line)
+all_walks = []
+
+# Simulate random walk 10 times
+for i in range(10) :
+
+    # Code from before
+    random_walk = [0]
+    for x in range(100) :
+        step = random_walk[-1]
+        dice = np.random.randint(1,7)
+
+        if dice <= 2:
+            step = max(0, step - 1)
+        elif dice <= 5:
+            step = step + 1
+        else:
+            step = step + np.random.randint(1,7)
+         # Implement clumsiness.You're a bit clumsy and you have a 0.1% chance of falling down
+        if np.random.rand() <= 0.001 :
+            step = 0
+        random_walk.append(step)
+
+    # Append random_walk to all_walks
+    all_walks.append(random_walk)
+
+# Print all_walks
+print(all_walks)
+```
+
+- Visualize all walks
+
+```py
+# Convert all_walks to Numpy array: np_aw
+np_aw = np.array(all_walks)
+
+# Plot np_aw and show
+plt.plot(np_aw)
+plt.show()
+
+# Clear the figure
+plt.clf()
+
+# Transpose np_aw: np_aw_t
+np_aw_t=np.transpose(np_aw)
+
+# Plot np_aw_t and show
+plt.plot(np_aw_t)
+plt.show()
+```
+
+- Plot the distribution
+
+```py
+# Select last row from np_aw_t: ends
+ends = np_aw_t[-1,:]
+
+# Plot histogram of ends, display plot
+plt.hist(ends)
+plt.show()
+```
+
+- Calculate the odds
+
+```py
+#  To calculate the chance that this end point is greater than or equal to 60
+np.mean(ends > 30) # gives you the fraction of simulations that ended higher than step 30.
+> 0.784
 ```
