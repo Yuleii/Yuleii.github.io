@@ -123,3 +123,6 @@ mathjax: true
 
 > **Q:** 我的两篇post点开怎么是同一篇的内容？  
 > **A:** 把头信息里的 permalink 删除
+
+> **Q:** 如何隐藏pageview  
+> **A:** 在头信息里添加变量：`pageview: false`
