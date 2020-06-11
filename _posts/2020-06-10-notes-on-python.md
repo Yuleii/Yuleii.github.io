@@ -4,6 +4,7 @@ title: Notes on Python
 key: 20200610
 tags: Programming
 pageview: false
+modify_date: 2020-06-11
 aside:
   toc: true
 ---
