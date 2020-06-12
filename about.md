@@ -25,7 +25,12 @@ titles:
   # @end locale config
 key: page-about
 ---
-Hi! I am Yulei, currently a graduate student of economics living in Germany.
+
+Welcome to my blog:house:! This site is built for notes taking and experience sharing. Hope you enjoy!
+
+## About Me | 关于我
+
+Hi! I am Yulei:girl: (you can also call me Yuli), currently a graduate student of economics living in Germany.
 
 
 ## Dependencies
