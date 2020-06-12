@@ -4,7 +4,7 @@ title: 用 Github pages 和 Jekyll 搭建博客
 key: 20200609
 tags: Programming
 pageview: false
-modify_date: 2020-06-11
+modify_date: 2020-06-12
 aside:
   toc: true
 ---
@@ -126,4 +126,7 @@ mathjax: true
 > **A:** 把头信息里的 permalink 删除
 
 > **Q:** 如何隐藏pageview  
-> **A:** 在头信息里添加变量：`pageview: false`
+> **A:** 在头信息里添加变量：`pageview: false`   
+
+> **Q:** 为什么在_config.yml修改了配置不在本地实时预览时显示
+> **A:** 修改了_config.yml的内容需要重启实时预览才能显示
