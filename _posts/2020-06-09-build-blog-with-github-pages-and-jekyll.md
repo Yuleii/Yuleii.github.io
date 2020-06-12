@@ -128,5 +128,5 @@ mathjax: true
 > **Q:** 如何隐藏pageview  
 > **A:** 在头信息里添加变量：`pageview: false`   
 
-> **Q:** 为什么在_config.yml修改了配置不在本地实时预览时显示
+> **Q:** 为什么在_config.yml修改了配置不在本地实时预览时显示   
 > **A:** 修改了_config.yml的内容需要重启实时预览才能显示
