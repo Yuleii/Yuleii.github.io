@@ -271,15 +271,16 @@ Let $\{v_1,..,v_d\}$ be a **basis** of $\mathbb{R}$ and $F,G:\mathbb{R}^n \to \m
 The **rank** of a matrix $A=(a_1,...,a_n) \in \mathbb{R}^{p \times n}$ with $a_j \in \mathbb{R}^p$ for $j=1,...,n$ is the maximum numbers of **linear independent** column vector $a_j$.
 
 > **Example**   
-> $A=\left(
+> $$
+> A=\left(
   \begin{array}{ccc}
           1 & 1 & 1\\
           0 & 1 & 1\\
           0 & 0 & 1
   \end{array}
-  \right)$   
->
+  \right),   
 > rank(A)=3
+$$
 
 ### Def 0.14 Transpose
 
@@ -292,12 +293,15 @@ Let $A=(a_1,...,a_n) \in \mathbb{R}^{p \times n}$ with $a_j \in \mathbb{R}^p$ fo
   \right) \in \mathbb{R}^{n \times p}$
 
 ### Def 0.15 Invertable
-A (quadratic)matrix $A \in \mathbb{R}^{n \times n}$ is called **invertable** if there exists some matrx $A' \in \mathbb{R}^{n \times n}\ s.t\ AA'=A'A=\left(
-  \begin{array}{cc}
-          1 & 0 \\
-          0 & 1
-  \end{array}
-  \right) \in \mathbb{R}^{n \times n}$.   
+A (quadratic)matrix $A \in \mathbb{R}^{n \times n}$ is called **invertable** if there exists some matrix 
+$$
+A' \in \mathbb{R}^{n \times n}\ s.t\ AA'=A'A=
+\left(\begin{array}{cc}
+1 & 0 \\
+0 & 1
+\end{array}\right)\in \mathbb{R}^{n \times n}
+$$
+  
 
 One can show that matrix $A'$ in def 0.15 is uniquely determined. We use the notation $A'=A^{-1}$ is what follows and call $A^{-1}$ the **inverse (matrix)** of $A$.
 
