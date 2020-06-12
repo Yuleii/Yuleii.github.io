@@ -284,13 +284,13 @@ $$
 
 ### Def 0.14 Transpose
 
-Let $A=(a_1,...,a_n) \in \mathbb{R}^{p \times n}$ with $a_j \in \mathbb{R}^p$ for $j=1,...n$. The **transpose** $A^T$ is $A^T = \left(
+Let $A=(a_1,...,a_n) \in \mathbb{R}^{p \times n}$ with $a_j \in \mathbb{R}^p$ for $j=1,...n$. The **transpose** $A^T$ is $$A^T = \left(
   \begin{array}{c}
           a_1^T\\
           \vdots\\
           a_n^T
   \end{array}
-  \right) \in \mathbb{R}^{n \times p}$
+  \right) \in \mathbb{R}^{n \times p}$$
 
 ### Def 0.15 Invertable
 A (quadratic)matrix $A \in \mathbb{R}^{n \times n}$ is called **invertable** if there exists some matrix 
