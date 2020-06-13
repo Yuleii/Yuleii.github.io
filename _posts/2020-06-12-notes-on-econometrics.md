@@ -15,7 +15,6 @@ Notes for final exam.
 
 <!--more-->
 
-[lecture notes on economerics](https://drive.google.com/file/d/1D_tJO31G48HRbSNS2TzNI-d2eXCPsApj/view?usp=sharing)
 
 # Basic Concept
 
