@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Recal Linear Algebra for Econometrics
+title: Linear Algebra for Econometrics
 key: 20200612
 tags: Economics
 modify_date: 2020-06-13
