@@ -26,7 +26,7 @@ titles:
 key: page-about
 ---
 
-Welcome to my blog:house:! This site is built for notes taking and experience sharing. Hope you enjoy!
+Welcome to my blog:house:! This site is built for notes taking and experience sharing. 
 
 ## About Me | 关于我
 
