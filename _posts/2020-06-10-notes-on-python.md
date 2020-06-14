@@ -10,7 +10,7 @@ aside:
 ---
 
 
-Based on Datacamp.
+Based on DataCamp.
 
 <!--more-->
 

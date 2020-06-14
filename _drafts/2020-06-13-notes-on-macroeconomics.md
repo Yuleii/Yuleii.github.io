@@ -16,6 +16,9 @@ Notes for final exam.
 
 # I Ramsey Model
 
+## Model Setting
+
+
 # II Slow Swan Model
 
 # III Decentralization
