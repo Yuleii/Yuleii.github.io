@@ -16,7 +16,7 @@ Base on DataCamp.
 
 ## Write function
 
-### Functions that return single values
+### Functions that Return Single Values
 ```py
 # Define shout with the parameter, word
 def shout(word):
@@ -36,7 +36,8 @@ print(yell)
 > congratulations!!!
 ```
 
-### Multiple parameters and return values
+### Multiple Parameters and Return Values
+
 ```py
 # A brief introduction to tuples(immutable!!)
 nums = (3, 4, 6)
@@ -71,9 +72,9 @@ print(yell2)
 > you!!!
 ```
 
-### Twitter dataframe analysis
+### Twitter Dataframe Analysis
 
-[Tweets](https://assets.datacamp.com/production/repositories/463/datasets/82e9842c09ad135584521e293091c2327251121d/tweets.csv)
+[Tweets dataset](https://assets.datacamp.com/production/repositories/463/datasets/82e9842c09ad135584521e293091c2327251121d/tweets.csv)
 
 ```py
 # The dataset contains Twitter data and you will iterate over entries in a column to build a dictionary in which the keys are the names of languages and the values are the number of tweets in the given language.
@@ -116,9 +117,7 @@ print(result)
 > {'en': 97, 'et': 1, 'und': 2}
 ```
 
-## Default arguments, variable-length arguments and scope
-
-### Scope
+## Scope
 
 ```py
 # when we reference a name, first the local scope is searched, then the global. If the name is in neither, then the built-in scope is searched.
@@ -170,7 +169,7 @@ print(team)
 > justice league
 ```
 
-### Nested functions
+## Nested functions
 
 ```py
 # Define three_shouts
@@ -246,4 +245,140 @@ def echo_shout(word):
 echo_shout('hello')
 >> hellohello
    hellohello!!!
+```
+
+## Default and Flexible Arguments
+
+### Add a default argument
+
+```py
+# Define shout_echo
+def power(number, pow=1):
+    """Raise number to the power of pow."""
+    new_value = number ** pow
+    return new_value
+
+power(9, 2)
+> 81
+power(9, 1)
+> 9
+power(9)
+> 0
+```
+
+### Functions with variable-length arguments (*args)
+
+```py
+# args is a tuple!!
+# 表示函数接收可变长度的非关键字参数列表作为函数的输入
+def add_all(*args):
+    """Sum all values in *args together."""
+    # Initialize sum
+    sum_all = 0
+    # Accumulate the sum
+    for num in args:
+    sum_all += num
+    return sum_all
+
+add_all(1)
+> 1
+add_all(1, 2)
+> 3 
+add_all(5, 10, 15, 20)
+> 50
+```
+
+### Functions with variable-length keyword arguments (**kwargs)
+
+```py
+# kwargs is a dictionary!!
+# 表示函数接收可变长度的关键字参数字典作为函数的输入
+def print_all(**kwargs):
+    """Print out key-value pairs in **kwargs."""
+    # Print out the key-value pairs
+    for key, value in kwargs.items():
+    print(key + \": \" + value)
+
+print_all(name="dumbledore", 
+job="headmaster")
+> job: headmaster
+  name: dumbledore
+```
+
+## Lambda Functions
+
+```py
+# Map() and lambda functions
+# Function map takes two arguments: map(func, seq)
+# map() applies the function to ALL elements in the sequence
+nums = [48, 6, 9, 21, 1]
+square_all = map(lambda num: num ** 2, nums)
+print(square_all)
+> <map object at 0x103e065c0>
+print(list(square_all))
+> [2304, 36, 81, 441, 1]
+```
+
+```py
+# Filter() and lambda functions
+# filter() offers a way to filter out elements from a list that don't satisfy certain criteria.
+# Create a list of strings: fellowship
+fellowship = ['frodo', 'samwise', 'merry', 'pippin', 'aragorn', 'boromir', 'legolas', 'gimli', 'gandalf']
+
+# Use filter() to apply a lambda function over fellowship: result
+result = filter(lambda member:len(member)>6 , fellowship)
+
+# Convert result to a list: result_list
+result_list=list(result)
+
+# Print result_list
+print(result_list)
+> ['samwise', 'aragorn', 'boromir', 'legolas', 'gandalf']
+```
+
+```py
+# Reduce() and lambda functions
+# Import reduce from functools
+from functools import reduce
+
+# Create a list of strings: stark
+stark = ['robb', 'sansa', 'arya', 'brandon', 'rickon']
+
+# Use reduce() to apply a lambda function over stark: result
+result = reduce(lambda item1,item2: item1+item2, stark)
+
+# Print the result
+print(result)
+> robbsansaaryabrandonrickon
+```
+
+## Error Handling
+
+### try-except
+
+```py
+def sqrt(x):
+    """Returns the square root of a number."""
+    try:
+        return x ** 0.5
+    except:
+        print('x must be an int or float')
+
+sqrt(10.0)
+> 3.1622776601683795
+sqrt('hi')
+> x must be an int or float
+```
+
+### raising an error
+
+```py
+def sqrt(x):
+    """Returns the square root of a number."""
+    if x < 0:
+        raise ValueError('x must be non-negative')
+    try:
+        return x ** 0.5
+    except TypeError:
+        print('x must be an int or float')       
 ```
