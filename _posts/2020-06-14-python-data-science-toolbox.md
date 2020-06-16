@@ -3,7 +3,7 @@ layout: article
 title: Python Data Science Toolbox
 key: 20200614
 tags: Programming
-modify_date: 2020-06-15
+modify_date: 2020-06-16
 pageview: false
 aside:
   toc: true
@@ -76,8 +76,9 @@ print(yell2)
 
 [Tweets dataset](https://assets.datacamp.com/production/repositories/463/datasets/82e9842c09ad135584521e293091c2327251121d/tweets.csv)
 
+The dataset contains Twitter data and you will iterate over entries in a column to build a dictionary in which the keys are the names of languages and the values are the number of tweets in the given language.
+
 ```py
-# The dataset contains Twitter data and you will iterate over entries in a column to build a dictionary in which the keys are the names of languages and the values are the number of tweets in the given language.
 # Import pandas
 
 import pandas as pd
@@ -119,9 +120,9 @@ print(result)
 
 ## Scope
 
+- LEGB rule,L for local, E for enclosing functions,G for global and B for built-in.
+
 ```py
-# when we reference a name, first the local scope is searched, then the global. If the name is in neither, then the built-in scope is searched.
-# LEGB rule,L for local, E for enclosing functions,G for global and B for built-in.
 # Assigning name only create or change local names
 num = 5
 def func1():
@@ -307,8 +308,9 @@ job="headmaster")
 
 ## Lambda Functions
 
+- Map() and lambda functions
+
 ```py
-# Map() and lambda functions
 # Function map takes two arguments: map(func, seq)
 # map() applies the function to ALL elements in the sequence
 nums = [48, 6, 9, 21, 1]
@@ -319,8 +321,9 @@ print(list(square_all))
 > [2304, 36, 81, 441, 1]
 ```
 
+- Filter() and lambda functions
+
 ```py
-# Filter() and lambda functions
 # filter() offers a way to filter out elements from a list that don't satisfy certain criteria.
 # Create a list of strings: fellowship
 fellowship = ['frodo', 'samwise', 'merry', 'pippin', 'aragorn', 'boromir', 'legolas', 'gimli', 'gandalf']
@@ -336,8 +339,9 @@ print(result_list)
 > ['samwise', 'aragorn', 'boromir', 'legolas', 'gandalf']
 ```
 
+- Reduce() and lambda functions
+
 ```py
-# Reduce() and lambda functions
 # Import reduce from functools
 from functools import reduce
 
@@ -381,4 +385,279 @@ def sqrt(x):
         return x ** 0.5
     except TypeError:
         print('x must be an int or float')       
+```
+
+##  Iterators
+
+### Iterators vs Iterables
+
+An iterable is an object that can return an iterator, while an iterator is an object that keeps state and produces the next value when you call next()
+
+- Iterable
+    - Examples: lists, strings, dictionaries, le connections
+    - An object with an associated iter() method
+    - Applying iter() to an iterable creates an iterator
+
+- Iterator
+    - Produces next value with next()
+
+```py
+# Iterating over iterables: next()
+word = 'Da'
+it = iter(word)
+next(it)
+> 'D'
+next(it)
+> 'a'
+
+# Iterating at once with *
+word = 'Data'
+it = iter(word)
+print(*it)
+> D a t a
+
+# Iterating over dictionaries
+pythonistas = {'hugo': 'bowne-anderson'
+,
+'francis': 'castro'}
+for key, value in pythonistas.items():
+print(key, value)
+> francis castro
+  hugo bowne-anderson
+
+# Iterating over le connections
+file = open('file.txt')
+it = iter(file)
+print(next(it))
+> This is the first line.
+print(next(it))
+> This is the second line.
+```
+
+### enumerate()
+enumerate() returns an enumerate object that produces a sequence of tuples, and each of the tuples is an index-value pair.
+
+```py
+# Using enumerate()
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+e = enumerate(avengers)
+print(type(e))
+> <class 'enumerate'>
+e_list = list(e)
+print(e_list)
+> [(0, 'hawkeye'), (1, 'iron man'), (2, 'thor'), (3, 'quicksilver')]
+
+# enumerate() and unpack
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+for index, value in enumerate(avengers):
+print(index, value)
+> 0 hawkeye
+  1 iron man
+  2 thor
+  3 quicksilver
+
+for index, value in enumerate(avengers, start=10):
+print(index, value)
+> 10 hawkeye
+  11 iron man
+  12 thor
+  13 quicksilver
+```
+
+### zip()
+
+```py
+# Using zip()
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+names = ['barton', 'stark', 'odinson', 'maximoff']
+z = zip(avengers, names)
+print(type(z))
+> <class 'zip'>
+z_list = list(z)
+print(z_list)
+> [('hawkeye', 'barton'), ('iron man', 'stark'),
+('thor', 'odinson'), ('quicksilver', 'maximoff')]
+
+# zip() and unpack
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']    
+names = ['barton', 'stark',  'odinson', 'maximoff']
+for z1, z2 in zip(avengers, names):
+    print(z1, z2)
+> hawkeye barton
+  iron man stark
+  thor odinson
+  quicksilver maximoff
+
+# Print zip with *
+avengers = ['hawkeye', 'iron man', 'thor', 'quicksilver']
+names = ['barton', 'stark', 'odinson', 'maximoff']
+z = zip(avengers, names)
+print(*z)
+> ('hawkeye', 'barton') ('iron man', 'stark')('thor', 'odinson') ('quicksilver', 'maximoff')
+```
+
+### Extracting information for large amounts of Twitter data
+
+```py
+# Define count_entries()
+def count_entries(csv_file,c_size,colname):
+    """Return a dictionary with counts of
+    occurrences as value for each key."""
+    
+    # Initialize an empty dictionary: counts_dict
+    counts_dict = {}
+
+    # Iterate over the file chunk by chunk
+    for chunk in pd.read_csv(csv_file,chunksize=c_size):
+
+        # Iterate over the column in DataFrame
+        for entry in chunk[colname]:
+            if entry in counts_dict.keys():
+                counts_dict[entry] += 1
+            else:
+                counts_dict[entry] = 1
+
+    # Return counts_dict
+    return counts_dict
+
+# Call count_entries(): result_counts
+result_counts = count_entries('tweets.csv',10,'lang')
+
+# Print result_counts
+print(result_counts)
+```
+
+## List comprehensions
+
+- Basic
+> ```py
+> [output expression for iterator variable in iterable]
+> ```
+
+- Advanced
+> ```py
+> [output expression + conditional on output for iterator variable in iterable + conditional on iterable]
+>```
+
+### Nested list comprehensions
+
+```py
+# Create list comprehension: squares
+squares = [i**2 for i in range(10)]
+print(squares)
+> [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# Nested list comprehensions
+[[output expression] for iterator variable in iterable]
+# Create a 5 x 5 matrix using a list of lists: matrix
+matrix = [[col for col in range(5)] for row in range(5)]
+
+# Print the matrix
+for row in matrix:
+    print(row)
+> [0, 1, 2, 3, 4]
+  [0, 1, 2, 3, 4]
+  [0, 1, 2, 3, 4]
+  [0, 1, 2, 3, 4]
+  [0, 1, 2, 3, 4]
+```
+
+### Using conditionals in comprehensions
+
+```py
+# Create a list of strings: fellowship
+fellowship = ['frodo', 'samwise', 'merry', 'aragorn', 'legolas', 'boromir', 'gimli']
+
+# Create list comprehension with if: 
+new_fellowship = [member for member in fellowship if len(member) >= 7]
+
+# Print the new list
+print(new_fellowship)
+> ['samwise', 'aragorn', 'legolas', 'boromir']
+
+# Create list comprehension with if-else: 
+new_fellowship = [member if len(member)>=7 else '' for member in fellowship]
+
+# Print the new list
+print(new_fellowship)
+> ['', 'samwise', '', 'aragorn', 'legolas', 'boromir', '']
+```
+
+### Dict comprehensions
+
+```py
+# Create a list of strings: fellowship
+fellowship = ['frodo', 'samwise', 'merry', 'aragorn', 'legolas', 'boromir', 'gimli']
+
+# Create dict comprehension: new_fellowship
+new_fellowship = {member:len(member) for member in fellowship}
+
+# Print the new dictionary
+print(new_fellowship)
+> {'frodo': 5, 'samwise': 7, 'merry': 5, 'aragorn': 7, 'legolas': 7, 'boromir': 7, 'gimli': 5}
+```
+
+## generator expressions
+
+```py
+# Create generator object: result
+result = (num for num in range(31))
+
+# Print the first 5 values
+print(next(result))
+print(next(result))
+print(next(result))
+print(next(result))
+print(next(result))
+
+# Print the rest of the values
+for value in result:
+    print(value)
+```
+
+- Changing the output in generator expressions
+
+```py
+# Create a list of strings: lannister
+lannister = ['cersei', 'jaime', 'tywin', 'tyrion', 'joffrey']
+
+# Create a generator object: lengths
+lengths = (len(person) for person in lannister)
+
+# Iterate over and print the values in lengths
+for value in lengths:
+    print(value)
+```
+
+- Build a generator
+
+```py
+# Create a list of strings
+lannister = ['cersei', 'jaime', 'tywin', 'tyrion', 'joffrey']
+
+# Define generator function get_lengths
+def get_lengths(input_list):
+    """Generator function that yields the
+    length of the strings in input_list."""
+
+    # Yield the length of a string
+    for person in input_list:
+        yield len(person)
+
+# Print the values generated by get_lengths()
+for value in get_lengths(lannister):
+    print(value)
+```
+
+- Wrapping up comprehensions and generators.
+
+```py
+# Extract the created_at column from df: tweet_time
+tweet_time = df['created_at']
+
+# Extract the clock time: tweet_clock_time.(Access the 12th to 19th characters in the string to extract the time  in which entry[17:19] is equal to '19')
+tweet_clock_time = [entry[11:19] for entry in tweet_time if entry[17:19] == '19']
+
+# Print the extracted times
+print(tweet_clock_time)
 ```
