@@ -3,7 +3,7 @@ layout: article
 title: Python Data Science Toolbox
 key: 20200614
 tags: Programming
-modify_date: 2020-06-16
+modify_date: 2020-06-18
 pageview: false
 aside:
   toc: true
@@ -13,6 +13,7 @@ aside:
 Base on DataCamp.
 
 <!--more-->
+
 
 ## Write function
 
@@ -599,6 +600,8 @@ print(new_fellowship)
 
 ## generator expressions
 
+[Efficient Pandas: Using Chunksize for Large Data Sets](https://medium.com/towards-artificial-intelligence/efficient-pandas-using-chunksize-for-large-data-sets-c66bf3037f93)
+
 ```py
 # Create generator object: result
 result = (num for num in range(31))
@@ -660,4 +663,223 @@ tweet_clock_time = [entry[11:19] for entry in tweet_time if entry[17:19] == '19'
 
 # Print the extracted times
 print(tweet_clock_time)
+```
+
+
+## Case study
+
+[Dataset: World Bank World Development Indicators](https://assets.datacamp.com/production/repositories/464/datasets/2175fef4b3691db03449bbc7ddffb740319c1131/world_ind_pop_data.csv)
+
+### Warm up
+
+- Dictionaries for data science
+
+```py
+# Zip lists: zipped_lists
+zipped_lists = zip(feature_names,row_vals)
+
+# Create a dictionary: rs_dict
+rs_dict = dict(zipped_lists)
+
+# Print the dictionary
+print(rs_dict)
+> {'CountryName': 'Arab World', 'CountryCode': 'ARB', 'IndicatorName': 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'IndicatorCode': 'SP.ADO.TFRT', 'Year': '1960', 'Value': '133.56090740552298'}
+```
+
+- Writing a function to help 
+
+```py
+# Define lists2dict()
+def lists2dict(list1, list2):
+    """Return a dictionary where list1 provides
+    the keys and list2 provides the values."""
+
+    # Zip lists: zipped_lists
+    zipped_lists = zip(list1, list2)
+
+    # Create a dictionary: rs_dict
+    rs_dict = dict(zipped_lists)
+
+    # Return the dictionary
+    return dict(rs_dict)
+
+# Call lists2dict: rs_fxn
+rs_fxn = lists2dict(feature_names, row_vals)
+
+# Print rs_fxn
+print(rs_fxn)
+> {'CountryName': 'Arab World', 'CountryCode': 'ARB', 'IndicatorName': 'Adolescent fertility rate (births per 1,000 women ages 15-19)', 'IndicatorCode': 'SP.ADO.TFRT', 'Year': '1960', 'Value': '133.56090740552298'}
+```
+
+- Using a list comprehension
+
+```py
+# Print the first two lists in row_lists
+print(row_lists[0])
+print(row_lists[1])
+
+# Turn list of lists into list of dicts: list_of_dicts
+list_of_dicts = [lists2dict(feature_names,sublist) for sublist  in row_lists]
+
+# Print the first two dictionaries in list_of_dicts
+print(list_of_dicts[0])
+print(list_of_dicts[1])
+```
+
+- Turning this all into a DataFrame
+
+```py
+# Import the pandas package
+import pandas as pd
+
+# Turn list of lists into list of dicts: list_of_dicts
+list_of_dicts = [lists2dict(feature_names, sublist) for sublist in row_lists]
+
+# Turn list of dicts into a DataFrame: df
+df = pd.DataFrame(list_of_dicts)
+
+# Print the head of the DataFrame
+print(df.head())
+>         print(df.head())
+  CountryCode CountryName  ...               Value  Year
+0         ARB  Arab World  ...  133.56090740552298  1960
+1         ARB  Arab World  ...    87.7976011532547  1960
+2         ARB  Arab World  ...   6.634579191565161  1960
+3         ARB  Arab World  ...   81.02332950839141  1960
+4         ARB  Arab World  ...           3000000.0  1960
+
+[5 rows x 6 columns]
+```
+
+### Python generators for streaming data
+
+- Processing data in chunks
+
+```py
+# Open a connection to the file
+with open('world_dev_ind.csv') as file:
+
+    # Skip the column names
+    file.readline()
+
+    # Initialize an empty dictionary: counts_dict
+    counts_dict = {}
+
+    # Process only the first 1000 rows
+    for j in range(0, 1000):
+
+        # Split the current line into a list: line
+        line = file.readline().split(',')
+
+        # Get the value for the first column: first_col
+        first_col = line[0]
+
+        # If the column value is in the dict, increment its value
+        if first_col in counts_dict.keys():
+            counts_dict[first_col] += 1
+
+        # Else, add to the dict and set value to 1
+        else:
+            counts_dict[first_col] = 1
+
+# Print the resulting dictionary
+print(counts_dict)
+> {'Arab World': 80, 'Caribbean small states': 77, 'Central Europe and the Baltics': 71, 'East Asia & Pacific (all income levels)': 122, 'East Asia & Pacific (developing only)': 123, 'Euro area': 119, 'Europe & Central Asia (all income levels)': 109, 'Europe & Central Asia (developing only)': 89, 'European Union': 116, 'Fragile and conflict affected situations': 76, 'Heavily indebted poor countries (HIPC)': 18}
+```
+
+- Writing a generator to load data in chunks
+
+```py
+# Define read_large_file()
+def read_large_file(file_object):
+    """A generator function to read a large file lazily."""
+
+    # Loop indefinitely until the end of the file
+    while True:
+
+        # Read a line from the file: data
+        data = file_object.readline()
+
+        # Break if this is the end of the file
+        if not data:
+            break
+
+        # Yield the line of data
+        yield data
+        
+# Open a connection to the file
+with open('world_dev_ind.csv') as file:
+
+    # Create a generator object for the file: gen_file
+    gen_file = read_large_file(file)
+
+    # Print the first three lines of the file
+    print(next(gen_file))
+    print(next(gen_file))
+> CountryName,CountryCode,IndicatorName,IndicatorCode,Year,Value
+> Arab World,ARB,"Adolescent fertility rate (births per 1,000 women ages 15-19)",SP.ADO.TFRT,1960,133.56090740552298
+
+# Initialize an empty dictionary: counts_dict
+counts_dict = {}
+
+# Open a connection to the file
+with open('world_dev_ind.csv') as file:
+
+    # Iterate over the generator from read_large_file()
+    for line in read_large_file(file):
+
+        row = line.split(',')
+        first_col = row[0]
+
+        if first_col in counts_dict.keys():
+            counts_dict[first_col] += 1
+        else:
+            counts_dict[first_col] = 1
+
+# Print            
+print(counts_dict)
+```
+
+### Writing an iterator to load data in chunks
+
+```py
+# Define plot_pop()
+def plot_pop(filename, country_code):
+
+    # Initialize reader object: urb_pop_reader
+    urb_pop_reader = pd.read_csv(filename, chunksize=1000)
+
+    # Initialize empty DataFrame: data
+    data = pd.DataFrame()
+    
+    # Iterate over each DataFrame chunk
+    for df_urb_pop in urb_pop_reader:
+        # Check out specific country: df_pop_ceb
+        df_pop_ceb = df_urb_pop[df_urb_pop['CountryCode'] == country_code]
+
+        # Zip DataFrame columns of interest: pops
+        pops = zip(df_pop_ceb['Total Population'],
+                    df_pop_ceb['Urban population (% of total)'])
+
+        # Turn zip object into list: pops_list
+        pops_list = list(pops)
+
+        # Use list comprehension to create new DataFrame column 'Total Urban Population'
+        df_pop_ceb['Total Urban Population'] = [int(tup[0] * tup[1] * 0.01) for tup in pops_list]
+    
+        # Append DataFrame chunk to data: data
+        data = data.append(df_pop_ceb)
+
+    # Plot urban population data
+    data.plot(kind='scatter', x='Year', y='Total Urban Population')
+    plt.show()
+
+# Set the filename: fn
+fn = 'ind_pop_data.csv'
+
+# Call plot_pop for country code 'CEB'
+plot_pop('ind_pop_data.csv','CEB')
+
+# Call plot_pop for country code 'ARB'
+plot_pop('ind_pop_data.csv','ARB')
 ```
