@@ -1,2 +1,2 @@
 # Hello blog!
-[Yulei's Notes](https://yuleii.github.io)
+[Yulei's Site](https://yuleii.github.io)
