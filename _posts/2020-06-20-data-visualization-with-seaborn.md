@@ -14,6 +14,8 @@ Base on DataCamp.
 
 <!--more-->
 
+[Seaborn Cheat Sheet ](https://datacamp-community-prod.s3.amazonaws.com/f9f06e72-519a-4722-9912-b5de742dbac4)
+
 ##  Introduction to Seaborn
 
 ### Scatter and Count Plot
@@ -206,10 +208,11 @@ plt.show()
 sns.catplot(x="study_time", y="G3",
             data=student_data,
             kind="bar",
+            # rearrange the categories so that they are in order from lowest study time to highest.
             order=["<2 hours", 
                    "2 to 5 hours", 
                    "5 to 10 hours", 
-                   ">10 hours"], # rearrange the categories so that they are in order from lowest study time to highest.
+                   ">10 hours"], 
             ci=None) # no longer displays confidence intervals.
 
 # Show plot
@@ -263,8 +266,10 @@ plt.show()
 sns.catplot(x="famrel", y="absences",
 			data=student_data,
             kind="point",
-            capsize=0.2, # Add "caps" to the end of the confidence intervals with size 0.2
-            join=False) #Remove the lines joining the points in each category.
+            # Add "caps" to the end of the confidence intervals with size 0.2
+            capsize=0.2, 
+            # Remove the lines joining the points in each category.
+            join=False) 
             
 # Show plot
 plt.show()
@@ -282,7 +287,8 @@ sns.catplot(x="romantic", y="absences",
             kind="point",
             hue="school",
             ci=None,
-            estimator=median) # display the median number of absences instead of the average
+            # display the median number of absences instead of the average
+            estimator=median) 
 
 # Show plot
 plt.show()
@@ -317,8 +323,8 @@ sns.set_style("darkgrid")
 # Set a custom color palette
 custom_color = ["#39A7D0","#36ADA4"]
 sns.set_palette(custom_color)
-# Create the box plot of age distribution by gender
 
+# Create the box plot of age distribution by gender
 sns.catplot(x="Gender", y="Age", 
             data=survey_data, kind="box")
 
@@ -339,7 +345,8 @@ g = sns.catplot(x="Region",
                 y="Birthrate",
                 data=gdp_data,
                 kind="box") 
-g.fig.suptitle("New Title", y=1.03) # y: adjust height of title in FacetGrid
+# y: adjust height of title in FacetGrid
+g.fig.suptitle("New Title", y=1.03) 
 plt.show()
 ```
 
@@ -419,4 +426,593 @@ g.set(xlabel="Location of Residence",
 
 # Show plot
 plt.show()
+```
+
+## Intermediate Seaborn
+
+### Distribution Plot
+
+#### Plot a histogram
+
+```py
+# Create a distplot
+sns.distplot(df['Award_Amount'],
+            # disable the KDE to get histogram
+             kde=False,
+             bins=20)
+
+# Display the plot
+plt.show()
+```
+
+#### Rug plot and kde shading
+
+```py
+# Create a distplot of the Award Amount
+sns.distplot(df['Award_Amount'],
+             hist=False,
+             # Add a rug plot above the x axis
+             rug=True, 
+             # Configure it to show a shaded kde (using the kde_kws dictionary).
+             kde_kws={'shade':True})
+
+# Plot the results
+plt.show()
+```
+
+### Regression Plots in Seaborn
+
+#### regplot()
+
+```py
+# Create a regression plot of premiums vs. insurance_losses
+sns.regplot(x="insurance_losses", y="premiums", data=df)
+
+# Display the plot
+plt.show()
+```
+
+#### lmplot()
+
+```py
+# Create a regression plot using hue
+sns.lmplot(data=df,
+           x="insurance_losses",
+           y="premiums",
+           # Plot a regression line for each Region of the country.
+           hue="Region",
+           # Create a plot for each Region of the country.
+           row="Region")
+
+# Show the results
+plt.show()
+```
+
+## Customizing Distribution Plot
+
+[python matplotlib中axes与axis的区别](https://www.zhihu.com/question/51745620)
+
+### Using Seaborn Styles
+
+#### Setting the default style
+
+```py
+# Set the default seaborn style
+sns.set()
+
+# Plot the pandas histogram 
+df['fmr_2'].plot.hist()
+plt.show()
+plt.clf()
+```
+
+#### Removing spines
+
+```py
+# Set the style to white
+sns.set_style('white')
+
+# Create a regression plot
+sns.lmplot(data=df,
+           x='pop2010',
+           y='fmr_2')
+
+# Remove the spines
+sns.despine(right=True)
+
+# Show the plot and clear the figure
+plt.show()
+plt.clf()
+```
+
+### Colors in Seaborn
+
+#### Matplotlib color codes
+
+```py
+# Set style, enable color code, and create a magenta distplot
+sns.set(color_codes=True)
+sns.distplot(df['fmr_3'], color='m')
+
+# Show the plot
+plt.show()
+```
+
+#### Using default palettes
+
+- Circular colors = when the data is not ordered
+- Sequential colors = when the data has a consistent range from high to low
+- Diverging colors = when both the low and high values are interesting
+
+```py
+# Loop through differences between bright and colorblind palettes
+for p in ['bright', 'colorblind']:
+    sns.set_palette(p)
+    sns.distplot(df['fmr_3'])
+    plt.show()
+    
+    # Clear the plots    
+    plt.clf()
+```
+
+#### Creating Custom Palettes
+
+```py
+# Create and display a Purples sequential palette containing 8 colors.
+sns.palplot(sns.color_palette( "Purples", 8))
+plt.show()
+
+# Create and display a palette with 10 colors using the husl system.
+sns.palplot(sns.color_palette( "husl", 10))
+plt.show()
+
+# Create and display a diverging palette with 6 colors coolwarm.
+sns.palplot(sns.color_palette( "coolwarm", 6))
+plt.show()
+```
+
+### Customizing with matplotlib
+
+#### Using matplotlib axes
+
+```py
+# Create a figure and axes
+fig, ax = plt.subplots()
+
+# Plot the distribution of data
+sns.distplot(df['fmr_3'], ax=ax)
+
+# Create a more descriptive x axis label
+ax.set(xlabel="3 Bedroom Fair Market Rent")
+
+# Show the plot
+plt.show()
+```
+
+#### Additional plot customizations
+
+```py
+# Create a figure and axes
+fig, ax = plt.subplots()
+
+# Plot the distribution of 1 bedroom rents
+sns.distplot(df['fmr_1'], ax=ax)
+
+# Modify the properties of the plot
+ax.set(xlabel="1 Bedroom Fair Market Rent",
+       # Change the x axis limits to be between 100 and 1500.
+       xlim=(100,1500),
+       # Add a descriptive title of "US Rent" to the plot.
+       title="US Rent")
+
+# Display the plot
+plt.show()
+```
+
+#### Adding annotations
+
+```py
+# Create a figure and axes. Then plot the data
+fig, ax = plt.subplots()
+sns.distplot(df['fmr_1'], ax=ax)
+
+# Customize the labels and limits
+ax.set(xlabel="1 Bedroom Fair Market Rent", xlim=(100,1500), title="US Rent")
+
+# Add vertical lines for the median and mean
+ax.axvline(x=median, color='m', label='Median', linestyle='--', linewidth=2)
+ax.axvline(x=mean, color='b', label='Mean', linestyle='-', linewidth=2)
+
+# Show the legend and plot the data
+ax.legend()
+plt.show()
+```
+
+#### Multiple plots
+
+```py
+# Create a plot with 1 row and 2 columns that share the y axis label
+fig, (ax0, ax1) = plt.subplots(nrows=1, ncols=2, sharey=True)
+
+# Plot the distribution of 1 bedroom apartments on ax0
+sns.distplot(df['fmr_1'], ax=ax0)
+ax0.set(xlabel="1 Bedroom Fair Market Rent", xlim=(100,1500))
+
+# Plot the distribution of 2 bedroom apartments on ax1
+sns.distplot(df['fmr_2'], ax=ax1)
+ax1.set(xlabel="2 Bedroom Fair Market Rent", xlim=(100,1500))
+```
+
+## Additional Plot Types
+
+### Categorical Plot Types
+
+#### stripplot() and swarmplot()
+
+```py
+# Create the stripplot
+sns.stripplot(data=df,
+         x='Award_Amount',
+         y='Model Selected',
+         jitter=True)
+
+plt.show()
+# Create and display a swarmplot with hue set to the Region
+sns.swarmplot(data=df,
+         x='Award_Amount',
+         y='Model Selected',
+         hue='Region')
+
+plt.show()
+```
+
+### boxplots, violinplots and lvplots
+
+```py
+# Create a boxplot
+sns.boxplot(data=df,
+         x='Award_Amount',
+         y='Model Selected')
+
+plt.show()
+plt.clf()
+
+# Create a violinplot with the husl palette
+sns.violinplot(data=df,
+         x='Award_Amount',
+         y='Model Selected',
+         palette='husl')
+
+plt.show()
+plt.clf()
+
+# Create a lvplot with the Paired palette and the Region column as the hue
+sns.lvplot(data=df,
+         x='Award_Amount',
+         y='Model Selected',
+         palette='Paired',
+         hue='Region')
+
+plt.show()
+plt.clf()
+```
+
+#### barplots, pointplots and countplots
+```py
+# Show a countplot with the number of models used with each region a different color
+sns.countplot(data=df,
+         y="Model Selected",
+         hue="Region")
+
+plt.show()
+plt.clf()
+
+# Create a pointplot and include the capsize in order to show bars on the confidence interval
+sns.pointplot(data=df,
+         y='Award_Amount',
+         x='Model Selected',
+         # Use a capsize in the pointplot in order to show the confidence interval.
+         capsize=.1)
+
+plt.show()
+plt.clf()
+```
+
+### Regression Plots
+
+#### Regression and residual plots
+
+```py
+# Display a regression plot for Tuition
+sns.regplot(data=df,
+         y='Tuition',
+         x="SAT_AVG_ALL",
+         marker='^',
+         color='g')
+
+plt.show()
+plt.clf()
+
+# Display the residual plot
+sns.residplot(data=df,
+          y='Tuition',
+          x="SAT_AVG_ALL",
+          color='g')
+
+plt.show()
+plt.clf()
+```
+
+#### Regression plot parameters
+
+```py
+# Plot a regression plot of Tuition and the Percentage of Pell Grants
+sns.regplot(data=df,
+            y='Tuition',
+            x="PCTPELL",
+            #  breaks the PCTPELL column into 5 different bins.
+            x_bins=5,
+            # using a 2nd order polynomial regression line
+            order=2)
+
+plt.show()
+plt.clf()
+```
+
+#### Binning data
+
+```py
+# Create a scatter plot by disabling the regression line
+sns.regplot(data=df,
+            y='Tuition',
+            x="UG",
+            # disable the regression line
+            fit_reg=False) 
+
+plt.show()
+plt.clf()
+
+# Create a regplot and bin the data into 8 bins
+sns.regplot(data=df,
+         y='Tuition',
+         x="UG",
+         x_bins=8)
+
+plt.show()
+plt.clf()
+```
+
+### Matrix plots
+
+```py
+# Create a crosstab table of the data
+pd_crosstab = pd.crosstab(df["Group"], df["YEAR"])
+print(pd_crosstab)
+
+# Plot a heatmap of the table with no color bar and using the BuGn palette
+sns.heatmap(pd_crosstab, cbar=False, cmap="BuGn", linewidths=0.3)
+
+# Rotate tick marks for visibility
+plt.yticks(rotation=0)
+plt.xticks(rotation=90)
+
+plt.show()
+```
+
+## Creating Plots on Data Aware Grids
+
+### Using FacetGrid, factorplot and lmplot
+
+#### Building a FacetGrid
+
+```py
+# Create FacetGrid with Degree_Type and specify the order of the rows using row_order
+g2 = sns.FacetGrid(df, 
+             row="Degree_Type",
+             row_order=['Graduate', 'Bachelors', 'Associates', 'Certificate'])
+
+# Map a pointplot of SAT_AVG_ALL onto the grid
+g2.map(sns.pointplot, 'SAT_AVG_ALL')
+
+# Show the plot
+plt.show()
+plt.clf()
+```
+
+#### Using a factorplot
+
+In many cases, Seaborn's factorplot() can be a simpler way to create a FacetGrid. Instead of creating a grid and mapping the plot, we can use the factorplot() to create a plot with one line of code.
+
+```py
+# Create a facetted pointplot of Average SAT_AVG_ALL scores facetted by Degree Type 
+sns.factorplot(data=df,
+        x='SAT_AVG_ALL',
+        # shows a pointplot
+        kind='point',
+        row='Degree_Type',
+        # Use row_order to order the degrees from highest to lowest level.
+        row_order=['Graduate', 'Bachelors', 'Associates', 'Certificate'])
+
+plt.show()
+plt.clf()
+```
+
+#### Using a lmplot
+The lmplot is used to plot scatter plots with regression lines on FacetGrid objects. 
+
+```py
+# Create a FacetGrid varying by column and columns ordered with the degree_order variable
+g = sns.FacetGrid(df, col="Degree_Type", col_order=degree_ord)
+
+# Map a scatter plot of Undergrad Population compared to PCTPELL
+g.map(plt.scatter, 'UG', 'PCTPELL')
+
+plt.show()
+plt.clf()
+
+# Re-create the plot above as an lmplot
+sns.lmplot(data=df,
+        x='UG',
+        y='PCTPELL',
+        col="Degree_Type",
+        col_order=degree_ord)
+
+plt.show()
+plt.clf()
+
+# Create an lmplot that has a column for Ownership, a row for Degree_Type and hue based on the WOMENONLY column
+sns.lmplot(data=df,
+        x='SAT_AVG_ALL',
+        y='Tuition',
+        col="Ownership",
+        row='Degree_Type',
+        row_order=['Graduate', 'Bachelors'],
+        hue='WOMENONLY',
+        col_order=inst_ord)
+
+plt.show()
+plt.clf()
+```
+
+### Using PairGrid and pairplot
+
+#### Building a PairGrid
+```py
+# Create a PairGrid with a scatter plot for fatal_collisions and premiums
+g = sns.PairGrid(df, vars=["fatal_collisions", "premiums"])
+g2 = g.map(plt.scatter)
+
+plt.show()
+plt.clf()
+
+# Create the same PairGrid but map a histogram on the diag
+g = sns.PairGrid(df, vars=["fatal_collisions", "premiums"])
+g2 = g.map_diag(plt.hist) #  plot a histogram on the diagonal
+g3 = g2.map_offdiag(plt.scatter) # scatter plot on the off diagonal
+
+plt.show()
+plt.clf()
+```
+
+#### Using a pairplot
+
+The pairplot() function is generally a more convenient way to look at pairwise relationships. 
+
+```py
+# Plot the same data but use a different color palette and color code by Region
+sns.pairplot(data=df,
+        vars=["fatal_collisions", "premiums"],
+        kind='scatter',
+        # using the "Region" to color code the results
+        hue='Region',
+        # Use the RdBu palette to change the colors of the plot
+        palette='RdBu',
+        diag_kws={'alpha':.5})
+
+plt.show()
+plt.clf()
+```
+
+#### Additional pairplots
+
+```py
+# Build a pairplot with different x and y variables
+sns.pairplot(data=df,
+        # define the x_vars and y_vars that you wish to examine
+        x_vars=["fatal_collisions_speeding", "fatal_collisions_alc"],
+        y_vars=['premiums', 'insurance_losses'],
+        kind='scatter',
+        # Use the husl palette and color code the scatter plot by Region
+        hue='Region',
+        palette='husl')
+
+plt.show()
+plt.clf()
+
+# plot relationships between insurance_losses and premiums
+sns.pairplot(data=df,
+             vars=["insurance_losses", "premiums"],
+             # Use a reg plot for the the non-diagonal plots
+             kind='reg',
+             # Use the BrBG palette for the final plot.
+             palette='BrBG',
+             # diag_kind to control the types of plots shown on the diagonals.
+             diag_kind = 'kde',
+             hue='Region')
+
+plt.show()
+plt.clf()
+```
+
+### Using JointGrid and jointplot
+
+#### Building a JointGrid and jointplot
+Seaborn's JointGrid combines univariate plots such as histograms, rug plots and kde plots with bivariate plots such as scatter and regression plots. 
+
+```py
+# Build a JointGrid comparing humidity and total_rentals
+sns.set_style("whitegrid") # Use Seaborn's "whitegrid" style for these plots.
+g = sns.JointGrid(x="hum",
+            y="total_rentals",
+            data=df,
+            xlim=(0.1, 1.0)) 
+
+# Plot a regplot() and distplot() on the margins.
+g.plot(sns.regplot, sns.distplot)
+
+plt.show()
+plt.clf()
+
+# Create a jointplot similar to the JointGrid 
+sns.jointplot(x="hum",
+        y="total_rentals",
+        kind='reg',
+        data=df)
+
+plt.show()
+plt.clf()
+```
+
+#### Jointplots and regression
+
+```py
+# Plot temp vs. total_rentals as a regression plot
+sns.jointplot(x="temp",
+         y="total_rentals",
+         kind='reg',
+         data=df,
+         # 2nd order polynomial regression
+         order=2,
+         xlim=(0, 1))
+
+plt.show()
+plt.clf()
+
+# Plot a jointplot showing the residuals to check the appropriateness of the model.
+sns.jointplot(x="temp",
+        y="total_rentals",
+        kind='resid',
+        data=df,
+        order=2)
+
+plt.show()
+plt.clf()
+```
+
+#### Complex jointplots
+
+The `jointplot` is a convenience wrapper around many of the `JointGrid` functions. However, it is possible to overlay some of the `JointGrid` plots on top of the standard `jointplot`
+
+```py
+# Create a jointplot of temp vs. casual riders
+# Include a kdeplot over the scatter plot
+g = (sns.jointplot(x="temp",
+             y="casual",
+             kind='scatter',
+             data=df,
+             marginal_kws=dict(bins=10, rug=True))
+    .plot_joint(sns.kdeplot)) # Overlay a kdeplot on top of the scatter plot.
+    
+plt.show()
+plt.clf()
 ```
