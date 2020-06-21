@@ -333,10 +333,26 @@ plt.show()
 ```
 
 ### Adding titles and labels
-|Object Type|Plot Types|Characteristics|
+<!-- 
+    |-----------------+------------+-----------------|
+    | Object Type |Plot Types| Characteristics  | 
+    |-----------------|:-----------|:---------------:|
+    | FacetGrid |relplot(), catplot() | Can create subplots     |   
+    | AxesSubplot    |foo         | **strong**      |            
+    | Third line  |scatterplot(), countplot(),etc. |Only creates a single plot  |           
+    |-----------------+------------+-----------------| -->
+<!-- |Object Type|Plot Types|Characteristics|
 |-----------|----------|---------------|
 | FacetGrid |relplot(), catplot()|Can create subplots|
-|AxesSubplot|scatterplot(), countplot(),etc.|Only creates a single plot|
+|AxesSubplot|scatterplot(), countplot(),etc.|Only creates a single plot| -->
+
+    |---
+    | FacetGrid | relplot(), catplot()| Can create subplots
+    |:-:|:-:|:-:
+    | AxesSubplot | relplot(), catplot() | Can create subplots 
+    | AxesSubplot |scatterplot(), countplot(),etc. | Only creates a single plot 
+    |---
+  
 
 #### Adding a title to FacetGrid
 
@@ -821,7 +837,7 @@ plt.clf()
 
 #### Using a factorplot
 
-In many cases, Seaborn's factorplot() can be a simpler way to create a FacetGrid. Instead of creating a grid and mapping the plot, we can use the factorplot() to create a plot with one line of code.
+In many cases, Seaborn's `factorplot()` can be a simpler way to create a `FacetGrid`. Instead of creating a grid and mapping the plot, we can use the `factorplot()` to create a plot with one line of code.
 
 ```py
 # Create a facetted pointplot of Average SAT_AVG_ALL scores facetted by Degree Type 
@@ -838,7 +854,7 @@ plt.clf()
 ```
 
 #### Using a lmplot
-The lmplot is used to plot scatter plots with regression lines on FacetGrid objects. 
+The `lmplot` is used to plot scatter plots with regression lines on `FacetGrid` objects. 
 
 ```py
 # Create a FacetGrid varying by column and columns ordered with the degree_order variable
@@ -896,7 +912,7 @@ plt.clf()
 
 #### Using a pairplot
 
-The pairplot() function is generally a more convenient way to look at pairwise relationships. 
+The `pairplot()` function is generally a more convenient way to look at pairwise relationships. 
 
 ```py
 # Plot the same data but use a different color palette and color code by Region
@@ -947,7 +963,7 @@ plt.clf()
 ### Using JointGrid and jointplot
 
 #### Building a JointGrid and jointplot
-Seaborn's JointGrid combines univariate plots such as histograms, rug plots and kde plots with bivariate plots such as scatter and regression plots. 
+Seaborn's `JointGrid` combines univariate plots such as histograms, rug plots and kde plots with bivariate plots such as scatter and regression plots. 
 
 ```py
 # Build a JointGrid comparing humidity and total_rentals
