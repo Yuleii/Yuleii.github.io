@@ -346,12 +346,12 @@ plt.show()
 | FacetGrid |relplot(), catplot()|Can create subplots|
 |AxesSubplot|scatterplot(), countplot(),etc.|Only creates a single plot| -->
 
-    |---
-    | FacetGrid | relplot(), catplot()| Can create subplots
-    |:-:|:-:|:-:
-    | AxesSubplot | relplot(), catplot() | Can create subplots 
-    | AxesSubplot |scatterplot(), countplot(),etc. | Only creates a single plot 
-    |---
+|---
+| FacetGrid | relplot(), catplot()| Can create subplots
+|:-:|:-:|:-:
+| AxesSubplot | relplot(), catplot() | Can create subplots 
+| AxesSubplot |scatterplot(), countplot(),etc. | Only creates a single plot 
+|---
   
 
 #### Adding a title to FacetGrid
