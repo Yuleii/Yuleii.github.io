@@ -3,7 +3,7 @@ layout: article
 title: Data Visualization with Seaborn
 key: 20200620
 tags: Programming
-modify_date: 2020-06-20
+modify_date: 2020-06-21
 pageview: false
 aside:
   toc: true
@@ -333,18 +333,6 @@ plt.show()
 ```
 
 ### Adding titles and labels
-<!-- 
-    |-----------------+------------+-----------------|
-    | Object Type |Plot Types| Characteristics  | 
-    |-----------------|:-----------|:---------------:|
-    | FacetGrid |relplot(), catplot() | Can create subplots     |   
-    | AxesSubplot    |foo         | **strong**      |            
-    | Third line  |scatterplot(), countplot(),etc. |Only creates a single plot  |           
-    |-----------------+------------+-----------------| -->
-<!-- |Object Type|Plot Types|Characteristics|
-|-----------|----------|---------------|
-| FacetGrid |relplot(), catplot()|Can create subplots|
-|AxesSubplot|scatterplot(), countplot(),etc.|Only creates a single plot| -->
 
 |---
 | FacetGrid | relplot(), catplot()| Can create subplots
