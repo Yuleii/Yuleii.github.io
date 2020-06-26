@@ -528,3 +528,369 @@ with engine.connect() as con:
 # Execute query and store records in DataFrame: df
 df = pd.read_sql_query("SELECT * FROM PlaylistTrack INNER JOIN Track on PlaylistTrack.TrackId = Track.TrackId WHERE Milliseconds < 250000", engine)
 ```
+
+## Importing data from the Internet
+
+### Importing files from the web
+
+#### Importing flat files
+
+```py
+# Import the function urlretrieve from the subpackage urllib.request
+from urllib.request import urlretrieve
+
+# Import pandas
+import pandas as pd
+
+# Assign url of file: url
+url = 'https://s3.amazonaws.com/assets.datacamp.com/production/course_1606/datasets/winequality-red.csv'
+
+# Opening and reading flat files from the web
+df = pd.read_csv(url, sep = ';')
+
+# Use the function urlretrieve() to save the file locally as 'winequality-red.csv'
+urlretrieve(url, 'winequality-red.csv')
+
+# Read file into a DataFrame and print its head
+df = pd.read_csv('winequality-red.csv', sep=';')
+print(df.head())
+```
+
+#### Importing non-flat files
+
+```py
+# Import package
+import pandas as pd
+
+# Assign url of file: url
+url = 'http://s3.amazonaws.com/assets.datacamp.com/course/importing_data_into_r/latitude.xls'
+
+# Read in all sheets of Excel file: xls
+xls = pd.read_excel(url, sheet_name=None) #  in order to import all sheets you need to pass None to the argument sheet_name
+
+# Print the names of the sheets in the Excel spreadsheet; these will be the keys of the dictionary xls.
+print(xls.keys())
+
+# Print the head of the first sheet (using its name, NOT its index),The sheet name is '1700'.
+print(xls['1700'].head())
+```
+
+### HTTP requests to import files from the web
+
+```py
+# Import the functions urlopen and Request from the subpackage urllib.request.
+from urllib.request import urlopen, Request
+
+# Specify the url
+url = "http://www.datacamp.com/teach/documentation"
+
+# This packages the request: request
+request = Request(url)
+
+# Sends the request and catches the response: response
+response = urlopen(request)
+
+# Print the datatype of response
+print(type(response))
+> <class 'http.client.HTTPResponse'>
+
+# Extract the response: html
+html = response.read()
+
+# Print the html request results
+print(html)
+
+# Be polite and close the response!
+response.close()
+```
+
+Performing HTTP requests in Python using  package `requests`
+
+```py
+# Import the package requests.
+import requests
+
+# Specify the url: url
+url = "http://www.datacamp.com/teach/documentation"
+
+# Packages the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extract the response: text. Return the HTML of the webpage as a string; 
+text = r.text
+
+# Print the html
+print(text)
+```
+
+### Scraping the web in Python
+
+#### Parsing HTML with BeautifulSoup
+
+```py
+# Import the function BeautifulSoup from the package bs4.
+import requests
+from bs4 import BeautifulSoup
+
+# Specify url: url
+url = 'https://www.python.org/~guido/'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extracts the response as html: html_doc
+html_doc = r.text
+
+# Create a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Prettify the BeautifulSoup object: pretty_soup
+pretty_soup = soup.prettify()
+
+# Print the response
+print(pretty_soup)
+
+
+# Getting the text
+# Get the title of Guido's webpage: guido_title
+guido_title = soup.title
+
+# Print the title of Guido's webpage to the shell
+print(guido_title)
+
+# Get Guido's text: guido_text
+guido_text = soup.get_text()
+
+# Print Guido's text to the shell
+print(guido_text)
+
+
+# getting the hyperlinks
+# Find all 'a' tags (which define hyperlinks): a_tags
+a_tags = soup.find_all('a') # hyperlinks are defined by the HTML tag <a> but passed to find_all() without angle brackets;
+
+# Print the URLs to the shell
+# The variable a_tags is a results set: your job now is to enumerate over it, using a for loop and to print the actual URLs of the hyperlinks; to do this, for every element link in a_tags, you want to print() link.get('href').
+for link in a_tags:
+    print(link.get('href'))
+```
+
+
+## Interacting with APIs to import data from the web
+
+### Loading and exploring a JSON
+
+```py
+# use the function json.load() within the context manager.
+with open("a_movie.json") as json_file:
+    json_data = json.load(json_file)
+
+# Use a for loop to print all key-value pairs in the dictionary json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+
+
+import json
+with open("a_movie.json") as json_file:
+    json_data = json.load(json_file)
+json_data['Title']
+> 'The Social Network'
+json_data['Year']
+> '2010'
+```
+
+### APIs and interacting with the world wide web
+
+#### API requests
+
+```py
+# Import requests package
+import requests
+
+# Assign to the variable url the URL of interest in order to query 'http://www.omdbapi.com' for the data corresponding to the movie The Social Network. The query string should have two arguments: apikey=72bc447a and t=the+social+network. You can combine them as follows: apikey=72bc447a&t=the+social+network
+url = 'http://www.omdbapi.com/?apikey=72bc447a&t=the+social+network'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Print the text of the response
+print(r.text)
+
+
+# JSON–from the web to Python
+# Apply the json() method to the response object r and store the resulting dictionary in the variable json_data.
+json_data = r.json()
+
+# Print each key-value pair in json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+```
+
+#### Checking out the Wikipedia API
+
+```py
+# Import package
+import requests
+
+# Assign URL to variable: url
+url = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=pizza'
+
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Decode the JSON data into a dictionary: json_data
+json_data = r.json()
+
+# Print the Wikipedia page extract
+pizza_extract = json_data['query']['pages']['24768']['extract']
+print(pizza_extract)
+```
+
+## Diving deep into the Twitter API
+
+### API Authentication
+
+The package `tweepy` is great at handling all the Twitter API OAuth Authentication details for you. All you need to do is pass it your authentication credentials. 
+
+```py
+# Import the package tweepy
+import tweepy
+
+# Store OAuth authentication credentials in relevant variables
+access_token = "1092294848-aHN7DcRP9B4VMTQIhwqOYiB14YkW92fFO8k8EPy"
+access_token_secret = "X4dHmhPfaksHcQ7SCbmZa2oYBBVSD2g8uIHXsp5CTaksx"
+consumer_key = "nZ6EA0FxZ293SxGNg8g8aP0HM"
+consumer_secret = "fJGEodwe3KiKUnsYJC3VRndj7jevVvXbK2D5EiJ2nehafRgA6i"
+
+# Pass OAuth details to tweepy's OAuth handler. Pass the parameters consumer_key and consumer_secret to the function tweepy.OAuthHandler().
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+# Complete the passing of OAuth credentials to the OAuth handler auth by applying to it the method set_access_token(), along with arguments access_token and access_token_secret.
+auth.set_access_token(access_token, access_token_secret)
+```
+
+### Defined the tweet stream listener class
+
+```py
+class MyStreamListener(tweepy.StreamListener):
+    def __init__(self, api=None):
+        super(MyStreamListener, self).__init__()
+        self.num_tweets = 0
+        self.file = open("tweets.txt", "w")
+
+    def on_status(self, status):
+        tweet = status._json
+        self.file.write( json.dumps(tweet) + '\n' )
+        self.num_tweets += 1
+        if self.num_tweets < 100:
+            return True
+        else:
+            return False
+        self.file.close()
+
+    def on_error(self, status):
+        print(status)
+```
+
+### Streaming tweets
+
+```py
+# Initialize Stream listener
+l = MyStreamListener()
+
+# Create your Stream object with authentication
+stream = tweepy.Stream(auth, l)
+
+# Filter Twitter Streams to capture data by the keywords:
+stream.filter(['clinton','trump','sanders','cruz'])
+```
+
+### Load and explore your Twitter data
+
+```py
+# Import package
+import json
+
+# String of path to file: tweets_data_path
+tweets_data_path = 'tweets.txt'
+
+# Initialize empty list to store tweets: tweets_data
+tweets_data = []
+
+# Open connection to file
+tweets_file = open(tweets_data_path, "r")
+
+# Read in tweets and store in list: tweets_data
+for line in tweets_file:
+    tweet = json.loads(line) #  load each tweet into a variable, tweet, using json.loads()
+    tweets_data.append(tweet) # ppend tweet to tweets_data
+
+# Close connection to file
+tweets_file.close()
+
+# Print the keys of the first tweet dict
+print(tweets_data[0].keys())
+```
+
+### Twitter data to DataFrame
+
+```py
+# Import package
+import pandas as pd
+
+# Build DataFrame of tweet texts and languages. Use pd.DataFrame() to construct a DataFrame of tweet texts and languages; to do so, the first argument should be tweets_data, a list of dictionaries. The second argument to pd.DataFrame() is a list of the keys you wish to have as columns
+df = pd.DataFrame(tweets_data, columns=['text','lang'])
+
+# Print head of DataFrame
+print(df.head())
+```
+
+### A little bit of Twitter text analysis
+
+Defined the following function `word_in_text()`, which will tell you whether the first argument (a word) occurs within the 2nd argument (a tweet).
+```py
+import re
+
+def word_in_text(word, text):
+    word = word.lower()
+    text = text.lower()
+    match = re.search(word, text)
+
+    if match:
+        return True
+    return False
+```
+
+Iterate over the rows of the DataFrame and calculate how many tweets contain each of our keywords. The list of objects for each candidate has been initialized to 0.
+
+```py
+# Initialize list to store tweet counts
+[clinton, trump, sanders, cruz] = [0, 0, 0, 0]
+
+# Iterate through df, counting the number of tweets in which
+# each candidate is mentioned
+for index, row in df.iterrows():
+    clinton += word_in_text('clinton', row['text']) #  increases the value of clinton by 1 each time a tweet (text row) mentioning 'Clinton' is encountered; 
+    trump += word_in_text('trump', row['text'])
+    sanders += word_in_text('sanders', row['text'])
+    cruz += word_in_text('cruz', row['text'])
+```
+
+### Plotting your Twitter data
+
+```py
+# Import packages
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set seaborn style
+sns.set(color_codes=True)
+
+# Create a list of labels:cd
+cd = ['clinton', 'trump', 'sanders', 'cruz']
+
+# Plot the bar chart
+ax = sns.barplot(cd, [clinton, trump, sanders, cruz]) # The first argument should be the list of labels to appear on the x-axis (created in the previous step). The second argument should be a list of the variables you wish to plot(i.e. a list containing clinton, trump, etc).
+ax.set(ylabel="count")
+plt.show()
+```
