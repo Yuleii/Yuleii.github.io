@@ -3,7 +3,7 @@ layout: article
 title: Importing Data in Python
 key: 20200622
 tags: Programming
-modify_date: 2020-06-24
+modify_date: 2020-06-26
 pageview: false
 aside:
   toc: true
@@ -379,4 +379,152 @@ print(type(mat['CYratioCyt']))
 # Print the shape of the value corresponding to the key 'CYratioCyt'
 print(np.shape(mat['CYratioCyt']))
 > (200, 137)
+```
+
+## Working with relational databases in Python
+
+### Creating a database engine in Python
+
+```py
+# Import the function create_engine from the module sqlalchemy
+from sqlalchemy import create_engine
+
+# Create an engine to connect to the SQLite database 'Chinook.sqlite' and assign it to engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Using the method table_names() on the engine engine, assign the table names of 'Chinook.sqlite' to the variable table_names.
+table_names = engine.table_names()
+
+# Print the table names to the shell
+print(table_names)
+> ['Album', 'Artist', 'Customer', 'Employee', 'Genre', 'Invoice', 'InvoiceLine', 'MediaType', 'Playlist', 'PlaylistTrack', 'Track']
+```
+
+### Querying relational databases in Python
+
+#### The Hello World of SQL Queries!
+
+```py
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Open the engine connection as con using the method connect() on the engine.
+con = engine.connect()
+
+# Execute the query that selects ALL columns from the Album table. Store the results in rs.
+rs = con.execute('select * from Album')
+
+# Store all of your query results in the DataFrame df by applying the fetchall() method to the results rs.
+df = pd.DataFrame(rs.fetchall())
+
+# Close connection
+con.close()
+
+# Print head of DataFrame df
+print(df.head())
+
+
+# Customizing the Hello World of SQL Queries
+# Perform query and save results to DataFrame: df
+with engine.connect() as con:
+    # Execute the SQL query that selects the columns LastName and Title from the Employee table. Store the results in the variable rs.
+    rs = con.execute("SELECT LastName, Title FROM Employee")
+    # Apply the method fetchmany() to rs in order to retrieve 3 of the records. Store them in the DataFrame df. 
+    df = pd.DataFrame(rs.fetchmany(size=3))
+    # Using the rs object, set the DataFrame's column names to the corresponding names of the table columns.
+    df.columns = rs.keys()
+
+# Print the length of the DataFrame df
+print(len(df))
+> 3
+
+# Print the head of the DataFrame df
+print(df.head())
+```
+
+Filtering your database records using SQL's WHERE
+
+```py
+with engine.connect() as con:
+    rs = con.execute("SELECT * FROM Employee WHERE EmployeeId >=6")
+    df = pd.DataFrame(rs.fetchall())
+    df.columns = rs.keys()
+```
+
+Ordering your SQL records with ORDER BY
+
+```py
+# Open engine in context manager
+with engine.connect() as con:
+    rs = con.execute("SELECT * FROM Employee ORDER BY BirthDate")
+    df = pd.DataFrame(rs.fetchall())
+    df.columns = rs.keys()
+```
+
+### Querying relational databases directly with pandas
+
+#### Pandas and The Hello World of SQL Queries!
+
+```py
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Execute query and store records in DataFrame: df
+df = pd.read_sql_query("SELECT * FROM Album", engine)
+
+# Print head of DataFrame
+print(df.head())
+
+# Open engine in context manager and store query result in df1
+with engine.connect() as con:
+    rs = con.execute("SELECT * FROM Album")
+    df1 = pd.DataFrame(rs.fetchall())
+    df1.columns = rs.keys()
+
+# Confirm that both methods yield the same result
+print(df.equals(df1))
+> True
+```
+
+#### Pandas for more complex querying
+
+```py
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Execute query and store records in DataFrame: df
+df = pd.read_sql_query("SELECT * FROM Employee WHERE EmployeeId >= 6 ORDER BY BirthDate", engine)
+
+# Print head of DataFrame
+print(df.head())
+```
+
+### Advanced querying: exploiting table relationships
+
+#### INNER JOIN
+
+```py
+# Open engine in context manager
+# Perform query and save results to DataFrame: df
+with engine.connect() as con:
+    # Assign to rs the results from the following query: select all the records, extracting the Title of the record and Name of the artist of each record from the Album table and the Artist table, respectively. To do so, INNER JOIN these two tables on the ArtistID column of both.
+    rs = con.execute("SELECT Title,Name FROM Album INNER JOIN Artist on Album.ArtistID = Artist.ArtistID")
+    df = pd.DataFrame(rs.fetchall())
+    df.columns = rs.keys()
+
+# Filtering your INNER JOIN
+# Execute query and store records in DataFrame: df
+df = pd.read_sql_query("SELECT * FROM PlaylistTrack INNER JOIN Track on PlaylistTrack.TrackId = Track.TrackId WHERE Milliseconds < 250000", engine)
 ```
