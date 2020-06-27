@@ -30,7 +30,7 @@ Welcome to my blog:house:! This site is built for notes taking and experience sh
 
 ## About Me | 关于我
 
-Hi! I am Yulei:girl: (you can also call me Yuli), currently a graduate student of economics living in Germany.
+Hi! I am Yulei :girl:, currently a graduate student of economics living in Germany.
 
 
 ## Dependencies
