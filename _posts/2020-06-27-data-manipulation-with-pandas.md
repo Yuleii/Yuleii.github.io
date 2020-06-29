@@ -3,7 +3,7 @@ layout: article
 title: Data Manipulation with pandas
 key: 20200627
 tags: Programming
-modify_date: 2020-06-27
+modify_date: 2020-06-29
 pageview: false
 aside:
   toc: true
@@ -388,7 +388,412 @@ print(sales.pivot_table(values="weekly_sales", index="department", columns="type
 
 ## Slicing and indexing
 
+`.set_index()`, `reset_index()`
+
 ### Explicit indexes
+
+#### Setting & removing indexes
+
+```py
+# Look at temperatures
+print(temperatures)
+
+# Index temperatures by city
+temperatures_ind = temperatures.set_index('city')
+
+# Look at temperatures_ind
+print(temperatures_ind)
+
+# Reset the index, keeping its contents
+print(temperatures_ind.reset_index())
+
+# Reset the index, dropping its contents
+print(temperatures_ind.reset_index(drop=True))
+```
+
+#### Slicing and subsetting with .loc and .iloc
+
+```py
+# Make a list of cities to subset on
+cities = ['Moscow', 'Saint Petersburg']
+
+# Subset temperatures using square brackets
+print(temperatures[temperatures['city'].isin(cities)])
+
+# Subset temperatures_ind using .loc[]
+print(temperatures_ind.loc[cities])
+```
+
+#### Setting multi-level indexes
+
+```py
+# Index temperatures by country & city
+temperatures_ind = temperatures.set_index(["country","city"])
+
+# List of tuples: Brazil, Rio De Janeiro & Pakistan, Lahore
+rows_to_keep = [("Brazil", "Rio De Janeiro"),("Pakistan","Lahore")]
+
+# Subset for rows to keep
+print(temperatures_ind.loc[rows_to_keep])
+```
+
+#### Sorting by index values
+
+```py
+# Sort temperatures_ind by index values
+print(temperatures_ind.sort_index())
+
+# Sort temperatures_ind by index values at the city level
+print(temperatures_ind.sort_index(level='city'))
+
+# Sort temperatures_ind by country then descending city
+print(temperatures_ind.sort_index(level=['country','city'], ascending=[True, False]))
+```
 
 ### Slicing and subsetting with .loc and .iloc
 
+#### Slicing index values
+
+Compared to slicing lists, there are a few things to remember.
+
+- You can only slice an index if the index is sorted (using `.sort_index()`).
+- To slice at the outer level, `first` and `last` can be strings.
+- To slice at inner levels, `first` and `last` should be tuples.
+- If you pass a single slice to `.loc[]`, it will slice the rows.
+
+```py
+# Sort the index of temperatures_ind
+temperatures_srt = temperatures_ind.sort_index()
+
+# Subset rows from Pakistan to Russia
+print(temperatures_srt.loc['Pakistan':'Russia'])
+
+# Try to subset rows from Lahore to Moscow (This will return nonsense.)
+print(temperatures_srt.loc['Lahore':'Moscow'])
+
+# Subset rows from Pakistan, Lahore to Russia, Moscow
+print(temperatures_srt.loc[('Pakistan','Lahore'):('Russia', 'Moscow')])
+```
+
+#### Slicing in both directions
+
+```py
+# Subset rows from India, Hyderabad to Iraq, Baghdad
+print(temperatures_srt.loc[('India', 'Hyderabad'):('Iraq', 'Baghdad')])
+
+# Subset columns from date to avg_temp_c
+print(temperatures_srt.loc[:, 'date':'avg_temp_c'])
+
+# Subset in both directions at once
+# Subset columns from date to avg_temp_c
+print(temperatures_srt.loc[('India', 'Hyderabad'):('Iraq', 'Baghdad'), 'date':'avg_temp_c'])
+```
+
+#### Slicing time series
+
+Add the `date` column to the index, then use `.loc[]` to perform the subsetting. The important thing to remember is to keep your dates in ISO 8601 format, that is, `yyyy-mm-dd`.
+
+```py
+# Use Boolean conditions to subset temperatures for rows in 2010 and 2011
+temperatures_bool = temperatures[(temperatures["date"] >= '2010-01-01') & (temperatures["date"] <= '2011-12-31')]
+print(temperatures_bool)
+
+# Set date as an index
+temperatures_ind = temperatures.set_index('date')
+
+# Use .loc[] to subset temperatures_ind for rows in 2010 and 2011
+print(temperatures_ind.loc['2010':'2011'])
+
+# Use .loc[] to subset temperatures_ind for rows from Aug 2010 to Feb 2011
+print(temperatures_ind.loc['2010-08':'2011-2'])
+```
+
+#### Subsetting by row/column number
+
+This is done using `.iloc[]`, and like `.loc[]`, it can take two arguments to let you subset by rows and columns.
+
+```py
+# Get 23rd row, 2nd column (index 22, 1)
+print(temperatures.iloc[22,2])
+
+# Use slicing to get the first 5 rows
+print(temperatures.iloc[0:5,:])
+
+# Use slicing to get columns 3 to 4
+print(temperatures.iloc[:,2:4])
+
+# Use slicing in both directions at once
+print(temperatures.iloc[0:5,2:4])
+```
+
+### Working with pivot tables
+
+#### Pivot temperature by city and year
+
+You can access the components of a date (year, month and day) using code of the form `dataframe["column"].dt.component`. For example, the month component is `dataframe["column"].dt.month`, and the year component is `dataframe["column"].dt.year`.
+
+```py
+# Add a year column to temperatures
+temperatures['year'] = temperatures['date'].dt.year
+
+# Pivot avg_temp_c by country and city vs year
+temp_by_country_city_vs_year = temperatures.pivot_table('avg_temp_c', index=['country','city'], columns='year')
+
+# See the result
+print(temp_by_country_city_vs_year)
+```
+
+#### Subsetting pivot tables
+
+A pivot table is just a DataFrame with sorted indexes.  the `.loc[]` + slicing combination is often helpful.
+
+```py
+# Subset for Egypt to India
+temp_by_country_city_vs_year.loc['Egypt':'India']
+
+# Subset for Egypt, Cairo to India, Delhi
+temp_by_country_city_vs_year.loc[('Egypt','Cairo'):('India','Delhi')]
+
+# Subset in both directions at once
+temp_by_country_city_vs_year.loc[('Egypt','Cairo'):('India','Delhi'),'2005':'2010']
+```
+
+#### Calculating on a pivot table
+
+```py
+# Get the worldwide mean temp by year
+mean_temp_by_year = temp_by_country_city_vs_year.mean()
+
+# Filter for the year that had the highest mean temp
+print(mean_temp_by_year[mean_temp_by_year==mean_temp_by_year.max()])
+> year
+  2013    20.312
+  dtype: float64
+
+# Get the mean temp by city
+mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")
+
+# Filter for the city that had the lowest mean temp
+print(mean_temp_by_city[mean_temp_by_city==mean_temp_by_city.min()])
+> country  city  
+  China    Harbin    4.877
+  dtype: float64
+```
+
+## Creating and Visualizing DataFrames
+
+### Visualizing your data
+
+#### Which avocado size is most popular?
+
+```py
+# Import matplotlib.pyplot with alias plt
+import matplotlib.pyplot as plt
+
+# Look at the first few rows of data
+print(avocados.head())
+>          date          type  year  avg_price   size    nb_sold
+    0  2015-12-27  conventional  2015       0.95  small  9.627e+06
+    1  2015-12-20  conventional  2015       0.98  small  8.710e+06
+    2  2015-12-13  conventional  2015       0.93  small  9.855e+06
+    3  2015-12-06  conventional  2015       0.89  small  9.405e+06
+    4  2015-11-29  conventional  2015       0.99  small  8.095e+06
+    
+# Get the total number of avocados sold of each size
+nb_sold_by_size = avocados.groupby('size')['nb_sold'].sum()
+
+# Create a bar plot of the number of avocados sold by size
+nb_sold_by_size.plot(kind='bar')
+
+# Show the plot
+plt.show()
+```
+
+#### Changes in sales over time
+
+```py
+# Import matplotlib.pyplot with alias plt
+import matplotlib.pyplot as plt
+
+# Get the total number of avocados sold on each date
+nb_sold_by_date = avocados.groupby('date')['nb_sold'].sum()
+
+# Create a line plot of the number of avocados sold by date
+nb_sold_by_date.plot(kind='line')
+
+# Show the plot
+plt.show()
+```
+
+#### Avocado supply and demand
+
+```py
+# Scatter plot of nb_sold vs avg_price with title
+avocados.plot(x='nb_sold', y='avg_price', kind='scatter',title="Number of avocados sold vs. average price")
+
+# Show the plot
+plt.show()
+```
+
+#### Price of conventional vs. organic avocados
+
+```py
+# # Histogram of conventional avg_price 
+avocados[avocados["type"] == "conventional"]["avg_price"].hist(bins=20, alpha=0.5)
+
+# Histogram of organic avg_price
+avocados[avocados["type"] == "organic"]["avg_price"].hist(bins=20, alpha=0.5)
+
+# Add a legend
+plt.legend(["conventional", "organic"])
+
+# Show the plot
+plt.show()
+```
+
+### Missing values
+
+#### Finding missing values
+
+`.isna()`, `.any()`
+
+```py
+# Import matplotlib.pyplot with alias plt
+import matplotlib.pyplot as plt
+
+# Print a DataFrame that shows whether each value in avocados_2016 is missing or not.
+print(avocados_2016.isna())
+
+# Print a summary that shows whether any value in each column is missing or not.
+print(avocados_2016.isna().any())
+
+# Bar plot of missing values by variable
+avocados_2016.isna().sum().plot(kind='bar')
+
+# Show plot
+plt.show()
+```
+
+#### Removing missing values
+
+`.dropna()`
+
+```py
+# Remove rows with missing values
+avocados_complete = avocados_2016.dropna()
+
+# Check if any columns contain missing values
+print(avocados_complete.isna().any())
+> date               False
+  avg_price          False
+  total_sold         False
+  small_sold         False
+  large_sold         False
+  xl_sold            False
+  total_bags_sold    False
+  small_bags_sold    False
+  large_bags_sold    False
+  xl_bags_sold       False
+  dtype: bool
+```
+
+#### Replacing missing values
+
+```py
+# From previous step
+cols_with_missing = ["small_sold", "large_sold", "xl_sold"]
+avocados_2016[cols_with_missing].hist()
+plt.show()
+
+# Fill in missing values with 0
+avocados_filled = avocados_2016.fillna(0)
+
+# Create histograms of the filled columns
+avocados_filled[cols_with_missing].hist()
+
+# Show the plot
+plt.show()
+```
+
+### Creating DataFrames
+
+#### List of dictionaries
+
+```py
+# Create a list of dictionaries with new data
+avocados_list = [
+    {'date': "2019-11-03", 'small_sold': 10376832, 'large_sold': 7835071},
+    {'date': "2019-11-10", 'small_sold': 10717154, 'large_sold': 8561348},
+]
+
+# Convert list into DataFrame
+avocados_2019 = pd.DataFrame(avocados_list)
+
+# Print the new DataFrame
+print(avocados_2019)
+>          date  small_sold  large_sold
+  0  2019-11-03    10376832     7835071
+  1  2019-11-10    10717154     8561348
+```
+
+#### Dictionary of lists
+
+```py
+# Create a dictionary of lists with new data
+avocados_dict = {
+  "date": ["2019-11-17", "2019-12-01"],
+  "small_sold": [10859987, 9291631],
+  "large_sold": [7674135, 6238096]
+}
+
+# Convert dictionary into DataFrame
+avocados_2019 = pd.DataFrame(avocados_dict)
+
+# Print the new DataFrame
+print(avocados_2019)
+>          date  small_sold  large_sold
+  0  2019-11-17    10859987     7674135
+  1  2019-12-01     9291631     6238096
+```
+
+
+
+### Reading and writing CSVs
+
+#### CSV to DataFrame
+
+```py
+# Read CSV as DataFrame called airline_bumping
+airline_bumping = pd.read_csv("airline_bumping.csv")
+
+# Take a look at the DataFrame
+print(airline_bumping.head())
+>              airline  year  nb_bumped  total_passengers
+  0    DELTA AIR LINES  2017        679          99796155
+  1     VIRGIN AMERICA  2017        165           6090029
+  2    JETBLUE AIRWAYS  2017       1475          27255038
+  3    UNITED AIRLINES  2017       2067          70030765
+  4  HAWAIIAN AIRLINES  2017         92           8422734
+
+# For each airline, select nb_bumped and total_passengers and sum
+airline_totals = airline_bumping.groupby("airline")[["nb_bumped", "total_passengers"]].sum()
+
+# Create new col, bumps_per_10k: no. of bumps per 10k passengers for each airline
+airline_totals["bumps_per_10k"] = airline_totals["nb_bumped"] / airline_totals["total_passengers"] * 10000
+
+# Print airline_totals
+print(airline_totals)
+```
+
+#### DataFrame to CSV
+
+```py
+# Create airline_totals_sorted
+airline_totals_sorted = airline_totals.sort_values('bumps_per_10k', ascending=False)
+
+# Print airline_totals_sorted
+print(airline_totals_sorted)
+
+# Save as airline_totals_sorted.csv
+airline_totals_sorted.to_csv("airline_totals_sorted.csv")
+```
