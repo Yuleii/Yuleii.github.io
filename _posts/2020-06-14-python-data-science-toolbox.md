@@ -2,7 +2,7 @@
 layout: article
 title: Python Data Science Toolbox
 key: 20200614
-tags: Programming
+tags: Programming Python 
 modify_date: 2020-06-18
 pageview: false
 aside:
