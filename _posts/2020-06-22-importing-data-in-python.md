@@ -2,7 +2,7 @@
 layout: article
 title: Importing Data in Python
 key: 20200622
-tags: Programming
+tags: Programming Python
 modify_date: 2020-06-26
 pageview: false
 aside:

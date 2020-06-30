@@ -2,7 +2,7 @@
 layout: article
 title: Data Visualization with Seaborn
 key: 20200620
-tags: Programming
+tags: Programming Python seaborn
 modify_date: 2020-06-21
 pageview: false
 aside:
