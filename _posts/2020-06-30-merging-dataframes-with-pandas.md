@@ -251,3 +251,349 @@ pounds = dollars.multiply(exchange['GBP/USD'], axis='rows')
 # Print the head of pounds
 print(pounds.head())
 ```
+
+### Appending and concatenating Series
+
+#### Appending pandas Series
+
+`.append()`
+
+```py
+# Import pandas
+import pandas as pd
+
+# Load 'sales-jan-2015.csv' into a DataFrame: jan
+jan = pd.read_csv('sales-jan-2015.csv', parse_dates=True, index_col='Date') # parse_dates=True: 将csv中的时间字符串转换成日期格式
+
+# Load 'sales-feb-2015.csv' into a DataFrame: feb
+feb = pd.read_csv('sales-feb-2015.csv', parse_dates=True, index_col='Date')
+
+# Load 'sales-mar-2015.csv' into a DataFrame: mar
+mar = pd.read_csv('sales-mar-2015.csv', parse_dates=True, index_col='Date')
+
+# Extract the 'Units' column from jan: jan_units
+jan_units = jan['Units']
+
+# Extract the 'Units' column from feb: feb_units
+feb_units = feb['Units']
+
+# Extract the 'Units' column from mar: mar_units
+mar_units = mar['Units']
+
+# Append feb_units and then mar_units to jan_units: quarter1
+quarter1 = jan_units.append(feb_units).append(mar_units)
+
+# Print the first slice from quarter1
+print(quarter1.loc['jan 27, 2015':'feb 2, 2015'])
+> Date
+  2015-01-27 07:11:55    18
+  2015-02-02 08:33:01     3
+  2015-02-02 20:54:49     9
+  Name: Units, dtype: int64
+
+# Print the second slice from quarter1
+print(quarter1.loc['feb 26, 2015':'mar 7, 2015'])
+> Date
+  2015-02-26 08:57:45     4
+  2015-02-26 08:58:51     1
+  2015-03-06 10:11:45    17
+  2015-03-06 02:03:56    17
+  Name: Units, dtype: int64
+
+# Compute & print total sales in quarter1
+print(quarter1.sum())
+> 642
+```
+
+#### Concatenating pandas Series along row axis
+
+`.append()` is a specific case of a concatenation, while `pd.concat()` gives you more flexibility, 
+
+```py
+# Initialize empty list: units
+units = []
+
+# Build the list of Series
+# Use a for loop to iterate over [jan, feb, mar]:
+# In each iteration of the loop, append the 'Units' column of each DataFrame to units.
+for month in [jan, feb, mar]:
+    units.append(month['Units'])
+
+# Concatenate the Series contained in the list units into a longer Series called quarter1 using pd.concat().
+quarter1 = pd.concat(units, axis='rows') # set axis='rows' or axis=0 to stack the Series vertically(列对齐). 
+
+# Print slices from quarter1. Verify that quarter1 has the individual Series stacked vertically by printing slices.
+print(quarter1.loc['jan 27, 2015':'feb 2, 2015'])
+print(quarter1.loc['feb 26, 2015':'mar 7, 2015'])
+> 
+Date
+2015-01-27 07:11:55    18
+2015-02-02 08:33:01     3
+2015-02-02 20:54:49     9
+Name: Units, dtype: int64
+Date
+2015-02-26 08:57:45     4
+2015-02-26 08:58:51     1
+2015-03-06 10:11:45    17
+2015-03-06 02:03:56    17
+Name: Units, dtype: int64
+```
+
+### Appending and concatenating DataFrames
+
+#### Appending DataFrames with ignore_index
+
+```py
+# Add 'year' column to names_1881 and names_1981
+names_1881['year'] = 1881
+names_1981['year'] = 1981
+
+# Append names_1981 after names_1881 with ignore_index=True: combined_names
+combined_names = names_1881.append(names_1981, ignore_index=True) # ignore_index=True to make a new RangeIndex of unique integers for each row.
+
+# Print shapes of names_1981, names_1881, and combined_names
+print(names_1981.shape)
+> (19455, 4)
+print(names_1881.shape)
+> (1935, 4)
+print(combined_names.shape)
+> (21390, 4)
+
+# Extract all rows from combined_names that have the name 'Morgan'. To do this, use the .loc[] accessor with an appropriate filter. The relevant column of combined_names here is 'name'.
+print(combined_names.loc[combined_names['name']=='Morgan'])
+>          name gender  count  year
+  1283   Morgan      M     23  1881
+  2096   Morgan      F   1769  1981
+  14390  Morgan      M    766  1981 
+```
+
+#### Concatenating pandas DataFrames along column axis
+
+The function `pd.concat()` can concatenate DataFrames horizontally as well as vertically (vertical is the default). To make the DataFrames stack horizontally, you have to specify the keyword argument `axis=1` or `axis='columns'`(行对齐).
+
+```py
+# Create a list of weather_max and weather_mean
+weather_list = [weather_max, weather_mean]
+
+# Concatenate weather_list horizontally
+weather = pd.concat(weather_list, axis=1) # specify the keyword argument axis=1 to stack them horizontally
+
+# Print weather
+print(weather,head())
+>      Max TemperatureF  Mean TemperatureF
+  Apr              89.0          53.100000
+  Aug               NaN          70.000000
+  Dec               NaN          34.935484
+  Feb               NaN          28.714286
+  Jan              68.0          32.354839
+```
+
+#### Reading multiple files to build a DataFrame
+
+```py
+#Initialize an empyy list: medals
+medals =[]
+
+for medal in medal_types:
+    # Create file_name using string interpolation with the loop variable medal
+    file_name = "%s_top5.csv" % medal # evaluates as a string with the value of medal replacing %s in the format string.
+    # Create list of column names: columns
+    columns = ['Country', medal]
+    # Read file_name into a DataFrame: medal_df
+    medal_df = pd.read_csv(file_name, header=0, index_col='Country', names=columns)
+    # Append medal_df to medals
+    medals.append(medal_df)
+
+# Concatenate medals horizontally: medals_df
+medals_df = pd.concat(medals, axis='columns')
+
+# Print medals_df
+print(medals_df)
+>                 bronze  silver    gold
+  France           475.0   461.0     NaN
+  Germany          454.0     NaN   407.0
+  Italy              NaN   394.0   460.0
+  Soviet Union     584.0   627.0   838.0
+  United Kingdom   505.0   591.0   498.0
+  United States   1052.0  1195.0  2088.0
+```
+
+
+### Concatenation, keys, and MultiIndexes
+
+#### Concatenating vertically to get MultiIndexed rows
+
+`keys` parameter in the call to `pd.concat()`, which generates a hierarchical index with the labels from keys as the outermost index label.
+
+```py
+for medal in medal_types:
+
+    file_name = "%s_top5.csv" % medal
+    
+    # Read file_name into a DataFrame: medal_df. Specify the index to be 'Country'.
+    medal_df = pd.read_csv(file_name, index_col='Country')
+    
+    # Append medal_df to medals
+    medals.append(medal_df)
+    
+# Concatenate medals: medals
+medals = pd.concat(medals, keys=['bronze', 'silver', 'gold'], axis=0)
+
+# Print medals in entirety
+print(medals)
+>                       Total
+       Country               
+bronze United States   1052.0
+       Soviet Union     584.0
+       United Kingdom   505.0
+       France           475.0
+       Germany          454.0
+silver United States   1195.0
+       Soviet Union     627.0
+       United Kingdom   591.0
+       France           461.0
+       Italy            394.0
+gold   United States   2088.0
+       Soviet Union     838.0
+       United Kingdom   498.0
+       Italy            460.0
+       Germany          407.0
+```
+
+#### Slicing MultiIndexed DataFrames
+
+Use the `pd.IndexSlice` to extract specific slices.
+
+```py
+# Sort the entries of medals: medals_sorted
+medals_sorted = medals.sort_index(level=0)
+
+# Print the number of Bronze medals won by Germany
+print(medals_sorted.loc[('bronze','Germany')])
+> Total    454.0
+Name: (bronze, Germany), dtype: float64
+
+# Print data about silver medals
+print(medals_sorted.loc['silver'])
+>                  Total
+  Country               
+  France           461.0
+  Italy            394.0
+  Soviet Union     627.0
+  United Kingdom   591.0
+  United States   1195.0
+
+# Create an alias for pd.IndexSlice called idx. A slicer pd.IndexSlice is required when slicing on the inner level of a MultiIndex.
+idx = pd.IndexSlice
+
+# Print all the data on medals won by the United Kingdom
+print(medals_sorted.loc[idx[:,'United Kingdom'], :])
+>                        Total
+         Country              
+  bronze United Kingdom  505.0
+  gold   United Kingdom  498.0
+  silver United Kingdom  591.0
+```
+
+#### Concatenating horizontally to get MultiIndexed columns
+
+```py
+# Construct a new DataFrame february with MultiIndexed columns by concatenating the list dataframes
+february = pd.concat(dataframes, axis=1, keys=['Hardware', 'Software', 'Service']) # Use axis=1 to stack the DataFrames horizontally and the keyword argument keys=['Hardware', 'Software', 'Service'] to construct a hierarchical Index from each DataFrame.
+
+# Print february.info()
+print(february.info())
+
+# Create an alias called idx for pd.IndexSlice
+idx = pd.IndexSlice
+
+# Extract a slice called slice_2_8 from february (using .loc[] & idx) that comprises rows between Feb. 2, 2015 to Feb. 8, 2015 from columns under 'Company'.
+slice_2_8 = february.loc['2015-02-02':'2015-02-08', idx[:, 'Company']]
+
+# Print slice_2_8
+print(slice_2_8)
+```
+
+#### Concatenating DataFrames from a dict
+
+```py
+# Make the list of tuples: month_list
+month_list = [('january', jan), ('february', feb), ('march', mar)]
+
+# Create an empty dictionary: month_dict
+month_dict = {}
+
+for month_name, month_data in month_list:
+
+    # Group month_data: month_dict[month_name]. (Group month_data by 'Company' and use .sum() to aggregate.)
+    month_dict[month_name] = month_data.groupby('Company').sum()
+
+# Concatenate data in month_dict: sales
+sales = pd.concat(month_dict)
+
+# Print sales
+print(sales)
+>                           Units
+         Company               
+february Acme Coporation     34
+         Hooli               30
+         Initech             30
+         Mediacore           45
+         Streeplex           37
+january  Acme Coporation     76
+         Hooli               70
+         Initech             37
+         Mediacore           15
+         Streeplex           50
+march    Acme Coporation      5
+         Hooli               37
+         Initech             68
+         Mediacore           68
+         Streeplex           40
+
+# Print all sales by Mediacore
+idx = pd.IndexSlice
+print(sales.loc[idx[:, 'Mediacore'], :])
+>                     Units
+           Company         
+  february Mediacore     45
+  january  Mediacore     15
+  march    Mediacore     68
+```
+
+### Outer and inner joins
+
+#### Concatenating DataFrames with inner join
+
+```py
+# Create the list of DataFrames: medal_list
+medal_list = [bronze, silver, gold]
+
+# Concatenate medal_list horizontally using an inner join: medals
+medals = pd.concat(medal_list, keys=['bronze', 'silver', 'gold'], axis=1, join='inner') # Use the keyword argument  to yield suitable hierarchical indexing. Use axis=1 to get horizontal concatenation. Use join='inner' to keep only rows that share common index labels
+
+# Print medals
+print(medals)
+>               bronze  silver    gold
+                 Total   Total   Total
+Country                               
+United States   1052.0  1195.0  2088.0
+Soviet Union     584.0   627.0   838.0
+United Kingdom   505.0   591.0   498.0
+```
+
+#### Resampling & concatenating DataFrames with inner join
+
+```py
+# Resample and tidy china: china_annual. Make a new DataFrame china_annual by resampling the DataFrame china with .resample('A').last() (i.e., with annual frequency) and chaining two method calls.
+china_annual = china.resample('A').last().pct_change(10).dropna() # Chain .pct_change(10) as an aggregation method to compute the percentage change with an offset of ten years. Chain .dropna() to eliminate rows containing null values.
+
+# Resample and tidy us: us_annual
+us_annual = us.resample('A').last().pct_change(10).dropna()
+
+# Concatenate china_annual and us_annual: gdp
+gdp = pd.concat([china_annual, us_annual], join='inner', axis=1) # join='inner' to perform an inner join and use axis=1 to concatenate horizontally.
+
+# Print the result of resampling gdp every decade (i.e., using .resample('10A')) and aggregating with the method .last()
+print(gdp.resample('10A').last())
+```
