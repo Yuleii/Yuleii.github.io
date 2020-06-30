@@ -3,7 +3,7 @@ layout: article
 title: A Cry not for Help
 key: 20200629
 tags: 随笔
-modify_date: 2020-06-29
+modify_date: 2020-06-30
 pageview: false
 aside:
   toc: true

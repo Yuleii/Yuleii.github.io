@@ -252,6 +252,8 @@ pounds = dollars.multiply(exchange['GBP/USD'], axis='rows')
 print(pounds.head())
 ```
 
+## Concatenating data
+
 ### Appending and concatenating Series
 
 #### Appending pandas Series
