@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Data Manipulation with pandas
+title: Merging DataFrames with pandas
 key: 20200630
 tags: Programming Pyhton pandas
 modify_date: 2020-06-30
