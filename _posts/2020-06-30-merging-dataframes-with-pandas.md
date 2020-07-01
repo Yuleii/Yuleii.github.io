@@ -2,7 +2,7 @@
 layout: article
 title: Merging DataFrames with pandas
 key: 20200627
-tags: 20200630
+tags: Programming Python pandas
 modify_date: 2020-07-01
 pageview: false
 aside:
@@ -22,6 +22,7 @@ Base on DataCamp.
 ### Reading multiple data files
 
 #### Reading DataFrames from multiple files in a loop
+
 ```py
 # Import pandas
 import pandas as pd
