@@ -1,13 +1,15 @@
 ---
 layout: article
 title: Merging DataFrames with pandas
-key: 20200630
-tags: Programming Python pandas
+key: 20200627
+tags: 20200630
 modify_date: 2020-07-01
 pageview: false
 aside:
   toc: true
 ---
+
+
 
 Base on DataCamp.
 
