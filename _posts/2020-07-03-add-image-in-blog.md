@@ -9,7 +9,7 @@ aside:
   toc: true
 ---
 
-使用 Github 作为图床在博文中插入图片：
+使用 Github 作为图床在博文中插入图片
 
 <!--more-->
 
