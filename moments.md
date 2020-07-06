@@ -17,6 +17,7 @@ sidebar:
 ---
 
 I live in every moment.
+
 <!--more-->
 
 Various months can be navigated by using the sidebar on the left.
