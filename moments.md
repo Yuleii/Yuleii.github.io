@@ -16,8 +16,6 @@ sidebar:
     nav: moments
 ---
 
-I live in every moment.
+HAPPY EVEN THOUGH LIFE CAN BE CRAPPY:)
 
 <!--more-->
-
-Various months can be navigated by using the sidebar on the left.
