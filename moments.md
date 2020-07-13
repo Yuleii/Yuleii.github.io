@@ -18,10 +18,7 @@ sidebar:
 
 This section is inspired by my childhood photos.    
 
-When I was a little child, my father took a lot of photos of me. He wrote amusing comments behind every single photo and preserved them carefully. I don't have any memory about that period, but every time I look at these photos and comments, I realise:   
-- I am naughty   
-- I am being loved
-- I love this world
+When I was a little child, my father took a lot of photos of me. He wrote amusing comments behind every single photo and preserved them carefully. 
 
 
 
