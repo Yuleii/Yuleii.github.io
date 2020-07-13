@@ -16,9 +16,7 @@ sidebar:
     nav: moments
 ---
 
-This section is inspired by my childhood photos.    
-
-When I was a little child, my father took a lot of photos of me. He wrote amusing comments behind every single photo and preserved them carefully. 
+I'm a big big girl in a big big world~:musical_note:
 
 
 
