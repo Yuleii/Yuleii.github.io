@@ -112,6 +112,6 @@ Notes on [Discrete Choice Methods with Simulation (Kenneth Train, 2009)](https:/
 
 # Part I: Behavioral Models
 
-# Part II: Behavioral Models
+# Part II: Estimation
 
 
