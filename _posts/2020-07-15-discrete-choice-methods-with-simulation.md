@@ -71,7 +71,7 @@ Notes on [Discrete Choice Methods with Simulation (Kenneth Train, 2009)](https:/
 
 - $\bar{t} = \int t(\epsilon)f(\epsilon)d\epsilon$
     - $t(\epsilon)$ is a statistic based on $\epsilon$ which has density $f(\epsilon)$
-  > Simulation relies on the fact that integration over a density is a form of averaging Approximate true average with simulated average.   
+> Simulation relies on the fact that integration over a density is a form of averaging Approximate true average with simulated average.   
 
 - Simulation process:
     1. Take a draw of $\epsilon$ from $f(\epsilon)$. Label this draw $\epsilon^1$, where the superscript denotes that it is the first draw.

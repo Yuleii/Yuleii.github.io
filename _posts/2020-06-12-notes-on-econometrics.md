@@ -2,7 +2,7 @@
 layout: article
 title: Linear Algebra for Econometrics
 key: 20200612
-tags: Economics
+tags: Econometrics
 modify_date: 2020-06-13
 pageview: false
 mathjax: true
