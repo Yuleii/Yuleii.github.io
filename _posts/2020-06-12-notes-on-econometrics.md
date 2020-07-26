@@ -256,7 +256,7 @@ $$
 ### Def 0.7 Generating System & Basis
 
 - A family of vector $$B=\{v_1,..,v_d\}$$ is a **generating system** of $\mathbb{R}$ if $\mathbb{R}^n=$ span $$\{v_1,..,v_d\}$$.
-- A family of vector $$B=\{v_1,..,v_d\}$$ is a **basis** of $\mathbb{R}$ if B is a **generating system** of $\mathbb{R}$ and that vectors v_1,..,v_d are **linearly dependent**.
+- A family of vector $$B=\{v_1,..,v_d\}$$ is a **basis** of $\mathbb{R}$ if B is a **generating system** of $\mathbb{R}$ and that vectors v_1,..,v_d are **linearly independent**.
 
 > **E0 Q7**
 > Specify a basis of the linear subspace $W$, where      
