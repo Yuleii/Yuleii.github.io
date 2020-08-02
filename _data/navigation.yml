@@ -64,3 +64,5 @@ moments:
         url:    /moments/june
       - title:  July
         url:    /moments/july
+      - title:  August
+        url:    /moments/august
