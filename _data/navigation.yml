@@ -49,7 +49,7 @@ header:
       # @end locale config
     url: /about.html
 
-  - title:      plog
+  - title:      Plog
     url:        /plog.html
     key:        plog
 
