@@ -1,6 +1,6 @@
 ---
 layout: article
-title: plog
+title: Plog
 key: page-plog
 mode: immersive
 header:
