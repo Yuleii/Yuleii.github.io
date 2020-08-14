@@ -14,9 +14,9 @@ aside:
 <!--more-->
 
 ## 需求
-我想在头部导航栏里新增一项独立的页面导航`Moment`用来存放照片，具体要求：
+我想在头部导航栏里新增一项独立的页面导航`plog`用来存放照片，具体要求：
 - 与博文独立，即更新的文章不出现在主页或`Archive`里
-- `Moment`点开后显示封面，不直接显示文章
+- `plog`点开后显示封面，不直接显示文章
 - 通过侧边栏导航文章，按年和月分类
 - 文章是「图片卡」的容器，一张图片卡由照片，拍摄时间和描述三部分组成
 
@@ -30,7 +30,7 @@ aside:
 
 ```bash
 collections:
-  moments:
+  plog:
     output: true
 ```
 
@@ -39,12 +39,12 @@ collections:
 ```bash
 defaults:
   - scope:
-      path: "_moments"
+      path: "_plog"
     values:
       layout: article
-      nav_key: moments
+      nav_key: plog
       sidebar:
-        nav: moments
+        nav: plog
       license: true
       aside:
         toc: true
@@ -54,13 +54,13 @@ defaults:
 
 ### 新建文件
 
-- 在根目录下创建`_moments`文件夹用于存储发布照片的文章
+- 在根目录下创建`_plog`文件夹用于存储发布照片的文章
 
-- 在根目录下创建`moments.md`的markdown文件作为`Moment`的封面,然后在头信息中将定义的导航作为这篇页面的侧边栏导航栏：
+- 在根目录下创建`plog.md`的markdown文件作为`plog`的封面,然后在头信息中将定义的导航作为这篇页面的侧边栏导航栏：
 
 ```bash
 sidebar:
-    nav: moments
+    nav: plog
 ```
 
 ### 配置导航栏
@@ -68,40 +68,40 @@ sidebar:
 - 在`_data`文件夹下`navigation.yml`中的`header`配置中中添加以下代码设置头部导航栏
 
 ```bash
-  - title:      Moments
-    url:        /moments.html
-    key:        moments
+  - title:      plog
+    url:        /plog.html
+    key:        plog
 ```
 
 - 在`_data`文件夹下的`navigation.yml`添加以下代码设置侧边栏导航栏，注意要放在`header`配置的后面
 
 ```bash
-moments:
+plog:
   - title:      2020
     children:
       - title:  June
-        url:    /moments/june
+        url:    /plog/june
 ```
 
 ### 创建文章
 
-- 首先创建「六月」的文章，在`_moments`文件夹新建markdown文件`1.1-june.md`, 头信息中将定义的导航作为这篇文章的侧边栏导航栏
+- 首先创建「六月」的文章，在`_plog`文件夹新建markdown文件`1.1-june.md`, 头信息中将定义的导航作为这篇文章的侧边栏导航栏
 
 ```bash
 sidebar:
-    nav: moments
+    nav: plog
 ```
 
-- 要添加「七月」的文章，在`_moments`文件夹新建markdown文件`1.2-july.md`, 头信息同「六月」。然后在`_data`文件夹下的`navigation.yml`文件中添加以下代码设置侧边栏导航栏。要创建「2021」年新的大类，就在`header`中添加一个与「2020」同级的title，将新建的文章命名为2.1-jan，2.2-feb...即可
+- 要添加「七月」的文章，在`_plog`文件夹新建markdown文件`1.2-july.md`, 头信息同「六月」。然后在`_data`文件夹下的`navigation.yml`文件中添加以下代码设置侧边栏导航栏。要创建「2021」年新的大类，就在`header`中添加一个与「2020」同级的title，将新建的文章命名为2.1-jan，2.2-feb...即可
 
 ```bash
-moments:
+plog:
   - title:      2020
     children:
       - title:  June
-        url:    /moments/june
+        url:    /plog/june
       - title:  July
-        url:    /moments/july
+        url:    /plog/july
 ```
 
 ### 文章内容

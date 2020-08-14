@@ -202,7 +202,7 @@ exclude:
   - /vendor
 
 collections:
-  moments:
+  plog:
     output: true
 
 defaults:
@@ -219,14 +219,14 @@ defaults:
       show_edit_on_github: true
       show_subscribe: true
       pageview: true
-  ## moments
+  ## plog
   - scope:
-      path: "_moments"
+      path: "_plog"
     values:
       layout: article
-      nav_key: moments
+      nav_key: plog
       sidebar:
-        nav: moments
+        nav: plog
       license: true
       aside:
         toc: true
