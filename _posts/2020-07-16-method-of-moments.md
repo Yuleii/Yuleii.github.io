@@ -2,7 +2,7 @@
 layout: article
 title: Method Of Moments
 key: 2020716
-tags: Econometrics incomplete
+tags: Econometrics InProgress
 pageview: false
 modify_date: 2020-07-16
 aside:
@@ -42,7 +42,7 @@ Maximum likelihood is one way to get a point estimate, another way to get point 
 
 [Method Of Moments](https://www.youtube.com/playlist?list=PLdxWrq0zBgPViBm1aBlYc5rvL2w5YIMot)
 
-## To Learn
+## To do
 - [ ] [Moment Generating Functions](https://www.youtube.com/playlist?list=PLdxWrq0zBgPU0DUvONdlNpgndFr0e6qt3)
 - [ ] [Method of Simulated Moments (MSM)](https://www.youtube.com/watch?v=pPqI5LbC96Y)
 - [ ] [Simulated Method of Moments (SMM) Estimation](https://notes.quantecon.org/submission/5b3db2ceb9eab00015b89f93)
