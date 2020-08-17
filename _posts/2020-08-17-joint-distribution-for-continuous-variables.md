@@ -63,7 +63,7 @@ $$
 
 $$
 \begin{eqnarray*}
-\int_0^{1/2} \frac{2}{3}(x+2y)dx \\
+\int_0^{1/2} \frac{2}{3}(x+2y)dx 
 &=& \frac{2}{3} \left[\frac{x^2}{2}+2xy\right]_{x=0}^{x=1/2} \\
 &=& \frac{2}{3} [\frac{0.5^2}{2}+y]-[0+0] \\
 &=& (\frac{1}{12}+\frac{2y}{23})
@@ -72,9 +72,12 @@ $$
 
 $$
 \begin{eqnarray*}
-\int_0^{1/2}(\frac{1}{12}+\frac{2y}{23})dy \\
+\int_0^{1/2}(\frac{1}{12}+\frac{2y}{23})dy
 &=&\left[\frac{y}{12}+\frac{2y^2}{6}\right]_{x=0}^{x=1/2} \\
 &=&\frac{1}{24}+\frac{2}{24} \\
 &=&\frac{1}{8} \\
 \end{eqnarray*}
 $$
+
+## Source
+[Joint Distributions for Continuous Variables - Worked Exanple](https://youtu.be/Om68Hkd7pfw)
