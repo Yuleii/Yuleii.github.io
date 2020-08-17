@@ -10,7 +10,7 @@ aside:
   toc: true
 ---
 
-Notes for my master thesis.
+Preparing for my master thesis.
 
 <!--more-->
 
