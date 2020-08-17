@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Quantile based global sensitivity measure
+title: Quantile Based Global Sensitivity Measure
 key: 2020717
 tags: Econometrics InProgress
 pageview: false
@@ -10,7 +10,7 @@ aside:
   toc: true
 ---
 
-
+Notes for my master thesis.
 
 <!--more-->
 
