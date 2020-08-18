@@ -80,4 +80,4 @@ $$
 $$
 
 ## Source
-[Joint Distributions for Continuous Variables - Worked Exanple](https://youtu.be/Om68Hkd7pfw)
+[Joint Distributions for Continuous Variables - Worked Example](https://youtu.be/Om68Hkd7pfw)
