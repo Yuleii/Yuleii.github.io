@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Quantile Based Global Sensitivity Measure
+title: Quantile Based Global Sensitivity Measures
 key: 2020717
 tags: Econometrics
 pageview: false
@@ -10,7 +10,7 @@ aside:
   toc: true
 ---
 
-Notes on the paper [Quantile Based Global Sensitivity Measure](https://www.sciencedirect.com/science/article/abs/pii/S0951832016304574)
+Notes on the paper [Quantile based global sensitivity measures by S. Kucherenko, S. Song, L. Wang, ](https://www.sciencedirect.com/science/article/abs/pii/S0951832016304574)
 
 <!--more-->
 
@@ -62,7 +62,7 @@ $$\{S_k, T_k \}_{k=1}^p$$
 - $S_k \le T_k\ \forall k \in {1,2,...,p}$
 - $T_u \le \sum_{K \in u} T_k\ \forall u \in {1,2,...,p}$
 
-#### Sensitivity indices for subsets of variable
+#### Sensitivity Indices for Subsets of Variable
 
 - model function: $Y=f(x_1, \dots x_d)$
 - input vector: $x=(x_1, \dots x_d)$
