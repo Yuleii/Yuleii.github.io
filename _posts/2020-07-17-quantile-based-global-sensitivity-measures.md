@@ -259,11 +259,11 @@ $$
 
 - Consider tomorrow's price $P$ for a portfolio which depends on a set of $d$ random variables
 
-- tomorrow's values $$\left\{x_i\right\}, i=1, \dots, d$$ for a set of "risk factors"
+- Tomorrow's values $$\left\{x_i\right\}, i=1, \dots, d$$ for a set of "risk factors"
 
 - The portfolio contains $m$ contracts whose values tomorrow are $$\left\{C_k\right\}, k=1, \dots, m$$
 
-- portfolio price function
+- Portfolio price function
 
 $$
 P(x_1,x_2, \dots ,x_d)=\sum_{k=1}^m C_k(x_1,x_2, \dots ,x_d)
