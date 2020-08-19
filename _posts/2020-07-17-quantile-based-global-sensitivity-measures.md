@@ -10,7 +10,7 @@ aside:
   toc: true
 ---
 
-Notes on the paper [Quantile based global sensitivity measures by S. Kucherenko, S. Song, L. Wang, ](https://www.sciencedirect.com/science/article/abs/pii/S0951832016304574)
+Notes on the paper [Quantile Based Global Sensitivity Measures by S. Kucherenko, S. Song, L. Wang](https://www.sciencedirect.com/science/article/abs/pii/S0951832016304574)
 
 <!--more-->
 
