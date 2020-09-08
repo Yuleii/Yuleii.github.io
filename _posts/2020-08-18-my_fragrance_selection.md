@@ -1,6 +1,6 @@
 ---
 layout: article
-title: My Perfume Selection
+title: My Fragrance Selection
 key: 20200818
 tags: Fun
 pageview: false
