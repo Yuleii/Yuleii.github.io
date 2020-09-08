@@ -175,6 +175,59 @@ $$
 
 where $\rho_{Y \mid X_{i}}(y)$ is the conditional on $x_i=X_i$ PDF of the output Y.
 
+## Linear Model with Normally Distributed Variables
+
+$$
+Y=a_1x_1+a_2x_2+ \cdots +a_dx_d
+$$
+
+- $x_i \sim N(\mu_i,\sigma_i^2)$
+- $Y \sim N(\sum_{i=1}^d a_i \mu_i, \sum_{i=1}^d a_i^2 \sigma_i^2 )$
+- $Y \mid X_i \sim N(a_i x_i+\sum_{j=1,j \ne i}^d a_j \mu_j, \sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2 )$
+
+**Sobol's sensitivity indice**
+
+$$
+S_i=S_i^{tot}=\frac{a_i^2 \sigma_i^2}{\sum_{j=1}^d a_j^2 \sigma_j^2}
+$$
+
+**For this model**
+
+$$
+q_Y(\alpha)=\sum_{i=1}^d a_i \mu_i + \Phi^{-1}(\alpha) \sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}
+$$
+
+$$
+q_{Y|X_i=x_i}(\alpha)=a_i x_i + \sum_{j=1,j \ne i}^d a_j \mu_j + \Phi^{-1}(\alpha) \sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2}
+$$
+
+where $\Phi^{-1}(\alpha)$ is the inverse error function.
+
+**Hence**
+
+$$
+q_Y(\alpha)-q_{Y|X_i=x_i}(\alpha)=a_i(\mu_i - x_i)+\Phi^{-1}(\alpha) \left(\sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}-\sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2} \right)
+$$
+
+$$
+\begin{eqnarray*}
+q_i^{(2)}(\alpha)&=&E_{x_i}[(q_Y(\alpha)-q_{Y \mid X_{i}}(\alpha))^2] \\
+&=&E_{x_i} \left[ \left(a_i(\mu_i - x_i)+\Phi^{-1}(\alpha) \left(\sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}-\sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2} \right) \right)^2 \right] \\
+&=&a_i^2 \sigma_i^2+[\Phi^{-1}(\alpha)]^2 \left(\sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}-\sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2} \right)^2 
+\end{eqnarray*}
+$$
+
+**Theorem 1.** For the linear additive model with normally distributed variables  
+$$
+\qquad \qquad \qquad \qquad \qquad \qquad Q_i^{(2)}(\alpha=0.5)=S_i
+$$
+{:.info}
+
+Proof:   
+$\Phi^{-1}(\alpha=0.5)=0$   
+$q_i^{(2)}=a_i^2 \sigma_i^2$   
+$$Q_i^{(2)}(\alpha)=\frac{\bar{q}_i^{(2)}(\alpha)}{\sum_{j=1}^d \bar{q}_j^{(2)}(\alpha)}=\frac{a_i^2 \sigma_i^2}{\sum_{j=1}^d a_j^2 \sigma_j^2}=S_i$$
+
 # Monte Carlo estimators
 
 ## The brute force estimator
@@ -285,57 +338,6 @@ $$
 
 - $d[]$: $C_1$ distance and $L_2$ distance
 
-## Linear Model with Normally Distributed Variables
 
-$$
-Y=a_1x_1+a_2x_2+ \cdots +a_dx_d
-$$
-
-- $x_i \sim N(\mu_i,\sigma_i^2)$
-- $Y \sim N(\sum_{i=1}^d a_i \mu_i, \sum_{i=1}^d a_i^2 \sigma_i^2 )$
-- $Y \mid X_i \sim N(a_i x_i+\sum_{j=1,j \ne i}^d a_j \mu_j, \sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2 )$
-
-**Sobol's sensitivity indice**
-
-$$
-S_i=S_i^{tot}=\frac{a_i^2 \sigma_i^2}{\sum_{j=1}^d a_j^2 \sigma_j^2}
-$$
-
-**For this model**
-
-$$
-q_Y(\alpha)=\sum_{i=1}^d a_i \mu_i + \Phi^{-1}(\alpha) \sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}
-$$
-
-$$
-q_{Y|X_i=x_i}(\alpha)=a_i x_i + \sum_{j=1,j \ne i}^d a_j \mu_j + \Phi^{-1}(\alpha) \sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2}
-$$
-
-where $\Phi^{-1}(\alpha)$ is the inverse error function.
-
-**Hence**
-
-$$
-q_Y(\alpha)-q_{Y|X_i=x_i}(\alpha)=a_i(\mu_i - x_i)+\Phi^{-1}(\alpha) \left(\sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}-\sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2} \right)
-$$
-
-$$
-\begin{eqnarray*}
-q_i^{(2)}(\alpha)&=&E_{x_i}[(q_Y(\alpha)-q_{Y \mid X_{i}}(\alpha))^2] \\
-&=&E_{x_i} \left[ \left(a_i(\mu_i - x_i)+\Phi^{-1}(\alpha) \left(\sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}-\sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2} \right) \right)^2 \right] \\
-&=&a_i^2 \sigma_i^2+[\Phi^{-1}(\alpha)]^2 \left(\sqrt{\sum_{i=1}^d a_i^2 \sigma_i^2}-\sqrt{\sum_{j=1,j \ne i}^d a_j^2 \sigma_j^2} \right)^2 
-\end{eqnarray*}
-$$
-
-**Theorem 1.** For the linear additive model with normally distributed variables  
-$$
-\qquad \qquad \qquad \qquad \qquad \qquad Q_i^{(2)}(\alpha=0.5)=S_i
-$$
-{:.info}
-
-Proof:   
-$\Phi^{-1}(\alpha=0.5)=0$   
-$q_i^{(2)}=a_i^2 \sigma_i^2$   
-$$Q_i^{(2)}(\alpha)=\frac{\bar{q}_i^{(2)}(\alpha)}{\sum_{j=1}^d \bar{q}_j^{(2)}(\alpha)}=\frac{a_i^2 \sigma_i^2}{\sum_{j=1}^d a_j^2 \sigma_j^2}=S_i$$
 
 
