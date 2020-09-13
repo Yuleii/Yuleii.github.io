@@ -11,4 +11,6 @@ aside:
 
 <!--more-->
 
-{% jupyter_notebook "sample.ipynb" %}
+The original jupyter notebook is on my [programming notebook repository](https://github.com/Yuleii/programming_notebook).
+
+{% jupyter_notebook "/notebook/writing_function_in_python.ipynb" %}
