@@ -11,6 +11,4 @@ aside:
 
 <!--more-->
 
-{::nomarkdown}
-{% jupyter_notebook "writing_functions_in_python.ipynb" %}
-{:/nomarkdown}
+{% jupyter_notebook "sample.ipynb" %}
