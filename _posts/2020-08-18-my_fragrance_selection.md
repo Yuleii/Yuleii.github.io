@@ -4,7 +4,7 @@ title: My Fragrance Selection
 key: 20200818
 tags: Fun
 pageview: false
-modify_date: 2020-08-18
+modify_date: 2020-09-13
 aside:
   toc: true
 ---
@@ -41,8 +41,13 @@ aside:
 - [Goutal Paris Nuit et Confidences](https://www.fragrantica.asia/perfume/Annick-Goutal/Nuit-et-Confidences-46239.html)   
 首先被它的瓶子迷住，渐变的靛蓝色瓶身系了一个优雅的花球。香味也完全符合瓶子的气质，有一股清凉的味道中和了香槟气泡的甜味，有让人平静下来的魔力
 
+- [Arabesque The Merchant of Venice](https://www.fragrantica.asia/perfume/The-Merchant-of-Venice/Arabesque-32670.html)   
+童年零食九制话梅的味道，太奇妙以至于不得不记下来
 
 ## Woody 
 
 - [Byredo Bibliothèque](https://www.fragrantica.asia/perfume/Byredo/Biblioth-que-43324.html)   
 不是想象中的老旧图书馆气味，莫名有股奶香
+
+- [Oud Cashmere Mood Maison Francis Kurkdjian](https://www.fragrantica.asia/perfume/Maison-Francis-Kurkdjian/Oud-Cashmere-Mood-17661.html)   
+古老的东方木质建筑
