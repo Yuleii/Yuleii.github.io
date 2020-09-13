@@ -16,8 +16,31 @@ sidebar:
     nav: plog
 ---
 
-I'm a big big girl in a big big world~:musical_note:
-
-
-
 <!--more-->
+
+Say that I'm changed, say I'm different   
+Maybe I'll finally understand   
+Say I'll let go, say it's obvious   
+Oh, I tell myself over, over and over again   
+I'm ready, I'm ready   
+I'm ready to believe   
+   
+So tell me I'm strong, tell me I'm weak   
+Tell me I'll never, ever bend   
+Then tell me I'm fire, tell me I'm cold   
+Cold oh, I tell myself over, over and over again   
+I'm ready, I'm ready   
+I'm ready to believe    
+   
+And all the world can watch the choices you make   
+All the world can watch each tiny mistake   
+Let the world watch to let the world wait for you   
+So tell me I'm wrong, or tell me I'm cruel   
+Tell me I'd fight, yeah tell me I fought for the wrong things    
+      
+But I'm ready, I'm ready   
+I'm ready to believe   
+I'm ready, I'm ready   
+I'm ready to believe   
+
+-- All The World (I Tell Myself) :musical_note:
