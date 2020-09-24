@@ -2,7 +2,7 @@
 layout: article
 title: Statistical Thinking in Python
 key: 20200924
-tags: Programming Python
+tags: Programming Python Econometrics
 pageview: false
 modify_date: 2020-09-24
 aside:
@@ -130,7 +130,7 @@ df_swing[['state', 'county', 'dem_share']]
 
 ## Ploling a histogram
 
-### Ploling a histogram
+#### Ploling a histogram
 
 
 ```python
@@ -146,7 +146,7 @@ plt.show()
     <Figure size 640x480 with 1 Axes>
 
 
-### Seting the bins of a histogram 
+#### Seting the bins of a histogram 
 
 
 ```python
@@ -169,7 +169,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_10_0.png"}})
 
 
-### Seting Seaborn styling
+#### Seting Seaborn styling
 
 
 ```python
@@ -188,7 +188,7 @@ plt.show()
 
 ## Plot all of your data: Bee swarm plots
 
-### Generating a bee swarm plot
+#### Generating a bee swarm plot
 
 
 ```python
@@ -204,7 +204,7 @@ plt.show()
 
 ## Plot all of your data: ECDFs
 
-### Empirical cumulative distribution function (ECDF)
+#### Empirical cumulative distribution function (ECDF)
 
 
 ```python
@@ -222,9 +222,9 @@ plt.show()
 ![png]({{"/pictures/20200924/output_18_0.png"}})
 
 
-### Exercise
+#### Exercise
 
-####  Computing the ECDF
+#####  Computing the ECDF
 
 
 ```python
@@ -250,7 +250,7 @@ versicolor_petal_length = np.array([4.7, 4.5, 4.9, 4. , 4.6, 4.5, 4.7, 3.3, 4.6,
     4. , 4.4, 4.6, 4. , 3.3, 4.2, 4.2, 4.2, 4.3, 3. , 4.1])
 ```
 
-#### Plotting the ECDF
+##### Plotting the ECDF
 
 
 ```python
@@ -272,7 +272,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_23_0.png"}})
 
 
-#### Comparison of ECDFs
+##### Comparison of ECDFs
 
 
 ```python
@@ -316,7 +316,7 @@ plt.show()
 
 ## Introduction to summary statistics: The sample mean and median
 
-### Mean vote percentage
+#### Mean vote percentage
 $mean=\bar{x}=\frac{1}{n} \sum_{i=1}^n$
 
 
@@ -333,12 +333,12 @@ np.mean(df_swing[df_swing['state']=='PA']['dem_share'])
 
 
 
-### Outliers
+#### Outliers
 
 Data points whose value is far greater or less than most of the rest of the data.
 An outlier can significantly affect the value of the mean, but not the median.
 
-### The median
+#### The median
 The middle value of a data set
 
 
@@ -355,7 +355,7 @@ np.median(df_swing[df_swing['state']=='PA']['dem_share'])
 
 ## Percentiles, outliers, and box plots
 
-### Computing percentiles
+#### Computing percentiles
 
 
 ```python
@@ -369,7 +369,7 @@ np.percentile(df_swing['dem_share'], [25, 50, 75])
 
 
 
-### Generating a box plot
+#### Generating a box plot
 
 
 ```python
@@ -388,9 +388,9 @@ plt.show()
 ![png]({{"/pictures/20200924/output_38_0.png"}})
 
 
-### Exercise: Iris 
+#### Exercise: Iris 
 
-#### Computing percentiles
+##### Computing percentiles
 
 
 ```python
@@ -407,7 +407,7 @@ print(ptiles_vers)
     [3.3    4.     4.35   4.6    4.9775]
 
 
-#### Comparing percentiles to ECDF
+##### Comparing percentiles to ECDF
 
 
 ```python
@@ -437,7 +437,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_44_0.png"}})
 
 
-#### Box-and-whisker plot
+##### Box-and-whisker plot
 
 
 ```python
@@ -458,7 +458,7 @@ plt.show()
 
 ## Variance and standard deviation
 
-### Variance
+#### Variance
 
 - The mean squared distance of the data from their mean
 - Informally, a measure of the spread of data
@@ -502,9 +502,9 @@ np.sqrt(np.var(dem_share_FL))
 
 
 
-### Exercise
+#### Exercise
 
-#### Computing the variance
+##### Computing the variance
 
 
 ```python
@@ -527,7 +527,7 @@ print(variance_explicit, variance_np)
     0.21640000000000004 0.21640000000000004
 
 
-#### The standard deviation and the variance
+##### The standard deviation and the variance
 
 
 ```python
@@ -548,7 +548,7 @@ print(np.std(versicolor_petal_length))
 ## Covariance and the Pearson correlation coefficient
 
 
-### Generating a scatter plot
+#### Generating a scatter plot
 
 
 ```python
@@ -563,18 +563,18 @@ _ = plt.ylabel('percent of vote for Obama')
 ![png]({{"/pictures/20200924/output_59_0.png"}})
 
 
-### Covariance
+#### Covariance
 
 A measure of how two quantities vary together
 $covariance=\frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})$
 
-### Pearson correlation coefficient
+#### Pearson correlation coefficient
 
 $\rho = Pearson correlation = \frac{covariance}{(std of x)(std of y)}= \frac{variability due to codependence}{independent variability}$
 
-### Exercise
+#### Exercise
 
-#### Scatter plots
+##### Scatter plots
 
 
 ```python
@@ -601,7 +601,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_65_0.png"}})
 
 
-#### Computing the covariance
+##### Computing the covariance
 
 
 
@@ -624,7 +624,7 @@ print(petal_cov)
     0.07310204081632653
 
 
-#### Computing the Pearson correlation coefficient
+##### Computing the Pearson correlation coefficient
 
 
 
@@ -652,21 +652,21 @@ print(r)
 
 ## Random number generators and hacker statistics
 
-### Hacker statistics
+#### Hacker statistics
 
 - Uses simulated repeated measurements to compute probabilities.
 
-### The `np.random` module
+#### The `np.random` module
 
 - Suite of functions based on random number generation
 - `np.random.random()`:
     draw a number between 0 and 1
     
-### Bernoulli trial
+#### Bernoulli trial
 
 - An experiment that has two options, "success" (True) and "failure" (False).
 
-### Random number seed
+#### Random number seed
 
 - Integer fed into random number generating algorithm
 - Manually seed random number generator if you need reproducibility
@@ -734,15 +734,15 @@ n_all_heads / 10000
 
 
 
-### Hacker stats probabilities
+#### Hacker stats probabilities
 
 - Determine how to simulate data
 - Simulate many many times
 - Probability is approximately fraction of trials with the outcome of interest
 
-### Exercise
+#### Exercise
 
-#### Generating random numbers using the np.random module
+##### Generating random numbers using the np.random module
 
 
 ```python
@@ -770,7 +770,7 @@ plt.show()
 The histogram is almost exactly flat across the top, 
 indicating that there is equal chance that a randomly-generated number is in any of the bins of the histogram.
 
-#### The `np.random` module and Bernoulli trials
+##### The `np.random` module and Bernoulli trials
 
 
 ```python
@@ -792,7 +792,7 @@ def perform_bernoulli_trials(n, p):
     return n_success
 ```
 
-#### How many defaults might we expect?
+##### How many defaults might we expect?
 
 
 ```python
@@ -820,7 +820,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_87_0.png"}})
 
 
-#### Will the bank fail?
+##### Will the bank fail?
 
 If interest rates are such that the bank will lose money if 10 or more of its loans are defaulted upon, what is the probability that the bank will lose money?
 
@@ -854,14 +854,14 @@ print('Probability of losing money =', n_lose_money / len(n_defaults))
 ## Probability distributions and stories: The Binomial distribution
 
 
-### Probability mass function (PMF)
+#### Probability mass function (PMF)
 
 - The set of probabilities of discrete outcomes
 
-### Discrete Uniform distribution: the story
+#### Discrete Uniform distribution: the story
 - The outcome of rolling a single fair die is Discrete Uniformly distributed.
 
-### Binomial distribution: the story
+#### Binomial distribution: the story
 
 - The number r of successes in n Bernoulli trials with probability p of success, is Binomially distributed
 
@@ -917,9 +917,9 @@ plt.show()
 ![png]({{"/pictures/20200924/output_99_0.png"}})
 
 
-### Exercise
+#### Exercise
 
-#### Sampling out of the Binomial distribution
+##### Sampling out of the Binomial distribution
 
 
 ```python
@@ -942,7 +942,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_102_0.png"}})
 
 
-#### Plotting the Binomial PMF
+##### Plotting the Binomial PMF
 
 
 ```python
@@ -967,11 +967,11 @@ plt.show()
 ## Poisson processes and the Poisson distribution
 
 
-### Poisson process
+#### Poisson process
 
 - The timing of the next event is completely independent of when the previous event happened
 
-### Examples of Poisson processes
+#### Examples of Poisson processes
 
 - Natural births in a given hospital
 - Hit on a website during a given hour
@@ -980,7 +980,7 @@ plt.show()
 - Aviation incidents
 - Buses in Poissonville
 
-### Poisson distribution
+#### Poisson distribution
 
 - The number r of arrivals of a Poisson process in a given time interval with average rate of λ arrivals
     per interval is Poisson distributed.
@@ -989,7 +989,7 @@ plt.show()
 
 - Limit of the Binomial distribution for low probability of success and large number of trials. That is, for rare events.
 
-### The Poisson CDF
+#### The Poisson CDF
 
 
 ```python
@@ -1006,7 +1006,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_108_0.png"}})
 
 
-### Exercise
+#### Exercise
 
 The Poisson distribution with arrival rate equal to $np$ approximates a Binomial distribution for $n$ Bernoulli trials with probability $p$ of success (with $n$ large and $p$ small). Importantly, the Poisson distribution is often simpler to work with because it has only one parameter instead of two for the Binomial distribution.
 
@@ -1071,23 +1071,23 @@ The result is about 0.007. This means that it is not that improbable to see a
 
 ## Probability density functions
 
-### Continuous variables
+#### Continuous variables
 
 - Quantities that can take any value, not just discrete values 
 
-### Probability density function (PDF)
+#### Probability density function (PDF)
 
 - Continuous analog to the PMF
 - Mathematical description of the relative likelihood of observing a value of a continuous variable
 
 ## Introduction to the Normal distribution
 
-### Normal distribution
+#### Normal distribution
 
 - Describes a continuous variable whose PDF has a single symmetric peak.
 
 
-### Checking Normality of Michelson data
+#### Checking Normality of Michelson data
 
 
 ```python
@@ -1122,9 +1122,9 @@ plt.show()
 ![png]({{"/pictures/20200924/output_121_0.png"}})
 
 
-### Exercise
+#### Exercise
 
-#### The Normal PDF
+##### The Normal PDF
 
 
 ```python
@@ -1149,7 +1149,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_123_0.png"}})
 
 
-#### The Normal CDF
+##### The Normal CDF
 
 
 ```python
@@ -1177,7 +1177,7 @@ plt.show()
 ## The Normal distribution: Properties and warnings
 
 
-### Exercise
+#### Exercise
 
 Are the Belmont Stakes results Normally distributed
 
@@ -1253,12 +1253,12 @@ print('Probability of besting Secretariat:', prob)
 
 - The waiting time between arrivals of a Poisson process is Exponentially distributed
 
-### Possible Poisson process
+#### Possible Poisson process
 
 - Nuclear incidents: Timing of one is independent of all others
 
 
-### Exercise
+#### Exercise
 
 How long must we wait to see both a no-hitter and then a batter hit the cycle? The idea is that we have to wait some time for the no-hitter, and then after the no-hitter, we have to wait for hitting the cycle. Stated another way, what is the total waiting time for the arrival of two different Poisson processes? The total waiting time is the time waited for the no-hitter, plus the time waited for the hitting the cycle.
 
@@ -1305,9 +1305,9 @@ plt.show()
 
 - Parameter values that bring the model in closest agreement with the data
 
-### Exercise
+#### Exercise
 
-#### How often do we get no-hitters?
+##### How often do we get no-hitters?
 
 If you assume that no-hitters are described as a Poisson process, then the time between no-hitters is Exponentially distributed. As you have seen, the Exponential distribution has a single parameter, which we will call τ, the typical interval time. The value of the parameter τ that makes the exponential distribution best match the data is the mean interval time (where time is in units of number of games) between no-hitters.
 
@@ -1367,7 +1367,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_144_0.png"}})
 
 
-#### Do the data follow our story?
+##### Do the data follow our story?
 
 You have modeled no-hitters using an Exponential distribution. Create an ECDF of the real data. Overlay the theoretical CDF with the ECDF from the data. This helps you to verify that the Exponential distribution describes the observed data.
 
@@ -1401,7 +1401,7 @@ are Exponentially distributed. Based on the story of the Exponential distributio
 this suggests that they are a random process; when a no-hitter will happen is independent 
 of when the last no-hitter was.
 
-#### How is this parameter optimal?
+##### How is this parameter optimal?
 
 Now sample out of an exponential distribution with τ being twice as large as the optimal τ. Do it again for τ half as large. Make CDFs of these samples and overlay them with your data. You can see that they do not reproduce the data as well. Thus, the τ you computed from the mean inter-no-hitter times is optimal in that it best reproduces the data.
 
@@ -1439,11 +1439,11 @@ plt.show()
 ## Linear regression by least squares
 
 
-### Least squares
+#### Least squares
 
 - The process of finding the parameters for which the sum of the squares of the residuals is minimal
 
-### Least squares with np.polyfit()
+#### Least squares with np.polyfit()
 
 
 ```python
@@ -1472,9 +1472,9 @@ intercept
 
 
 
-### Exercise
+#### Exercise
 
-#### EDA of literacy/fertility data
+##### EDA of literacy/fertility data
 
 In the next few exercises, we will look at the correlation between female literacy and fertility (defined as the average number of children born per woman) throughout the world. For ease of analysis and interpretation, we will work with the illiteracy rate.
 
@@ -1546,7 +1546,7 @@ You can see the correlation between illiteracy and fertility by eye, and by the 
 coefficient of 0.8. It is difficult to resolve in the scatter plot, but there are many points around near-zero 
 illiteracy and about 1.8 children/woman.
 
-#### Linear regression
+##### Linear regression
 
 We will assume that fertility is a linear function of the female illiteracy rate. That is, f=ai+b, where a is the slope and b is the intercept. We can think of the intercept as the minimal fertility rate, probably somewhere between one and two. The slope tells us how the fertility rate varies with illiteracy. We can find the best fit line using `np.polyfit()`.
 
@@ -1586,7 +1586,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_161_1.png"}})
 
 
-#### How is it optimal?   
+##### How is it optimal?   
 The function `np.polyfit()` that you used to get your regression parameters finds the optimal slope and intercept. It is optimizing the sum of the squares of the residuals, also known as RSS (for residual sum of squares). In this exercise, you will plot the function that is being optimized, the RSS, versus the slope parameter a. To do this, fix the intercept to be what you found in the optimization. Then, plot the RSS vs. the slope. Where is it minimal?
 
 
@@ -1620,9 +1620,9 @@ square of the residuals, is the same value you got when performing the regressio
 ## The importance of EDA: Anscombe's quartet
 
 
-### Exercise
+#### Exercise
 
-#### Linear regression on appropriate Anscombe data
+##### Linear regression on appropriate Anscombe data
 
 
 ```python
@@ -1662,7 +1662,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_169_1.png"}})
 
 
-#### Linear regression on all Anscombe data
+##### Linear regression on all Anscombe data
 
 Now, to verify that all four of the Anscombe data sets have the same slope and intercept from a linear regression, you will compute the slope and intercept for each set. 
 
@@ -1706,19 +1706,19 @@ for x, y in zip(anscombe_x, anscombe_y ):
 ## Generating bootstrap replicates
 
 
-### Bootstrapping
+#### Bootstrapping
 
 - The use of resampled data to perform statistical inference
 
-### Bootstrap sample
+#### Bootstrap sample
 
 - A resampled array of the data
 
-### Bootstrap replicate
+#### Bootstrap replicate
 
 - A statistic computed from a resampled array
 
-### Resampling engine: np.random.choice()
+#### Resampling engine: np.random.choice()
 
 
 ```python
@@ -1733,7 +1733,7 @@ np.random.choice([1,2,3,4,5], size=5) # the function dosent delete an entry when
 
 
 
-### exercise
+#### exercise
 To help you gain intuition about how bootstrapping works, imagine you have a data set that has only three points, [-1, 0, 1]. How many unique bootstrap samples can be drawn (e.g., [-1, 0, 1] and [1, 0, -1] are unique), and what is the maximum mean you can get from a bootstrap sample? It might be useful to jot down the samples on a piece of paper.
 
 Answer: There are 27 unique samples, and the maximum mean is 1.
@@ -1793,7 +1793,7 @@ plt.show() #  bootstrap samples give an idea of how the distribution of rainfall
 
 ## Bootstrap confidence intervals
 
-### Bootstrap replicate function
+#### Bootstrap replicate function
 
 
 ```python
@@ -1836,7 +1836,7 @@ bootstrap_replicate_1d(michelson_speed_of_light, np.mean)
 
 
 
-### Many bootstrap replicates
+#### Many bootstrap replicates
 
 
 ```python
@@ -1846,7 +1846,7 @@ for i in range(10000):
                 michelson_speed_of_light, np.mean)
 ```
 
-### Plotting a histogram of bootstrap replicates
+#### Plotting a histogram of bootstrap replicates
 
 
 ```python
@@ -1860,11 +1860,11 @@ plt.show()
 ![png]({{"/pictures/20200924/output_189_0.png"}})
 
 
-### Confidence interval of a statistic
+#### Confidence interval of a statistic
 
 - If we repeated measurements over and over again, p% of the observed values would lie within the p% confidence interval.
 
-### Bootstrap confidence interval
+#### Bootstrap confidence interval
 
 
 ```python
@@ -1879,9 +1879,9 @@ conf_int
 
 
 
-### Exercise
+#### Exercise
 
-#### Generating many bootstrap replicates
+##### Generating many bootstrap replicates
 
 Now you'll write another function, draw_bs_reps(data, func, size=1), which generates many bootstrap replicates from the data set. This function will come in handy for you again and again as you compute confidence intervals and later when you do hypothesis tests.
 
@@ -1900,7 +1900,7 @@ def draw_bs_reps(data, func, size=1):
     return bs_replicates
 ```
 
-#### Bootstrap replicates of the mean and the SEM   
+##### Bootstrap replicates of the mean and the SEM   
 
 
 In this exercise, you will compute a bootstrap estimate of the probability density function of the mean annual rainfall at the Sheffield Weather Station. Remember, we are estimating the mean annual rainfall we would get if the Sheffield Weather Station could repeat all of the measurements from 1883 to 2015 over and over again. This is a probabilistic estimate of the mean. You will plot the PDF as a histogram, and you will see that it is Normal.
@@ -1940,7 +1940,7 @@ plt.show()
 Notice that the SEM we got from the known expression and 
 the bootstrap replicates is the same and the distribution of the bootstrap replicates of the mean is Normal.
 
-#### Confidence intervals of rainfall data   
+##### Confidence intervals of rainfall data   
 
 A confidence interval gives upper and lower bounds on the range of parameter values you might expect to get if we repeat our measurements. For named distributions, you can compute them analytically or look them up, but one of the many beautiful properties of the bootstrap method is that you can take percentiles of your bootstrap replicates to get your confidence interval. Conveniently, you can use the `np.percentile()` function.
 
@@ -1958,7 +1958,7 @@ np.percentile(bs_replicates,  [2.5, 97.5])
 
 
 
-#### Bootstrap replicates of other statistics   
+##### Bootstrap replicates of other statistics   
 
 
 We saw in a previous exercise that the mean is Normally distributed. This does not necessarily hold for other statistics, but no worry: as hackers, we can always take bootstrap replicates! In this exercise, you'll generate bootstrap replicates for the variance of the annual rainfall at the Sheffield Weather Station and plot the histogram of the replicates.
@@ -1984,7 +1984,7 @@ plt.show() # This is not normally distributed, as it has a longer tail to the ri
 ![png]({{"/pictures/20200924/output_202_0.png"}})
 
 
-#### Confidence interval on the rate of no-hitters
+##### Confidence interval on the rate of no-hitters
 Consider again the inter-no-hitter intervals for the modern era of baseball. Generate 10,000 bootstrap replicates of the optimal parameter τ. Plot a histogram of your replicates and report a 95% confidence interval.
 
 
@@ -2018,18 +2018,18 @@ This gives you an estimate of what the typical time between no-hitters is. It co
 
 ## Pairs bootstrap
 
-### Nonparametric inference
+#### Nonparametric inference
 
 - Make no assumptions about the model or probability distribution underlying the data
 
-### Pairs bootstrap for linear regression
+#### Pairs bootstrap for linear regression
 
 - Resample data in pairs
 - Compute slope and intercept from resampled data
 - Each slope and intercept is a bootstrap replicate
 - Compute confidence intervals from percentiles of bootstrap replicates
 
-### Generating a pairs bootstrap sample
+#### Generating a pairs bootstrap sample
 
 
 ```python
@@ -2046,7 +2046,7 @@ bs_total_votes = total_votes[bs_inds]
 bs_dem_share = dem_share[bs_inds]
 ```
 
-### Computing a pairs bootstrap replicate
+#### Computing a pairs bootstrap replicate
 
 
 ```python
@@ -2073,9 +2073,9 @@ np.polyfit(total_votes, dem_share, 1) # fit of original
 
 
 
-### Exercise
+#### Exercise
 
-#### A function to do pairs bootstrap
+##### A function to do pairs bootstrap
 
 Each collection of pairs fit with a line, in this case using `np.polyfit()`. We do this again and again, getting bootstrap replicates of the parameter values. To have a useful tool for doing pairs bootstrap, you will write a function to perform pairs bootstrap on a set of `x,y` data.
 
@@ -2100,7 +2100,7 @@ def draw_bs_pairs_linreg(x, y, size=1):
     return bs_slope_reps, bs_intercept_reps
 ```
 
-#### Pairs bootstrap of literacy/fertility data
+##### Pairs bootstrap of literacy/fertility data
 
 Using the function you just wrote, perform pairs bootstrap to plot a histogram describing the estimate of the slope from the illiteracy/fertility data. Also report the 95% confidence interval of the slope. The data is available to you in the NumPy arrays `illiteracy` and `fertility`.
 
@@ -2126,7 +2126,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_217_1.png"}})
 
 
-#### Plotting bootstrap regressions
+##### Plotting bootstrap regressions
 
 A nice way to visualize the variability we might expect in a linear regression is to plot the line you would get from each bootstrap replicate of the slope and intercept. Do this for the first 100 of your bootstrap replicates of the slope and intercept (stored as `bs_slope_reps` and `bs_intercept_reps`).
 
@@ -2160,19 +2160,19 @@ plt.show()
 ## Formulating and simulating a hypothesis
 
 
-### Hypothesis testing
+#### Hypothesis testing
 
 - Assessment of how reasonable the observed data are assuming a hypothesis is true
 
-### Null hypothesis
+#### Null hypothesis
 
 - Another name for the hypothesis you are testing
 
-### Permutation
+#### Permutation
 
 - Random reordering of entries in an array
 
-### Generating a permutation sample
+#### Generating a permutation sample
 
 
 ```python
@@ -2192,9 +2192,9 @@ perm_sample_PA = dem_share_perm[:len(dem_share_PA)]
 perm_sample_OH = dem_share_perm[len(dem_share_PA):]
 ```
 
-### Exercise
+#### Exercise
 
-#### Generating a permutation sample
+##### Generating a permutation sample
 
 In the video, you learned that permutation sampling is a great way to simulate the hypothesis that two variables have identical probability distributions. This is often a hypothesis you want to test, so in this exercise, you will write a function to generate a permutation sample from two data sets.
 
@@ -2218,7 +2218,7 @@ def permutation_sample(data1, data2):
     return perm_sample_1, perm_sample_2
 ```
 
-#### Visualizing permutation sampling
+##### Visualizing permutation sampling
 
 We will use the Sheffield Weather Station data again, this time considering the monthly rainfall in June (a dry month) and November (a wet month). We expect these might be differently distributed, so we will take permutation samples to see how their ECDFs would look if they were identically distributed.
 
@@ -2299,16 +2299,16 @@ June and November rainfall are not identically distributed.
 ## Test statistics and p-values
 
 
-### Hypothesis testing
+#### Hypothesis testing
 
 - Assessment of how reasonable the observed data are assuming a hypothesis is true
 
-### Test statistic
+#### Test statistic
 
 - A single number that can be computed from observed data and from data you simulate under the null hypothesis
 - It serves as a basis of comparison between the two
 
-### Permutation replicate
+#### Permutation replicate
 
 
 ```python
@@ -2334,23 +2334,23 @@ np.mean(dem_share_PA) - np.mean(dem_share_OH) # orig. data
 
 
 
-### p-value
+#### p-value
 
 - The probability of obtaining a value of your test statistic that is at least as extreme as what was observed, under the assumption the null hypothesis is true
 
 - **NOT** the probability that the null hypothesis is true
 
-### Statistical significance
+#### Statistical significance
 
 - Determined by the smallness of a p-value
 
-### Null hypothesis significance testing (NHST)
+#### Null hypothesis significance testing (NHST)
 
 - Another name for what we are doing in this chapter
 
-### Exercise
+#### Exercise
 
-#### Generating permutation replicates
+##### Generating permutation replicates
 
 As discussed in the video, a permutation replicate is a single value of a statistic computed from a permutation sample. As the `draw_bs_reps()` function you wrote in chapter 2 is useful for you to generate bootstrap replicates, it is useful to have a similar function, `draw_perm_reps()`, to generate permutation replicates. You will write this useful function in this exercise.
 
@@ -2374,7 +2374,7 @@ def draw_perm_reps(data_1, data_2, func, size=1):
     return perm_replicates
 ```
 
-#### Look before you leap: EDA before hypothesis testing
+##### Look before you leap: EDA before hypothesis testing
 
 Kleinteich and Gorb (Sci. Rep., 4, 5225, 2014) performed an interesting experiment with South American horned frogs. They held a plate connected to a force transducer, along with a bait fly, in front of them. They then measured the impact force and adhesive force of the frog's tongue when it struck the target.
 
@@ -2407,7 +2407,7 @@ Frog A, the adult, has three or four very hard strikes, and Frog B, the juvenile
 has a couple weak ones. However, it is possible that with only 20 samples it might be too difficult 
 to tell if they have difference distributions, so we should proceed with the hypothesis test.
 
-#### Permutation test on frog data
+##### Permutation test on frog data
 
 The average strike force of Frog A was 0.71 Newtons (N), and that of Frog B was 0.42 N for a difference of 0.29 N. It is possible the frogs strike with the same force and this observed difference was by chance. You will compute the probability of getting at least a 0.29 N difference in mean strike force under the hypothesis that the distributions of strike forces for the two frogs are identical. We use a permutation test with a test statistic of the difference of means to test this hypothesis.
 
@@ -2461,7 +2461,7 @@ are both said to be "statistically significant," but they are definitely not the
 ## Bootstrap hypothesis tests
 
 
-### Pipeline for hypothesis testing
+#### Pipeline for hypothesis testing
 
 - Clearly state the null hypothesis
 
@@ -2473,21 +2473,21 @@ are both said to be "statistically significant," but they are definitely not the
 
 - The p-value is the fraction of your simulated data sets for which the test statistic is at least as extreme as for the real data
 
-### Michelson and Newcomb: speed of light pioneers
+#### Michelson and Newcomb: speed of light pioneers
 
 - Michelson: 299,552 km/s
 - Newcomb: 299,860 km/s
 
-### The data we have
+#### The data we have
 
 - Michelson: whole dataset
 - Newcomb: only mean = 299,860 km/s
 
-### Null hypothesis
+#### Null hypothesis
 
 - The true mean speed of light in Michelson’s experiments was actually Newcomb's reported value
 
-### Shifting the Michelson data
+#### Shifting the Michelson data
 
 
 ```python
@@ -2495,7 +2495,7 @@ newcomb_value = 299860 # km/s
 michelson_shifted = michelson_speed_of_light - np.mean(michelson_speed_of_light) + newcomb_value
 ```
 
-### Calculating the test statistic
+#### Calculating the test statistic
 
 
 ```python
@@ -2513,7 +2513,7 @@ diff_obs
 
 
 
-### Computing the p-value
+#### Computing the p-value
 
 
 ```python
@@ -2529,17 +2529,17 @@ p_value
 
 
 
-### One sample test
+#### One sample test
 
 - Compare one set of data to a single number
 
-### Two sample test
+#### Two sample test
 
 - Compare two sets of data
 
-### Exercise
+#### Exercise
 
-#### A one-sample bootstrap hypothesis test
+##### A one-sample bootstrap hypothesis test
 
 Another juvenile frog was studied, Frog C, and you want to see if Frog B and Frog C have similar impact forces. Unfortunately, you do not have Frog C's impact forces available, but you know they have a mean of **0.55 N**. Because you don't have the original data, you cannot do a permutation test, and you cannot assess the hypothesis that the forces from Frog B and Frog C come from the same distribution. You will therefore test another, less restrictive hypothesis: *The mean strike force of Frog B is equal to that of Frog C*.
 
@@ -2565,7 +2565,7 @@ print('p = ', p)
 
 The low p-value suggests that the null hypothesis that Frog B and Frog C have the same mean impact force is false.
 
-#### A two-sample bootstrap hypothesis test for difference of means
+##### A two-sample bootstrap hypothesis test for difference of means
 
 We now want to test the hypothesis that Frog A and Frog B have the same mean impact force, but not necessarily the same distribution, which is also impossible with a permutation test.
 
@@ -2612,21 +2612,21 @@ Are you only interested in the mean impact force, or in the distribution of impa
 
 ## A/B testing
 
-### Null hypothesis
+#### Null hypothesis
 
 - The click-through rate is not affected by the redesign
 
-### A/B test
+#### A/B test
 
 - Used by organizations to see if a strategy change gives a better result
 
-### Null hypothesis of an A/B test
+#### Null hypothesis of an A/B test
 
 - The test statistic is impervious to the change
 
-### Exercise
+#### Exercise
 
-#### The vote for the Civil Rights Act in 1964
+##### The vote for the Civil Rights Act in 1964
 The Civil Rights Act of 1964 was one of the most important pieces of legislation ever passed in the USA. Excluding "present" and "abstain" votes, 153 House Democrats and 136 Republicans voted yea. However, 91 Democrats and 35 Republicans voted nay. Did party affiliation make a difference in the vote?
 
 To answer this question, you will evaluate the hypothesis that the party of a House member has no bearing on his or her vote. You will use the fraction of Democrats voting in favor as your test statistic and evaluate the probability of observing a fraction of Democrats voting in favor at least as small as the observed fraction of 153/244. (That's right, at least as small as. In 1964, it was the Democrats who were less progressive on civil rights issues.) To do this, permute the party labels of the House voters and then arbitrarily divide them into "Democrats" and "Republicans" and compute the fraction of Democrats voting yea.
@@ -2655,7 +2655,7 @@ print('p-value =', p)
 
 This small p-value suggests that party identity had a lot to do with the voting, the South had a higher fraction of Democrat representatives, and consequently also a more racist bias.
 
-#### A time-on-website analog
+##### A time-on-website analog
 It turns out that you already did a hypothesis test analogous to an A/B test where you are interested in how much time is spent on the website before and after an ad campaign. The frog tongue force (a continuous quantity like time on the website) is an analog. "Before" = Frog A and "after" = Frog B. Let's practice this again with something that actually is a before/after scenario.
 
 We return to the no-hitter data set. In 1920, Major League Baseball implemented important rule changes that ended the so-called dead ball era. Importantly, the pitcher was no longer allowed to spit on or scuff the ball, an activity that greatly favors pitchers. In this problem you will perform an A/B test to determine if these rule changes resulted in a slower rate of no-hitters (i.e., longer average time between no-hitters) using the difference in mean inter-no-hitter time as your test statistic. The inter-no-hitter times for the respective eras are stored in the arrays `nht_dead` and `nht_live`, where "nht" is meant to stand for "no-hitter time."
@@ -2717,14 +2717,14 @@ Your p-value is 0.0001, which means that only one out of your 10,000 replicates 
 ## Test of correlation
 
 
-### Hypothesis test of correlation
+#### Hypothesis test of correlation
 
 - Posit null hypothesis: the two variables are completely uncorrelated
 - Simulate data assuming null hypothesis is true
 - Use Pearson correlation, ρ, as test statistic
 - Compute p-value as fraction of replicates that have ρ at least as large as observed.
 
-### Exercise
+#### Exercise
 
 The observed correlation between female illiteracy and fertility in the data set of 162 countries may just be by chance; the fertility of a given country may actually be totally independent of its illiteracy. You will test this null hypothesis in the next exercise.
 
@@ -2743,7 +2743,7 @@ Correct:
 - Do a permutation test: Permute the illiteracy values but leave the fertility values fixed to generate a new set of (illiteracy, fertility) data.   
 This exactly simulates the null hypothesis and does so more efficiently than the last option. It is exact because it uses all data and eliminates any correlation because which illiteracy value pairs to which fertility value is shuffled.
 
-#### Hypothesis test on Pearson correlation
+##### Hypothesis test on Pearson correlation
 The observed correlation between female illiteracy and fertility may just be by chance; the fertility of a given country may actually be totally independent of its illiteracy. You will test this hypothesis. To do so, permute the illiteracy values but leave the fertility values fixed. This simulates the hypothesis that they are totally independent of each other. For each permutation, compute the Pearson correlation coefficient and assess how many of your permutation replicates have a Pearson correlation coefficient greater than the observed one.
 
 
@@ -2774,7 +2774,7 @@ print('p-val =', p)
 
 You got a p-value of zero. In hacker statistics, this means that your p-value is very low, since you never got a single replicate in the 10,000 you took that had a Pearson correlation greater than the observed one. You could try increasing the number of replicates you take to continue to move the upper bound on your p-value lower and lower.
 
-#### Do neonicotinoid insecticides have unintended consequences?
+##### Do neonicotinoid insecticides have unintended consequences?
 As a final exercise in hypothesis testing before we put everything together in our case study in the next chapter, you will investigate the effects of neonicotinoid insecticides on bee reproduction. These insecticides are very widely used in the United States to combat aphids and other pests that damage plants.
 
 In a recent study, Straub, et al. (Proc. Roy. Soc. B, 2016) investigated the effects of neonicotinoids on the sperm of pollinating bees. In this and the next exercise, you will study how the pesticide treatment affected the count of live sperm per half milliliter of semen.
@@ -2854,7 +2854,7 @@ plt.show()
 
 The ECDFs show a pretty clear difference between the treatment and control; treated bees have fewer alive sperm. Let's now do a hypothesis test in the next exercise.
 
-#### Bootstrap hypothesis test on bee sperm counts
+##### Bootstrap hypothesis test on bee sperm counts
 
 Now, you will test the following hypothesis: On average, male bees treated with neonicotinoid insecticide have the same number of active sperm per milliliter of semen than do untreated male bees. You will use the difference of means as your test statistic.
 
@@ -2894,7 +2894,7 @@ The p-value is small, most likely less than 0.0001, since you never saw a bootst
 
 ## Finch beaks and the need for statistics
 
-### EDA of beak depths of Darwin's finches
+#### EDA of beak depths of Darwin's finches
 
 For your first foray into the Darwin finch data, you will study how the beak depth (the distance, top to bottom, of a closed beak) of the finch species Geospiza scandens has changed over time. The Grants have noticed some changes of beak geometry depending on the types of seeds available on the island, and they also noticed that there was some interbreeding with another major species on Daphne Major, Geospiza fortis. These effects can lead to changes in the species over time.
 
@@ -2957,7 +2957,7 @@ plt.show()
 
 It is kind of hard to see if there is a clear difference between the 1975 and 2012 data set. Eyeballing it, it appears as though the mean of the 2012 data set might be slightly higher, and it might have a bigger variance.
 
-### ECDFs of beak depths
+#### ECDFs of beak depths
 While bee swarm plots are useful, we found that ECDFs are often even better when doing EDA. Plot the ECDFs for the 1975 and 2012 beak depth measurements on the same plot.
 
 For your convenience, the beak depths for the respective years has been stored in the NumPy arrays `bd_1975` and `bd_2012`.
@@ -2990,7 +2990,7 @@ plt.show()
 
 The differences are much clearer in the ECDF. The mean is larger in the 2012 data, and the variance does appear larger as well.
 
-### Parameter estimates of beak depths
+#### Parameter estimates of beak depths
 Estimate the difference of the mean beak depth of the G. scandens samples from 1975 and 2012 and report a 95% confidence interval.
 
 
@@ -3017,7 +3017,7 @@ print('95% confidence interval =', conf_int, 'mm')
     95% confidence interval = [0.0627903  0.39004684] mm
 
 
-### Hypothesis test: Are beaks deeper in 2012?
+#### Hypothesis test: Are beaks deeper in 2012?
 
 Your plot of the ECDF and determination of the confidence interval make it pretty clear that the beaks of G. scandens on Daphne Major have gotten deeper. But is it possible that this effect is just due to random chance? In other words, what is the probability that we would get the observed difference in mean beak depth if the means were the same?
 
@@ -3053,7 +3053,7 @@ We get a p-value of 0.0029, which suggests that there is a statistically signifi
 
 ## Variation in beak shapes
 
-### EDA of beak length and depth
+#### EDA of beak length and depth
 The beak length data are stored as `bl_1975` and `bl_2012`, again with units of millimeters (mm). You still have the beak depth data stored in `bd_1975` and `bd_2012`. Make scatter plots of beak depth (y-axis) versus beak length (x-axis) for the 1975 and 2012 specimens.
 
 
@@ -3111,7 +3111,7 @@ plt.show()
 
 In looking at the plot, we see that beaks got deeper (the red points are higher up in the y-direction), but not really longer. If anything, they got a bit shorter, since the red dots are to the left of the blue dots. So, it does not look like the beaks kept the same shape; they became shorter and deeper.
 
-### Linear regressions
+#### Linear regressions
 Perform a linear regression for both the 1975 and 2012 data. Then, perform pairs bootstrap estimates for the regression parameters. Report 95% confidence intervals on the slope and intercept of the regression line.
 
 
@@ -3153,7 +3153,7 @@ print('2012: intercept =', intercept_2012,
 
  It looks like they have the same slope, but different intercepts.
 
-### Displaying the linear regression results
+#### Displaying the linear regression results
 
 
 ```python
@@ -3188,7 +3188,7 @@ plt.show()
 ![png]({{"/pictures/20200924/output_304_0.png"}})
 
 
-### Beak length to depth ratio
+#### Beak length to depth ratio
 The linear regressions showed interesting information about the beak geometry. The slope was the same in 1975 and 2012, suggesting that for every millimeter gained in beak length, the birds gained about half a millimeter in depth in both years. However, if we are interested in the shape of the beak, we want to compare the ratio of beak length to beak depth. Let's make that comparison.
 
 
@@ -3224,7 +3224,7 @@ print('2012: mean ratio =', mean_ratio_2012,
 
 Heredity: The tendency for parental traits to be inherited by offspring
     
-### EDA of heritability
+#### EDA of heritability
 
 The array `bd_parent_scandens` contains the average beak depth (in mm) of two parents of the species G. scandens. The array` bd_offspring_scandens` contains the average beak depth of the offspring of the respective parents. The arrays `bd_parent_fortis` and `bd_offspring_fortis` contain the same information about measurements from G. fortis birds.
 
@@ -3399,7 +3399,7 @@ plt.show()
 
 It appears as though there is a stronger correlation in G. fortis than in G. scandens. This suggests that beak depth is more strongly inherited in G. fortis. We'll quantify this correlation next.
 
-### Correlation of offspring and parental data
+#### Correlation of offspring and parental data
 In an effort to quantify the correlation between offspring and parent beak depths, we would like to compute statistics, such as the Pearson correlation coefficient, between parents and offspring. To get confidence intervals on this, we need to do a pairs bootstrap.
 
 You have already written a function to do pairs bootstrap to get estimates for parameters derived from linear regression. Your task in this exercise is to make a new function with call signature `draw_bs_pairs(x, y, func, size=1)` that performs pairs bootstrap and computes a single statistic on pairs samples defined. The statistic of interest is computed by calling `func(bs_x, bs_y)`. In the next exercise, you will use `pearson_r` for `func`.
@@ -3427,7 +3427,7 @@ def draw_bs_pairs(x, y, func, size=1):
     return bs_replicates
 ```
 
-### Pearson correlation of offspring and parental data
+#### Pearson correlation of offspring and parental data
 
 The Pearson correlation coefficient seems like a useful measure of how strongly the beak depth of parents are inherited by their offspring. Compute the Pearson correlation coefficient between parental and offspring beak depths for G. scandens. Do the same for G. fortis. Then, use the function you wrote in the last exercise to compute a 95% confidence interval using pairs bootstrap.
 
@@ -3460,7 +3460,7 @@ print('G. fortis:', r_fortis, conf_int_fortis)
 
 It is clear from the confidence intervals that beak depth of the offspring of G. fortis parents is more strongly correlated with their offspring than their G. scandens counterparts.
 
-### Measuring heritability
+#### Measuring heritability
 Remember that the Pearson correlation coefficient is the ratio of the covariance to the geometric mean of the variances of the two data sets. This is a measure of the correlation between parents and offspring, but might not be the best estimate of heritability. If we stop and think, it makes more sense to define heritability as the ratio of the covariance between parent and offspring to the variance of the parents alone. In this exercise, you will estimate the heritability and perform a pairs bootstrap calculation to get the 95% confidence interval.
 
 This exercise highlights a very important point. Statistical inference (and data analysis in general) is not a plug-n-chug enterprise. You need to think carefully about the questions you are seeking to answer with your data and analyze them appropriately. If you are interested in how heritable traits are, the quantity we defined as the heritability is more apt than the off-the-shelf statistic, the Pearson correlation coefficient.
@@ -3498,7 +3498,7 @@ print('G. fortis:', heritability_fortis, conf_int_fortis)
 
 ere again, we see that G. fortis has stronger heritability than G. scandens. This suggests that the traits of G. fortis may be strongly incorporated into G. scandens by introgressive hybridization.
 
-### Is beak depth heritable at all in G. scandens?
+#### Is beak depth heritable at all in G. scandens?
 The heritability of beak depth in G. scandens seems low. It could be that this observed heritability was just achieved by chance and beak depth is actually not really heritable in the species. You will test that hypothesis here. To do this, you will do a pairs permutation test.
 
 
