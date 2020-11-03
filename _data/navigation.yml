@@ -68,3 +68,5 @@ plog:
         url:    /plog/august
       - title:  September
         url:    /plog/september
+      - title:  October
+        url:    /plog/october
