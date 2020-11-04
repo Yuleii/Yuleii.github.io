@@ -59,3 +59,40 @@ Pseudo-code is a high-level, abstract description of an algorithm that is intend
 ## Brute force
 
 [Brute Force Algorithms](https://storage.googleapis.com/codeskulptor-alg/pdf/BruteForceAlgorithms.pdf)
+
+## Measuring efficiency
+
+[Algorithm Efficiency](https://storage.googleapis.com/codeskulptor-alg/pdf/AlgorithmEfficiency.pdf)
+
+
+### All Correct Algorithms Are Not Created Equal
+
+Efficiency:
+- Time: how fast an algorithm runs
+- Space: how much extra space the algorithm requires
+- There’s often a trade-off between the two. 
+
+### It’s All a Function of the Input’s Size
+
+- We often investigate the algorithm’s complexity (or, efficiency) in
+terms of some parameter $n$ that indicates the algorithm’s input size
+- For example, for an algorithm that sorts a list of numbers, the input’s size is the number of elements in the list.
+- For some algorithms, more than one parameter may be needed to indicates the size of their inputs.
+    - For the algorithm IsBipartite, the input size is given by the number
+of nodes if the graph is represented as an adjacency matrix,
+whereas the input size is given by the number of nodes and
+number of edges if the graph is represented by an adjacency list. 
+
+- Sometimes, more than one choice of a parameter indicating the input
+size may be possible
+
+- For an algorithm that multiplies two square matrices, one choice is n,
+the order of the matrix, and another is N, the total number of entries
+in the matrix.
+
+- Notice that the relation between n and N is easy to establish, so
+switching between them is straightforward (yet results in different
+qualitative statements about the efficiency of the algorithm).
+
+- When the matrices being multiplied are not square, N would be more
+appropriate. 
