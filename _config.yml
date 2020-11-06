@@ -204,6 +204,8 @@ exclude:
 collections:
   plog:
     output: true
+  photos:
+    output: true
 
 defaults:
   ## posts
@@ -233,6 +235,14 @@ defaults:
       show_edit_on_github: true
       show_date: false
       # lightbox: true
+  ## photos
+  - scope:
+      layout: article
+      path: "_photos"
+    values:
+      nav_key: photos
+    show_date: false
+
 
 
 ## => Plugins

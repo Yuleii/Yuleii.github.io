@@ -53,6 +53,10 @@ header:
     url:        /plog.html
     key:        plog
 
+  - title:      Photos
+    url:        /photos.html
+    key:        photos
+
   - title:      GitHub
     url:        https://github.com/Yuleii/Yuleii.github.io
 
