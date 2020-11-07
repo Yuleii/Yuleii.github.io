@@ -24,6 +24,14 @@ header:
       # @end locale config
     url: /archive.html
 
+  - title:      Plog
+    url:        /plog.html
+    key:        plog
+
+  - title:      Photos
+    url:        /photos.html
+    key:        photos
+
   - titles:
       # @start locale config
       en      : &EN       About
@@ -48,14 +56,6 @@ header:
       fr-LU   : *FR
       # @end locale config
     url: /about.html
-
-  - title:      Plog
-    url:        /plog.html
-    key:        plog
-
-  - title:      Photos
-    url:        /photos.html
-    key:        photos
 
   - title:      GitHub
     url:        https://github.com/Yuleii/Yuleii.github.io
