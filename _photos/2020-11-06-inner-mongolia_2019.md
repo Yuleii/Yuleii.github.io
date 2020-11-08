@@ -103,7 +103,7 @@ cover: pictures/photos_pics/inner_mongolia_2019/1.jpg
 &emsp;&emsp;&ensp;&nbsp;
 ![Image](https://github.com/Yuleii/Yuleii.github.io/raw/master/pictures/photos_pics/inner_mongolia_2019/28.jpg){:.shadow.rounded width="360"}
 &emsp;&emsp;&nbsp;
-![Image](https://github.com/Yuleii/Yuleii.github.io/raw/master/pictures/photos_pics/inner_mongolia_2019/29.jpg){:.shadow.rounded width="350"}
+![Image](https://github.com/Yuleii/Yuleii.github.io/raw/master/pictures/photos_pics/inner_mongolia_2019/29.JPG){:.shadow.rounded width="350"}
 
 &nbsp;
 
