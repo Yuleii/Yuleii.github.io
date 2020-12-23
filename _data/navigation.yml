@@ -76,3 +76,5 @@ plog:
         url:    /plog/october
       - title:  November
         url:    /plog/november
+      - title:  December
+        url:    /plog/december
