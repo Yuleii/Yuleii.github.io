@@ -78,3 +78,7 @@ plog:
         url:    /plog/november
       - title:  December
         url:    /plog/december
+  - title:      2021
+    children:
+      - title:  January
+        url:    /plog/january
