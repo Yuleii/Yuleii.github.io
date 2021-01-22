@@ -2,7 +2,7 @@
 layout: article
 title: Discrete Choice Methods with Simulation 
 key: 2020715
-tags: Economics InProgress
+tags: DiscreteChoice InProgress
 pageview: false
 modify_date: 2020-07-15
 aside:

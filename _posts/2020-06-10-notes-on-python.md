@@ -2,7 +2,7 @@
 layout: article
 title: Notes on Python
 key: 20200610
-tags: Programming Python
+tags: Python
 pageview: false
 modify_date: 2020-06-11
 aside:

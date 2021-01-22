@@ -2,7 +2,7 @@
 layout: article
 title: Statistical Thinking in Python
 key: 20200924
-tags: Programming Python Econometrics
+tags: Python Statistics
 pageview: false
 modify_date: 2020-09-24
 aside:

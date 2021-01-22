@@ -2,7 +2,7 @@
 layout: article
 title: Writing Functions in Python
 key: 20200914
-tags: Programming Python
+tags: Python
 pageview: false
 modify_date: 2020-09-14
 aside:

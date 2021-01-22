@@ -2,7 +2,7 @@
 layout: article
 title: Merging DataFrames with pandas
 key: 20200627
-tags: Programming Python pandas
+tags: Python Pandas DataAnalysis
 modify_date: 2020-07-01
 pageview: false
 aside:

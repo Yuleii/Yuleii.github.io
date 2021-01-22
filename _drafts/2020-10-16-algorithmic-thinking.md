@@ -2,7 +2,7 @@
 layout: article
 title: Algorithmic Thinking
 key: 20201016
-tags: Programming Python
+tags: Python
 pageview: false
 modify_date: 2020-10-16
 aside:

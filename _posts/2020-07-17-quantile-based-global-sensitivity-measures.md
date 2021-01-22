@@ -2,7 +2,7 @@
 layout: article
 title: Quantile Based Global Sensitivity Measures
 key: 2020717
-tags: Econometrics
+tags: SensitivityAnalysis
 pageview: false
 modify_date: 2020-08-20
 mathjax_autoNumber: false

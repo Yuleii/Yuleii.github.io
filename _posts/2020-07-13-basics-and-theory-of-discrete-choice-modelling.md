@@ -2,7 +2,7 @@
 layout: article
 title: Notes on Discrete Choice Modelling
 key: 2020713
-tags: Economics
+tags: DiscreteChoice
 pageview: false
 modify_date: 2020-07-14
 aside:

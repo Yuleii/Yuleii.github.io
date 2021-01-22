@@ -2,7 +2,7 @@
 layout: article
 title: Introduction to Data Visualization with Matplotlib
 key: 20200702
-tags: Programming Python Matplotlib
+tags: Python Matplotlib DataAnalysis
 modify_date: 2020-07-03
 pageview: false
 aside:

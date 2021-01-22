@@ -2,7 +2,7 @@
 layout: article
 title: Joint Distributions for Continuous Variables
 key: 20200817
-tags: Econometrics
+tags: Statistics
 pageview: false
 modify_date: 2020-08-17
 mathjax_autoNumber: false

@@ -2,7 +2,7 @@
 layout: article
 title: Method Of Moments
 key: 2020716
-tags: Econometrics InProgress
+tags: Statistics InProgress
 pageview: false
 modify_date: 2020-07-16
 aside:

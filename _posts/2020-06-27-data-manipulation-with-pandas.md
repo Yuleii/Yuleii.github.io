@@ -2,7 +2,7 @@
 layout: article
 title: Data Manipulation with pandas
 key: 20200627
-tags: Programming Python pandas
+tags: Python Pandas DataAnalysis
 modify_date: 2020-06-29
 pageview: false
 aside:
