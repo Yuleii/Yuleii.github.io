@@ -26,14 +26,15 @@ titles:
 key: page-about
 ---
 
-Welcome to my blog:house:! This site is built for notes taking and experience sharing. 
+![about](https://github.com/Yuleii/Yuleii.github.io/raw/master/pictures/plog_pics/2021_january/20210117_3.JPG){:.shadow.rounded width="200"}
+### Hi, I'm Yulei.
 
-## About Me | 关于我
+I'm a master economics student at Bonn University. My blog is where I learn out loud. I write [posts](https://yuleii.github.io/archive.html) about things I find interesting, things I'm working on, or about problems I've faced with the solution I found.
 
-Hi! I am Yulei, currently a graduate student of economics living in Germany.
+Currently, I spend most of my time working on my master thesis on the topic of sensitivity analysis on structural behavioral model. I also work part-time for the [ILR](https://www.ilr1.uni-bonn.de/en), learn coding and languages, and write on this blog.
 
 
-## Dependencies
+### Dependencies
 
 * Avatar made by [Icongeek26](https://www.flaticon.com/authors/icongeek26) from [Flaticon](www.flaticon.com)  
 * Favicon made by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)  
