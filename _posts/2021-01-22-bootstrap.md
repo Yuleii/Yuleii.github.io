@@ -91,9 +91,9 @@ To be added....
 ## Bootstrap in Python
 To be added....
 
-## Reference
+## References
 
-- Krinsky, I., & Robb, A. (1986). [On Approximating the Statistical Properties of Elasticities.](https://www.jstor.org/stable/1924536?seq=1) The Review of Economics and Statistics, 68(4), 715-719.
+- Efron, B., & Tibshirani, R.J. (1994). [An Introduction to the Bootstrap (1st ed.).](https://doi.org/10.1201/9780429246593) Chapman and Hall/CRC.
 - [Advanced Data Analysis -The Bootstrap](https://www.stat.cmu.edu/~cshalizi/402/lectures/08-bootstrap/lecture-08.pdf)
 - [Statistical Analysis of Genomics Data: 15.3-Bootstrapping](https://online.stat.psu.edu/stat555/node/119/)
 - [Why use the parametric bootstrap?](https://stats.stackexchange.com/questions/96900/why-use-the-parametric-bootstrap)
