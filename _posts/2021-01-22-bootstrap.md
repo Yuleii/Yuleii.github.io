@@ -2,7 +2,7 @@
 layout: article
 title: The Bootstrap Estimate of Standard  Error 
 key: 20210123
-tags: Bootstrap Python Statistics InProgress
+tags: Bootstrap Python Statistics
 pageview: false
 modify_date: 2021-01-25
 aside:
