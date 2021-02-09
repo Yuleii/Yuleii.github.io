@@ -2,7 +2,7 @@
 layout: article
 title: My Fragrance Selection
 key: 20200818
-tags: Fun
+tags: Whatever
 pageview: false
 modify_date: 2020-09-13
 aside:
