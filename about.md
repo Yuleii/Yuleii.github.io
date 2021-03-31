@@ -31,8 +31,6 @@ key: page-about
 
 I'm a master economics student at Bonn University. My blog is where I learn out loud. I write [posts](https://yuleii.github.io/archive.html) about things I find interesting, things I'm working on, or about problems I've faced with the solution I found.
 
-Currently, I spend most of my time working on my master thesis on the topic of sensitivity analysis on structural behavioral model. I also work part-time for [ILR](https://www.ilr1.uni-bonn.de/en), learn coding and languages, and write on this blog.
-
 
 ### Dependencies
 
