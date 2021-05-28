@@ -30,10 +30,3 @@ key: page-about
 ### Hi, I'm Yulei.
 
 I'm a master economics student at Bonn University. My blog is where I learn out loud. I write [posts](https://yuleii.github.io/archive.html) about things I find interesting, things I'm working on, or about problems I've faced with the solution I found.
-
-
-### Dependencies
-
-* Avatar made by [Icongeek26](https://www.flaticon.com/authors/icongeek26) from [Flaticon](www.flaticon.com)  
-* Favicon made by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)  
-* Theme: [jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme)
