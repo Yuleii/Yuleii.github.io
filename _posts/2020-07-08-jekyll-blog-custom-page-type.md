@@ -2,7 +2,7 @@
 layout: article
 title: Jekyll博客自定义页面类型
 key: 2020708
-tags: Blog Jekyll
+tags: Jekyll
 pageview: false
 modify_date: 2020-07-08
 aside:

@@ -2,7 +2,7 @@
 layout: article
 title: 在Jekyll博客中插入图片
 key: 20207031
-tags: Blog Jekyll
+tags: Jekyll
 pageview: false
 modify_date: 2020-07-03
 aside:
