@@ -1,10 +1,10 @@
 ---
 layout: article
 title: Apple Watch Play Music Offline without Premium
-key: 20220727
+key: 20220726
 tags: Apple AppleWatch Spotify
 pageview: false
-modify_date: 2022-07-27
+modify_date: 2022-07-26
 aside:
   toc: true
 ---
