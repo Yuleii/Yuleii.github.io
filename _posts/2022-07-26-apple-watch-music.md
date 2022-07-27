@@ -47,7 +47,7 @@ Follow the [official guide](https://support.apple.com/guide/music/import-items-a
 [Connect your device to your computer with the USB cable](https://support.apple.com/HT210611) and select your device in the sidebar of Music App.
 
 I prefer to only sync with the playlist I choose.
-![John's iPhone](https://github.com/Yuleii/Yuleii.github.io/blob/master/pictures/20220727/John's%20iPhone.png)
+![John's iPhone](https://github.com/Yuleii/Yuleii.github.io/raw/master/pictures/20220727/John's%20iPhone.png)
 
 
 
